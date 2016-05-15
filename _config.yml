@@ -3,8 +3,8 @@
 # Site wide configuration
 ####################################
 #
-title:       "Leonids Jekyll theme"
-description: "Clean Jekyll blog theme called Leonids."
+title:       "Hannah"
+description: "adventures in pythonland"
 url:         # the base hostname & protocol for your site
 
 #
@@ -12,7 +12,7 @@ url:         # the base hostname & protocol for your site
 # Jekyll configuration
 ####################################
 #
-timezone:          Europe/Paris
+timezone:          Brooklyn
 markdown:          kramdown
 highlighter:       pygments
 excerpt_separator: <!--more-->
@@ -31,11 +31,11 @@ kramdown:
 ####################################
 #
 owner:
-  name: Your name
-  avatar: avatar.jpg
-  job: "Your job"
-  bio: "Write about yourself"
-  email:
+  name: Hannah Deen
+  avatar: madfun.jpg
+  job: "Data science student at Metis, NYC"
+  bio: ""
+  email: hannah.deen91@gmail.com
   disqus-shortname:
   twitter:
   facebook:
@@ -46,9 +46,9 @@ owner:
     ad-client:
     ad-slot:
   bing-verify:
-  github: #username
+  github: deenhe91
   stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
-  linkedin: #username
+  linkedin: deenhe
   xing: #username
   instagram: #username
   lastfm: #username
