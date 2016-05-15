@@ -1,3 +1,4 @@
+___
 layout: post
 title: My first post!
 excerpt: "Finally writing my first post from chilly Montreal"
@@ -7,7 +8,7 @@ image:
   feature: http://www.albilegeant.com/articles/wp-content/uploads/2015/10/Paria-Crew-Complete.jpg
   credit: 
   creditlink: http://www.albilegeant.com
-
+___
 
 ![Smithsonian Image](http://www.albilegeant.com/articles/wp-content/uploads/2015/10/Paria-Crew-Complete.jpg)
 {: .pull-right}
