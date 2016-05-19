@@ -1,12 +1,12 @@
 ---
 
 layout: post
-title: My first post!
+title: Linear regressions and movies
 excerpt: "Assessing gender equality in movies"
 categories: [hello world]
 comments: true
 image:
-  feature: http://www.albilegeant.com/articles/wp-content/uploads/2015/10/Paria-Crew-Complete.jpg
+  feature: http://jorindevoigt.com/blog/wp-content/wp-content/uploads/artist-talk.jpg
   credit: 
   creditlink: http://www.albilegeant.com
 ---
