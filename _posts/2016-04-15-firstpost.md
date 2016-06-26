@@ -1,8 +1,8 @@
 ---
 
 layout: post
-title: My first post!
-excerpt: "Finally writing my first post from chilly Montreal"
+title: my first post
+excerpt: "stepping out to step in"
 categories: [hello world]
 comments: true
 image:
@@ -15,10 +15,6 @@ image:
 
 
 ### Big
-
-## Bigger
-
-# Biggest 
 
 To celebrate making it to the course halfway point, my glorious fiance took me on a spontaneous night bus
 to Montreal. First time in Canada for me and the european taste of the place took me by surprise and made
