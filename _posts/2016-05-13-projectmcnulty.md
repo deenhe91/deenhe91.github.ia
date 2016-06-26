@@ -1,9 +1,9 @@
 ---
 
 layout: post
-title: Some thoughts
-excerpt: "Halfway Hindsight: how my idea of data science has changed"
-categories: [hello world]
+title: Classification
+excerpt: "30 category classification - better with defined features or brute force?"
+categories: [Metis Projects]
 comments: true
 image:
   feature: 
@@ -11,5 +11,5 @@ image:
   creditlink: 
 ---
 
-The image is by artist Jorinde Voigt, who uses data to create beautiful visualisations.
+
 
