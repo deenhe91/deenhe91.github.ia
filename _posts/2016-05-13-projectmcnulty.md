@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: Classification
+title: classification
 excerpt: "30 category classification - better with defined features or brute force?"
 categories: [Metis Projects]
 comments: true
@@ -10,6 +10,7 @@ image: http://www.biologydiscussion.com/wp-content/uploads/2015/10/clip_image004
   credit: 
   creditlink: 
 ---
+
 
 ## Leaf Classifier
 
