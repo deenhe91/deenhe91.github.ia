@@ -1,15 +1,16 @@
 ---
 
 layout: post
-title: Classification
+title: classification
 excerpt: "30 category classification - better with defined features or brute force?"
 categories: [Metis Projects]
 comments: true
-image: http://www.biologydiscussion.com/wp-content/uploads/2015/10/clip_image004_thumb223.jpg
-  feature: 
+image: 
+  feature: http://www.biologydiscussion.com/wp-content/uploads/2015/10/clip_image004_thumb223.jpg 
   credit: 
   creditlink: 
 ---
+
 
 ## Leaf Classifier
 
@@ -35,8 +36,6 @@ I have always appreciated the little things and I get excited by small logic pro
 _...it is 50 years in the future, and infrastructure has collapsed. It is more and more difficult to find reliable, safe and affordable medicine and so the people are turning back to nature for their remedies. For this reason they need a classifier to tell them, based on an image of the leaf, what the tree species is and whether that plant is medicinally useful to you..._
 
 Yes. My fantastic teacher Vinny pointed out that actually we don't need an apocalyptic future to justify a leaf classifier and it can be useful for education, park rangers and many other things.
-
-_________________
 
 Anyway, these two valuable lessons learnt, 
 

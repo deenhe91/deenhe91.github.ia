@@ -4,11 +4,10 @@ title: Overfishing
 excerpt: "Keystone project: Building an overfishing app and raising awareness."
 categories: [Metis Projects]
 comments: true
-image: http://www.greenpeace.org/international/Global/international/photos/oceans/2014/GP04BW5.jpg
-  feature: 
+image: 
+  feature: http://www.greenpeace.org/international/Global/international/photos/oceans/2014/GP04BW5.jpg 
   credit: 
   creditlink: 
-
 ---
 
 ###Overfishing
