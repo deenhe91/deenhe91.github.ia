@@ -32,7 +32,7 @@ So
 
 
 
-![alt text](https://github.com/deenhe91/project-final-overfishing/blob/master/images/bycatch2.png "fishfishfish")
+![alt text](images/bycatch2.png "fishfishfish")
 
 
 #### Further info and efforts
