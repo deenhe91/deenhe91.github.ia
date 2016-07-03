@@ -32,7 +32,7 @@ So
 
 
 
-![alt text](images/bycatch2.png "fishfishfish")
+![alt text](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ALBmeancatchrate.png "fishfishfish")
 
 
 #### Further info and efforts
