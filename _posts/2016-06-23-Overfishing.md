@@ -30,10 +30,6 @@ Amidst the many groupbys and pyplots a very clear pattern was demonstrated. Most
 Ian London's [Pandas tricks and tips](https://github.com/IanLondon/pandas_tricks) have been a lifesaver for those pernickety data manipulation tasks in Python. 
 So
 
-![](https://github.com/deenhe91/project-final-overfishing/blob/master/images/BET_BBMSY.png?raw=true "population decline of bigeye tuna")
-
-![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ALBmeancatchrate.png?raw=true "fishfishfish")
-
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ALBmeancatchrate.png?raw=true)
 
 #### By month, By region, By fish? Fuzzy-Matching
@@ -49,6 +45,9 @@ I made separate dataframes for Pacific and Atlantic fish to analyse the differen
 
 #### Missing Data
 
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/missingdata.png?raw=true "Pacific")
+
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/missingdata2.png?raw=true "Atlantic")
 
 
 #### Apping
