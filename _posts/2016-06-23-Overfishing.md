@@ -34,6 +34,7 @@ So
 
 ![alt text](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ALBmeancatchrate.png "fishfishfish")
 
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ALBmeancatchrate.png?raw=true)
 
 #### Further info and efforts
 
