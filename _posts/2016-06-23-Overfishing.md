@@ -45,6 +45,9 @@ YELLOWFIN
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/YFTmeancatchrate.png?raw=true)
 
 
+This indicates that the number of available tuna have dropped, and not just that we're getting better at catching them.
+
+
 #### By month, By region, By fish? Fuzzy-Matching
 
 I used the fuzzy matching python package `fuzzywuzzy`, to pull organise fish by just to play around with the package. I used regex on it's own as well, to see whether there was any difference in functionality there. 
@@ -75,6 +78,21 @@ This part required some serious readjustment of my understanding of the internet
 
 I built a fish-specific search tool that would allow people to find out how overfished a fish population is. The idea is also to provide alternatives and more of a dashboard breakdown which I am working on right now.
 
+I clustered the fish into different categories of 'threat level' or overfishedness using KMeans Clustering in `SciKitLearn`. I used fishing rate, population size and an indicator of the health of the population (the rate of growth in the last 5 years) as variables.
+
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/cluster.png?raw=true)
+
+I wanted to use 'length at age' as a variable because that appears to be a good measure of a healthy fish population, but it looks like getting that information for all the fish species I was working with would be a much longer process than I had the time for in this project.
+
+The  clusters:
+
+RED - overfished and dwindling/unhealthy population, do not eat.
+
+ORANGE - low population size but not necessarily over-fished, treat with caution.
+
+GREEN - healthy population and not overfished, bon apetit!
+
+
 ### Further info and efforts
 
 With a bit of digging on the interweb - gotta love it - I found countless organisations, listed at the bottom of this post, who are feverishly campaigning and recruiting to tackle these problems. 
@@ -86,6 +104,12 @@ The Seawatch app, this is very similar to what I have done, but with more time, 
 [The Black Fish](http://theblackfish.org/) is a super cool organisation based in the UK and the Netherlands that aim to keep fishing practices legal and pressure the government to set higher standards. They work in the Baltic and Mediterrenean seas, where illegal fishing is rife. 
 
 [Losing Nemo](https://vimeo.com/66514539?raw=true "Losing Nemo")
+
+Another fantastic short film which aims to educate people on overfishing was made by ---
+
+[video]()
+
+Ofcourse [The End of The Line] is a very 
 
 #####Google
 
