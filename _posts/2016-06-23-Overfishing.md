@@ -34,25 +34,33 @@ So
 
 #### By month, By region, By fish? Fuzzy-Matching
 
-I used the fuzzy matching python package fuzzywuzzy, to pull organise fish by just to play around with the package. I used regex on it's own as well, to see whether there was any difference in functionality there. 
+I used the fuzzy matching python package `fuzzywuzzy`, to pull organise fish by just to play around with the package. I used regex on it's own as well, to see whether there was any difference in functionality there. 
 
 First I used fuzzywuzzy to detect all fish in Pacific and Atlantic regions and then `numpy.where()` to pull out indices of all the fish in those regions.
 
 I made separate dataframes for Pacific and Atlantic fish to analyse the differences in overfishing between the two major oceans. 
 
-![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/missingdata.png?raw=true "Pacific")
-![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/missingdata2.png?raw=true "Atlantic")
 
 #### Missing Data
 
+This is just one snapshot of the data I had, namely the mean mortality rate (over the 60 year time period) of fish species in the Pacific...
+
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/missingdata.png?raw=true "Pacific")
 
+...and Atlantic oceans.
+
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/missingdata2.png?raw=true "Atlantic")
+
+You can't glean an awful lot from these plots, but it shows you just how much data is missing. Some fish had information on total catch, others had information on available biomass or mortality rate. Some had no information at all. 
+
+I tried using `PyBrain` to fill in these gaps with a recursive neural network.
 
 
 #### Apping
 
-Format of data had to be json for flask app purposes.
+This part required some serious readjustment of my understanding of the internet, and it was a really enjoyable and enlightening task. I'll do a post on understanding app buidling in the next couple of weeks with a link to the live web app. In the meantime you can have a gander at the app format on my [github page](https://github.com/deenhe91/fish_app).
+
+I built a fish-specific search tool that would allow people to find out how overfished a fish population is. The idea is also to provide alternatives and more of a dashboard breakdown which I am working on right now.
 
 #### Further info and efforts
 
