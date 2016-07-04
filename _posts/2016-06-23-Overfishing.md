@@ -51,7 +51,7 @@ This is just one snapshot of the data I had, namely the mean mortality rate (ove
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/missingdata2.png?raw=true "Atlantic")
 
-You can't glean an awful lot from these plots, but it shows you just how much data is missing. Some fish had information on total catch, others had information on available biomass or mortality rate. Some had no information at all. 
+You can't glean an awful lot from these plots, but it shows you just how much data is missing, especially in the Pacific. Some fish had information on total catch, others had information on available biomass or mortality rate. Some had no information at all. 
 
 I tried using `PyBrain` to fill in these gaps with a recursive neural network.
 
@@ -62,12 +62,17 @@ This part required some serious readjustment of my understanding of the internet
 
 I built a fish-specific search tool that would allow people to find out how overfished a fish population is. The idea is also to provide alternatives and more of a dashboard breakdown which I am working on right now.
 
-#### Further info and efforts
+### Further info and efforts
 
 The Seawatch app, this is very similar to what I have done, but with more time, money and manpower. However, they don't show the changes in the fish and this is a pretty useful chunk of information for the public to digest. It is far more impactful if someone says, "don't eat this fish, look here's why", than just, "don't eat this fish." In the same way you want to educate your children on _why_ they can't go around hitting things, or eat an entire bowl of haribo. That reaction to evidence stays an important influencer of our behaviour and in this way, data visualisations can be completely necessary.
 
-Videos
+#####Videos
 
-People
+[The Black Fish](http://theblackfish.org/) is a super cool organisation based in the UK and the Netherlands that aim to keep fishing practices legal and pressure the government to set higher standards. They work in the Baltic and Mediterrenean seas, where illegal fishing is rife. 
 
-Google
+[video](https://vimeo.com/66514539?raw=true)
+
+#####Google
+
+[The Global Fishing Watch](http://globalfishingwatch.org/) is google's attempt to pick out illegal fishing practices with a little help from enthusiastic volunteers.
+
