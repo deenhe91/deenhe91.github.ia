@@ -24,13 +24,26 @@ I also collected data from the [WCPFC](https://www.wcpfc.int) and did some analy
 
 ### Exploratory Analysis
 
-Amidst the many groupbys and pyplots a very clear pattern was demonstrated. Most of these fish were declining. Severely. It was actually quite shocking to view such an obvious trend. And with a bit of digging on the interweb - gotta love it - I found countless organisations, listed at the bottom of this post, who are feverishly campiagning and recruiting to tackle these problems. 
+Amidst the many groupbys and pyplots a very clear pattern was demonstrated. Most of these fish populations are severely declining. It was quite shocking to view such an obvious trend. 
 
+Here is a plot of the aggregated 'exploitation rate' of all tuna types in the data set, over time. It is a simple measure of the proportion of a population that is caught. So you can see that the percentage of the population caught has increased dramatically over the past 60 years.
 
-Ian London's [Pandas tricks and tips](https://github.com/IanLondon/pandas_tricks) have been a lifesaver for those pernickety data manipulation tasks in Python. 
-So
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ERTuna.png?raw=true)
+
+This could be because total catch has increased, or because the population size has decreased. When we look at plots of catch rates, which is essentially how much fish is caught per unit effort, you can see that this is decreasing...
+
+BIG EYE
+
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/BET_meancatchrate.png?raw=true)
+
+ALBACORE
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ALBmeancatchrate.png?raw=true)
+
+YELLOWFIN
+
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/YFTmeancatchrate.png?raw=true)
+
 
 #### By month, By region, By fish? Fuzzy-Matching
 
@@ -64,13 +77,15 @@ I built a fish-specific search tool that would allow people to find out how over
 
 ### Further info and efforts
 
+With a bit of digging on the interweb - gotta love it - I found countless organisations, listed at the bottom of this post, who are feverishly campaigning and recruiting to tackle these problems. 
+
 The Seawatch app, this is very similar to what I have done, but with more time, money and manpower. However, they don't show the changes in the fish and this is a pretty useful chunk of information for the public to digest. It is far more impactful if someone says, "don't eat this fish, look here's why", than just, "don't eat this fish." In the same way you want to educate your children on _why_ they can't go around hitting things, or eat an entire bowl of haribo. That reaction to evidence stays an important influencer of our behaviour and in this way, data visualisations can be completely necessary.
 
 #####Videos
 
 [The Black Fish](http://theblackfish.org/) is a super cool organisation based in the UK and the Netherlands that aim to keep fishing practices legal and pressure the government to set higher standards. They work in the Baltic and Mediterrenean seas, where illegal fishing is rife. 
 
-[video](https://vimeo.com/66514539?raw=true)
+[Losing Nemo](https://vimeo.com/66514539?raw=true "Losing Nemo")
 
 #####Google
 
