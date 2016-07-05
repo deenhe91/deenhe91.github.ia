@@ -63,7 +63,7 @@ A kernel will increase the dimensionality, draw a line in the higher dimension s
 
 ##### DECISION TREES and RANDOM FORESTS
 
-![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/forest.png?raw=true)
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/forest.jpg?raw=true)
 
 These are probably my favourite classifier. They are super visual and really intuitive but also really effective in lots of situations. A decision tree consists of a starting point, where you have ALL your data, and then you split that data by asking a simple yes/no question(can be a question with more than two answers but the standard is 2) and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorted than 10cm. You set how many questions you want to ask, or more properly, how many levels you want the tree to contain and _Voilá_! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.
 
