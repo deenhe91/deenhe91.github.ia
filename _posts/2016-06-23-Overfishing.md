@@ -47,15 +47,13 @@ YELLOWFIN
 
 This indicates that the number of available tuna have dropped, and not just that we're getting better at catching them.
 
-
 #### By month, By region, By fish? Fuzzy-Matching
 
-I used the fuzzy matching python package `fuzzywuzzy`, to pull organise fish by just to play around with the package. I used regex on it's own as well, to see whether there was any difference in functionality there. 
-
-First I used fuzzywuzzy to detect all fish in Pacific and Atlantic regions and then `numpy.where()` to pull out indices of all the fish in those regions.
+I used the fuzzy matching python package `fuzzywuzzy`, to pull organise fish by just to play around with the package. First I used fuzzywuzzy to detect all fish in Pacific and Atlantic regions and then `numpy.where()` to pull out indices of all the fish in those regions.
 
 I made separate dataframes for Pacific and Atlantic fish to analyse the differences in overfishing between the two major oceans. 
 
+- more to come here -
 
 #### Missing Data
 
@@ -109,7 +107,7 @@ Another fantastic short film which aims to educate people on overfishing was mad
 
 [video]()
 
-Ofcourse [The End of The Line] is a very 
+Ofcourse [The End of The Line]() is a very moving and comprehensive documentary on the state of the oceans and the corruption within fisheries. 
 
 #####Google
 
