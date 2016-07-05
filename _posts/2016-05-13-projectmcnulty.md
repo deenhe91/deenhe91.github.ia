@@ -16,7 +16,7 @@ image:
 
 Perhaps the two biggest personal lessons I learnt at Metis were learnt during this project. 
 
-#### First, procrastination will kill you. 
+### Procrastination will kill you. 
 I did not know what to do. And I did not stick to any idea that I had. Initially we started in groups with vague aims of classifying a genre into a subgenre. We went to the spotify music hackathon, bright-eyed and bushy-tailed and ready for adventure. Though the hackathon itself was fab and the speakers were inspiring - we didn't figure out our subgenre problem. The million song dataset wouldn't fit on my AWS, _and_ the spotify API didn't return the things that we were interested in. The fields were empty. Additionally, the awesome python libraries that we could use to analyse audio files was not cooperating with my python3. All of these barriers would have been circumventable if only I believed in the cause. I said yes to this because I was excited to work with music but I classifying genres into subgenres was not something I felt I could put my heart into. And so all of these hiccups felt all the more monumental. With retrospect I could have done some pretty neat classification problems surrounding music:
 
 Is this similar or not similar to your current taste in music and do you w
@@ -29,7 +29,7 @@ and I will probably explore these now I have some 'free' time (ahum. job-hunting
 
 Moral of the story: Find a project and _stick to it_. You can make something interesting out of everything. 
 
-####This ties in to the second lesson: Don't try and change the world with every project. 
+### Don't try and change the world with every project. 
 
 You will __always__ be disappointed. __Always__. One of my main issues is having to make everything I do 'important' to justify putting time into it. But ultimately this course is about learning the ropes. Taking on seemingly less serious topics will allow faster blooming of my technical capabilities.
 I have always appreciated the little things and I get excited by small logic problems and even things like data cleaning (_HOW??_) but if I have to present a project I have had a tendency to overthink and search for the much much bigger picture. This has made it difficult to get excited about things that just have a simple bigger picture. Or projects that are only focused on 'increasing revenue'. But I have realised how detrimental this is. For the leaf project I went to lengths to make up a story about the APOCALYPSE! Are you ready?
@@ -40,7 +40,7 @@ Yes. Our fantastic teacher Vinny pointed out that actually we don't need an apoc
 
 Anyway, these two valuable lessons are now learnt and I shall carry them with me forever.
 
-###The project
+### The project
 
 I got this dataset from [UCI]() along with a paper by --- explaining his logic and process. I used openCV to extract some of the features he mentioned in his thesis. All of which were present in the dataset itself, but just to get a feel for the openCV package and learn a bit about image processing.
 
@@ -48,7 +48,7 @@ I did a feature importance analysis to pull out the most important ones, as a fe
 
 I took the top 5 and then used a bunch of classifier algorithms to try and find the most accurate classification system: Regression, SVM, Decision Tree, and Random Forest. All sci-kit learn fuelled. 
 
-#### A little summary of the classifiers
+### A little summary of the classifiers
 
 LOGISTIC REGRESSION
 
