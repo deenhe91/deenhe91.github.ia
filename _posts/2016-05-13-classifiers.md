@@ -40,7 +40,7 @@ Yes. Our fantastic teacher Vinny pointed out that actually we don't need an apoc
 
 Anyway, these two valuable lessons are now learnt and I shall carry them with me forever.
 
-### The project
+## The project
 
 I got this dataset from [UCI]() along with a paper by --- explaining his logic and process. I used openCV to extract some of the features he mentioned in his thesis. All of which were present in the dataset itself, but just to get a feel for the openCV package and learn a bit about image processing.
 
