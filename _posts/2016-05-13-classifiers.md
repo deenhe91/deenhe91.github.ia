@@ -46,20 +46,24 @@ I got this dataset from [UCI]() along with a paper by --- explaining his logic a
 
 I did a feature importance analysis to pull out the most important ones, as a few of the features were mathematically related to each other and also there were 16. So it couldn't hurt to prune some out. Here was the result:
 
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_features.png?raw=true)
+
 I took the top 5 and then used a bunch of classifier algorithms to try and find the most accurate classification system: Regression, SVM, Decision Tree, and Random Forest. All sci-kit learn fuelled. 
 
 ### A little summary of the classifiers
 
-LOGISTIC REGRESSION
+##### LOGISTIC REGRESSION
 
 
-SVM
+##### SVM
 
 This bad boy is really hard to wrap your head around. SVM stands for __Support Vector Machine__ so you know it's going to be a bit abstract. It's based on the distance between vectors of the data. Wihout a __kernel__, they are only really useful for data that is linearly divided. It looks a little like this:
 
 A kernel will increase the dimensionality, draw a line in the higher dimension space, and then reduce the dimensionality so that the line is no longer straight. Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting. 
 
-DECISION TREES and RANDOM FORESTS
+##### DECISION TREES and RANDOM FORESTS
+
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/forest.png?raw=true)
 
 These are probably my favourite classifier. They are super visual and really intuitive but also really effective in lots of situations. A decision tree consists of a starting point, where you have ALL your data, and then you split that data by asking a simple yes/no question(can be a question with more than two answers but the standard is 2) and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorted than 10cm. You set how many questions you want to ask, or more properly, how many levels you want the tree to contain and _Voilá_! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.
 
@@ -69,6 +73,7 @@ And LOW AND BEHOLD, the Random Forest classifier was the most accurate for my le
 
 Here's the breakdown:
 
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_accuracy.png?raw=true)
 
 
 
