@@ -44,11 +44,35 @@ Anyway, these two valuable lessons are now learnt and I shall carry them with me
 
 I got this dataset from [UCI]() along with a paper by --- explaining his logic and process. I used openCV to extract some of the features he mentioned in his thesis. All of which were present in the dataset itself, but just to get a feel for the openCV package and learn a bit about image processing.
 
+### Basic Cleaning
+
+I remember when I started working with and how long it took to get the basics down because everyone assumes they are a no-brainer. So I'm going to mention a little about cleaning the data in every project I post. 
+
+This data was pretty clean already so it was just a case of organising and understanding it.
+
+I replaced string nans with float `nan` so that they would be recognised as non-values specifically.
+
+I grouped my data by species to have a look at the summary of differed variables per species. To see whether something was largely nans and just to understand the metrics a little better because they consisted of things like 'Eccentricity', 'Solidity' and 'Isoperimetric Factor'... (see end for explanation of these terms).
+
+I created a reduced dataset that didn't have things in it I wasn't planning on using in my analysis and I `pickled` that so that I could just load it up again if I quit the programme.
+
+TEST TRAIN SPLIT - very important. I had 30 species and only 8-15 specimens per species so it was important to do a stratified split so that all the species were present in both the training and the test set.
+
+I used `seaborn` and `matplotlib` to plot some of the features(variables) in the training set.
+Included having some fun with violin and swarm plots. Just another way of visualising the distribution within a feature. This violin plot is the coloured section, which represents the density of data points at a certain value and the swarm plot just puts the actual data points on there as well.
+
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_swarmplot.png?raw=true)
+
 I did a feature importance analysis to pull out the most important ones, as a few of the features were mathematically related to each other and also there were 16. So it couldn't hurt to prune some out. Here was the result:
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_features.png?raw=true)
 
-I took the top 5 and then used a bunch of classifier algorithms to try and find the most accurate classification system: Regression, SVM, Decision Tree, and Random Forest. All sci-kit learn fuelled. 
+I tried running my classifier models with the top 9, and then 10, and then 11, features but my accuracy score for each model dropped a lot, some by 20 points. So I stuck with all 16.
+
+A little sidenote - I plotted a scatter matrix for my features which is just a matrix of scatter plots that shows you how each pair of variables are related. Down the diagonal (where the one variable would be compared with itself) is a KDE plot for that particular variable. That just shows the distribution within the variable. This is a great and reasonable quick way to visually understand your data and the relaitonships within it - that is, if you don't have more than 10 or 15 variables..
+
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ClassScatter_matrix.png?raw=true)
+
 
 ### A little summary of the classifiers
 
@@ -63,7 +87,7 @@ A kernel will increase the dimensionality, draw a line in the higher dimension s
 
 ##### DECISION TREES and RANDOM FORESTS
 
-![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/forest.jpg?raw=true)
+
 
 These are probably my favourite classifier. They are super visual and really intuitive but also really effective in lots of situations. A decision tree consists of a starting point, where you have ALL your data, and then you split that data by asking a simple yes/no question(can be a question with more than two answers but the standard is 2) and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorted than 10cm. You set how many questions you want to ask, or more properly, how many levels you want the tree to contain and _Voilá_! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.
 
