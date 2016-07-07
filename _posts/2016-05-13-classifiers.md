@@ -56,7 +56,7 @@ I grouped my data by species to have a look at the summary of differed variables
 
 I created a reduced dataset that didn't have things in it I wasn't planning on using in my analysis and I `pickled` that so that I could just load it up again if I quit the programme.
 
-TEST TRAIN SPLIT - very important. I had 30 species and only 8-15 specimens per species so it was important to do a stratified split so that all the species were present in both the training and the test set.
+__The test-train split__. I had 30 species and only 8-15 specimens per species so it was important to do a stratified split so that all the species were present in both the training and the test set.
 
 I used `seaborn` and `matplotlib` to plot some of the features(variables) in the training set.
 Included having some fun with violin and swarm plots. Just another way of visualising the distribution within a feature. This violin plot is the coloured section, which represents the density of data points at a certain value and the swarm plot just puts the actual data points on there as well.
@@ -65,7 +65,7 @@ Included having some fun with violin and swarm plots. Just another way of visual
 
 Using feature importance analysis to pull out the most important features can be quite prudent. Sometimes some of the features are mathematically related to each other. Also, in the leaf dataset there were 16. Lots of variables means lots of dimensions which makes it harder to glean relevant insights. 
 
-It couldn't hurt to prune some out. Here was the result:
+It couldn't hurt to prune some out. 
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_features.png?raw=true)
 
@@ -87,9 +87,16 @@ Logistic regression assumes a clear cut off [images]
 
 ##### SVM
 
-This bad boy is really hard to wrap your head around. SVM stands for __Support Vector Machine__. It's based on the distance between vectors of the data. Wihout a __kernel__, they are only really useful for data that is linearly divided. It looks a little like this:
+This bad boy is not so easy to wrap your head around. SVM stands for __Support Vector Machine__. It's basic idea is that you define a decision boundary using the 'widest street' approach. This means that you want to draw a line that has on either side of it, the biggest margin possible between the two categories. Wihout a __kernel__, SVMs are only really useful for data that is linearly divided. It looks a little like this:
 
-A kernel will increase the dimensionality, draw a line in the higher dimension space, and then reduce the dimensionality so that the line is no longer straight. Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting. 
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/svm.gif?raw=true)
+
+Using a kernel will increase the dimensionality, draw a line in the higher dimension space, and then reduce the dimensionality so that the line is no longer straight. Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting. 
+
+I find that this [MIT lecture](https://www.youtube.com/watch?v=_PwhiWxHK8o) is super helpful.
+
+So, I used an SVM with a kernel ---
+
 
 ##### DECISION TREES and RANDOM FORESTS
 
@@ -102,6 +109,12 @@ And LOW AND BEHOLD, the Random Forest classifier was the most accurate for my le
 Here's the breakdown:
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_accuracy.png?raw=true)
+
+### Brute forcing it
+
+I wanted to see whether using a naive bayes image classifier would return better or worse results than the above, more restrained process of picking out specific mathematical representations of the image.
+
+
 
 
 
