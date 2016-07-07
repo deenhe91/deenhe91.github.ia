@@ -89,7 +89,7 @@ Logistic regression assumes a clear cut off [images]
 
 This bad boy is not so easy to wrap your head around. SVM stands for __Support Vector Machine__. It's basic idea is that you define a decision boundary using the 'widest street' approach. This means that you want to draw a line that has on either side of it, the biggest margin possible between the two categories. Wihout a __kernel__, SVMs are only really useful for data that is linearly divided. It looks a little like this:
 
-![](https://github.com/deenhe91/deenhe91.github.io/blob/master/svm.gif?raw=true)
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/svm.jpg?raw=true)
 
 Using a kernel will increase the dimensionality, draw a line in the higher dimension space, and then reduce the dimensionality so that the line is no longer straight. Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting. 
 
