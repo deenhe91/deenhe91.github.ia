@@ -24,6 +24,8 @@ I also collected data from the [WCPFC](https://www.wcpfc.int) and did some analy
 
 ### Exploratory Analysis
 
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/IMG_20160610_113730.jpg?raw=true)
+
 Amidst the many groupbys and pyplots a very clear pattern was demonstrated. Most of these fish populations are severely declining. It was quite shocking to view such an obvious trend. 
 
 Here is a plot of the aggregated 'exploitation rate' of all tuna types in the data set, over time. It is a simple measure of the proportion of a population that is caught. So you can see that the percentage of the population caught has increased dramatically over the past 60 years.

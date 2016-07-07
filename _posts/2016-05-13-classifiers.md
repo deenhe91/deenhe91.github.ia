@@ -44,7 +44,7 @@ Anyway, these two valuable lessons are now learnt and I shall carry them with me
 
 I got this dataset from [UCI]() along with a paper by --- explaining his logic and process. I used openCV to extract some of the features he mentioned in his thesis. All of which were present in the dataset itself, but just to get a feel for the openCV package and learn a bit about image processing.
 
-### Basic Cleaning
+#### basic cleaning
 
 I remember when I started working with and how long it took to get the basics down because everyone assumes they are a no-brainer. So I'm going to mention a little about cleaning the data in every project I post. 
 
@@ -63,31 +63,35 @@ Included having some fun with violin and swarm plots. Just another way of visual
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_swarmplot.png?raw=true)
 
-I did a feature importance analysis to pull out the most important ones, as a few of the features were mathematically related to each other and also there were 16. So it couldn't hurt to prune some out. Here was the result:
+Using feature importance analysis to pull out the most important features can be quite prudent. Sometimes some of the features are mathematically related to each other. Also, in the leaf dataset there were 16. Lots of variables means lots of dimensions which makes it harder to glean relevant insights. 
+
+It couldn't hurt to prune some out. Here was the result:
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_features.png?raw=true)
 
-I tried running my classifier models with the top 9, and then 10, and then 11, features but my accuracy score for each model dropped a lot, some by 20 points. So I stuck with all 16.
+I tried running my classifier models with the top 9 (and then 10, and then 11) features but my accuracy score for each model dropped a lot, some by 20 points. So I stuck with all 16.
 
 A little sidenote - I plotted a scatter matrix for my features which is just a matrix of scatter plots that shows you how each pair of variables are related. Down the diagonal (where the one variable would be compared with itself) is a KDE plot for that particular variable. That just shows the distribution within the variable. This is a great and reasonable quick way to visually understand your data and the relaitonships within it - that is, if you don't have more than 10 or 15 variables..
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ClassScatter_matrix.png?raw=true)
 
-
 ### A little summary of the classifiers
 
 ##### LOGISTIC REGRESSION
 
+__Logistic regression is used to predict the odds of being a case based on the values of the independent variables (predictors)__
+
+Logistic regression is just regression where the dependent variable (the thing you are predicting) is categorical (splits into categories). This is most effectively used, or designed for, binary models. Usually in cases of multple categories (that are unordered) the regression model to use is _Multinomial Linear Regression_ which doesn't have a handy function in scikit learn (sit tight for more on this). When applied to a problem with multiple categories, like the leaf dataset, an logistic regression analysis will assess the probability that something is in one category compared to all other categories. 
+
+Logistic regression assumes a clear cut off [images]
 
 ##### SVM
 
-This bad boy is really hard to wrap your head around. SVM stands for __Support Vector Machine__ so you know it's going to be a bit abstract. It's based on the distance between vectors of the data. Wihout a __kernel__, they are only really useful for data that is linearly divided. It looks a little like this:
+This bad boy is really hard to wrap your head around. SVM stands for __Support Vector Machine__. It's based on the distance between vectors of the data. Wihout a __kernel__, they are only really useful for data that is linearly divided. It looks a little like this:
 
 A kernel will increase the dimensionality, draw a line in the higher dimension space, and then reduce the dimensionality so that the line is no longer straight. Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting. 
 
 ##### DECISION TREES and RANDOM FORESTS
-
-
 
 These are probably my favourite classifier. They are super visual and really intuitive but also really effective in lots of situations. A decision tree consists of a starting point, where you have ALL your data, and then you split that data by asking a simple yes/no question(can be a question with more than two answers but the standard is 2) and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorted than 10cm. You set how many questions you want to ask, or more properly, how many levels you want the tree to contain and _Voilá_! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.
 
