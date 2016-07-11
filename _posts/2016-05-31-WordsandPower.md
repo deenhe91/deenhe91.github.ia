@@ -11,7 +11,7 @@ image:
   creditlink:
 ---
 
-####Background
+#### Background
 
 Natural Language Processing is one of the reasons I love data science. Perhaps because every level of it has some semantic value. There is information that is intricately tied to your upbringing, experience, perception of the world, in every word, every sentence. The data doesn't necessarily have to be large to be more meaningful to you. 
 
@@ -25,17 +25,17 @@ So in 2014 Scotland held a long-awaited independence referendum. The sentiment w
 
 
 
-####The Question
+#### The Question
 
 My question was, how did she pull it off? Is it possible to see changes in the way that people talked about the SNP before and after the referendum and leading up to the election that meant that _even though_ the majority of the country had voiced their opinion as contradicting the __main__ incentive of the SNP, they still voted them in. Everywhere. 
 
 My approach here was two-fold. I wanted to look at what Sturgeon and Salmond had said, and also at what the papers had said. 
 
-####Limitations
+#### Limitations
 
 Now there were many constraints here that meant that these were limited. Time being the main one. Also, the transcripts of public speeched of Sturgeon and Salmond weren't as readily available as I'd hoped and the best thing I could find was the General Election debate which included Sturgeon and 5 other party leaders. The other was limited in that the Guardian is the only UK newspaper with an API. So my newspaper representation of the case was limited to that one newspaper.
 
-####The approach
+#### The approach
 
 I wanted some practice using AWS so I decided to do all the newspaper stuff on an AWS instance using vim from my terminal. This involved setting up an instance and _ssh_ing into it whenever I wanted to work on that part of the project. I then used `scp -i` to copy things from the instance to my local computer when I wanted to visualise or present. 
 
@@ -43,9 +43,9 @@ I used the Guardian API to request all links to pages containing content on __Sc
 
 It kept tripping up and throwing an error so I introduced a neat little trick to keep it running. 
 
-`Try:
-Except: 
-	print('pass')
+`Try: \n
+Except: \n
+	print('pass')\n
 	pass` 
 
 With this, if the scraper encountered an article that didn't fit the bill, it would just skip over it. I included `print('pass')` and a counter so I could see how many didn't work. Luckily it was a tiny percentage of the total number of articles. Some 40 links out of 18,000.
