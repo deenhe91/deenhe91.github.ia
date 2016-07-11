@@ -74,11 +74,12 @@ A little sidenote - I plotted a scatter matrix for my features which is just a m
 
 ##### LOGISTIC REGRESSION
 
-__Logistic regression is used to predict the odds of being a case based on the values of the independent variables (predictors)__
+Logistic regression is just regression where the dependent variable (the thing you are predicting) is categorical (splits into categories). This is most effectively used, or designed for, binary models. Usually in cases of multiple unordered categories, the regression model to use is _Multinomial Linear Regression_ which doesn't have a handy function in scikit learn (sit tight for more on this). When applied to a problem with multiple categories, like the leaf dataset, a logistic regression analysis will assess the probability that something is in one category compared to all other categories. 
 
-Logistic regression is just regression where the dependent variable (the thing you are predicting) is categorical (splits into categories). This is most effectively used, or designed for, binary models. Usually in cases of multple categories (that are unordered) the regression model to use is _Multinomial Linear Regression_ which doesn't have a handy function in scikit learn (sit tight for more on this). When applied to a problem with multiple categories, like the leaf dataset, an logistic regression analysis will assess the probability that something is in one category compared to all other categories. 
+Logistic regression assumes a clear cut off. The green line in the example below is the probability of a data point being 'a case' given 1 feature. The blue dots are cases and the red ones are not. A classic example the probability of a student passing a test given the number of hours they spend studying for that test. Blue is pass, red is fail, and the numbers on the x axis are the number of hours spent studying. It seems logical that the probability of passing increases with study hours.
 
-Logistic regression assumes a clear cut off [images]
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/140.png?raw=true)
+
 
 ##### SVM
 
@@ -108,7 +109,9 @@ Here's the breakdown:
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_accuracy.png?raw=true)
 
-And the classification report, which is just a function in sklearn:
+The y axis shows the accuracy score. Terrible that it doesn't have labels.. I know..
+
+The `classification_report`, which is just a lovely little function in sklearn, and breaks down the accuracy into recall and precision:
 
 --CLASSIFICATION REPORT--
 
