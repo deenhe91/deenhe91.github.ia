@@ -16,7 +16,8 @@ image:
 
 Perhaps the two biggest personal lessons I learnt at Metis were learnt during this project. 
 
-### Procrastination will kill you. 
+### Procrastination will kill you.
+
 I did not know what to do. And I did not stick to any idea that I had. Initially we started in groups with vague aims of classifying a genre into a subgenre. We went to the spotify music hackathon, bright-eyed and bushy-tailed and ready for adventure. Though the hackathon itself was fab and the speakers were inspiring - we didn't figure out our subgenre problem. The million song dataset wouldn't fit on my AWS, _and_ the spotify API didn't return the things that we were interested in. The fields were empty. Additionally, the awesome python libraries that we could use to analyse audio files was not cooperating with my python3. All of these barriers would have been circumventable if only I believed in the cause. I said yes to this because I was excited to work with music but I classifying genres into subgenres was not something I felt I could put my heart into. And so all of these hiccups felt all the more monumental. With retrospect I could have done some pretty neat classification problems surrounding music.
 
 and I will probably explore these now I have some 'free' time (ahum. job-hunting.) but at the time these did not come to me. I looked up datasets and debated playing with calcium signalling data ([is a neuron of interest or not?](http://neurofinder.codeneuro.org/)), or are mushrooms edible or not, or even does this person have Parkinson's or not? Some SUPER interesting things kicking about there but procrastination killed them all. And 36 hours before presentation time, I decided to classify leaf images to corresponding tree species. This was fine, but given the time strain I had very little opportunity to do deeper interesting analysis or to seriously consider the problem or uses of this classifier.
@@ -81,32 +82,43 @@ Logistic regression assumes a clear cut off [images]
 
 ##### SVM
 
-This bad boy is not so easy to wrap your head around. SVM stands for __Support Vector Machine__. It's basic idea is that you define a decision boundary using the 'widest street' approach. This means that you want to draw a line that has on either side of it, the biggest margin possible between the two categories. Wihout a __kernel__, SVMs are only really useful for data that is linearly divided. It looks a little like this:
+SVM stands for __Support Vector Machine__. It's basic idea is that you define a decision boundary using the 'widest street' approach. This means that you want to draw a line that has on either side of it, the biggest margin possible between the two categories. Wihout a __kernel__, SVMs are only really useful for data that is linearly divided. It looks a little like this:
 
-![](https://github.com/deenhe91/deenhe91.github.io/blob/master/svm.jpg?raw=true)
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/svmsimple.jpg?raw=true)
 
-Using a kernel will increase the dimensionality, draw a line in the higher dimension space, and then reduce the dimensionality so that the line is no longer straight. Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting. 
+Using a kernel means drawing the line in a higher dimensional space and then reducing the dimensionality so that the line no longer looks straight. Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting. 
 
-I find that this [MIT lecture](https://www.youtube.com/watch?v=_PwhiWxHK8o) is super helpful.
+I find that this [MIT lecture](https://www.youtube.com/watch?v=_PwhiWxHK8o) is super helpful. I also love chalkboards.
 
-So, I used an SVM with a kernel ---
+##### K NEAREST NEIGHBOURS
 
+I also attempted to classify the leaves using a KNN algorithm.
 
 ##### DECISION TREES and RANDOM FORESTS
 
-These are probably my favourite classifier. They are super visual and really intuitive but also really effective in lots of situations. A decision tree consists of a starting point, where you have ALL your data, and then you split that data by asking a simple yes/no question(can be a question with more than two answers but the standard is 2) and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorted than 10cm. You set how many questions you want to ask, or more properly, how many levels you want the tree to contain and _Voilá_! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.
+Decision trees and random forests are probably my favourite type of classification algorithm because they are really intuitive  but also really effective in lots of situations. You run the risk of overfitting, but random forests help there. 
+
+A decision tree consists of a starting point, where you have ALL your data, and then you split that data by asking a simple yes/no question and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorted than 10cm. You set how many questions you want to ask, or in the correct lingo, how many levels you want the tree to contain and _Voilá_! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.
 
 Random Forests just do the same process multiple times (lots of decision trees) and then take the mode or mean prediction of the sum of the trees. The good thing about Random Forests is that they can reduce the risk of overfitting that can happen with Decision Trees. 
 
-And LOW AND BEHOLD, the Random Forest classifier was the most accurate for my leaf dataset. Which was just perfect. Because leaves. And trees. And forests. Geddit?
+And LOW AND BEHOLD, for my leaf dataset the Random Forest classifier was the most accurate. Which was just perfect. Because leaves. And trees. And forests. Geddit?
 
 Here's the breakdown:
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_accuracy.png?raw=true)
 
+And the classification report, which is just a function in sklearn:
+
+--CLASSIFICATION REPORT--
+
 ### Brute forcing it
 
 I wanted to see whether using a naive bayes image classifier would return better or worse results than the above, more restrained process of picking out specific mathematical representations of the image.
+
+So I loaded all the actual images of the leaves, which were luckily attached to the dataset, and binarised them using the cv2 package. This returns a vector where each value represents the likelihood that that pixel will be black. 
+
+
 
 
 
