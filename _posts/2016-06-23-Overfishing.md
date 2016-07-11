@@ -15,7 +15,7 @@ here's a link to a pdf of the final presentation I gave on career day, 23rd June
 
 Overfishing is one of the biggest and most neglected issues of our time. The oceans play a crucial role in maintainig a stable atmosphere and also provide food for billions of people on earth. Maintaining a healthy ecosystem is important everywhere, but in the oceans, an unbalanced and collapsing ecosystem results in substantial effects on the levels of CO2 in our atmosphere and thus has catastrophic effects, not just for economies that rely on fishing to sustain them, but also for fish populations and ultimately our environment.
 
-For our final project at Metis, I clustered fish species into levels of threat, and used these in an [app](github.com/deenhe91/fish_app) so that users can input the name of a fish and find out how threatened or overfished that species currently is.
+For my final project at Metis, I clustered fish species into levels of threat, and used these in an [app](github.com/deenhe91/fish_app) so that users can input the name of a fish and find out how threatened or overfished that species currently is.
 
 I got my data from [NOAA](http://noaa.gov), which provided information on over 500 species of fish over an average of 60 years.
 
@@ -26,7 +26,7 @@ I also collected data from the [WCPFC](https://www.wcpfc.int) and did some analy
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/IMG_20160610_113730.jpg?raw=true)
 
-Amidst the many groupbys and pyplots a very clear pattern was demonstrated. Most of these fish populations are severely declining. It was quite shocking to view such an obvious trend. 
+Amidst the many groupbys and pyplots a very clear pattern emerged. Most of these fish populations are severely declining. It was quite shocking to view such an obvious trend. 
 
 Here is a plot of the aggregated 'exploitation rate' of all tuna types in the data set, over time. It is a simple measure of the proportion of a population that is caught. So you can see that the percentage of the population caught has increased dramatically over the past 60 years.
 
@@ -51,7 +51,7 @@ This indicates that the number of available tuna have dropped, and not just that
 
 #### By month, By region, By fish? Fuzzy-Matching
 
-I used the fuzzy matching python package `fuzzywuzzy`, to pull organise fish by just to play around with the package. First I used fuzzywuzzy to detect all fish in Pacific and Atlantic regions and then `numpy.where()` to pull out indices of all the fish in those regions.
+I used the fuzzy matching python package `fuzzywuzzy`, to pull out fish by region. First I used fuzzywuzzy to detect all fish in Pacific and Atlantic regions and then `numpy.where()` to pull out indices of all the fish in those regions.
 
 I made separate dataframes for Pacific and Atlantic fish to analyse the differences in overfishing between the two major oceans. 
 
@@ -74,15 +74,15 @@ I tried using `PyBrain` to fill in these gaps with a recursive neural network.
 
 #### Apping
 
-This part required some serious readjustment of my understanding of the internet, and it was a really enjoyable and enlightening task. I'll do a post on understanding app buidling in the next couple of weeks with a link to the live web app. In the meantime you can have a gander at the app format on my [github page](https://github.com/deenhe91/fish_app).
+This part required some serious readjustment of my understanding of the internet It was a really enjoyable and fascinating task. I'll do a post on understanding app buidling in the next couple of weeks with a link to the live web app. In the meantime you can have a gander at the app format on my [github page](https://github.com/deenhe91/fish_app).
 
-I built a fish-specific search tool that would allow people to find out how overfished a fish population is. The idea is also to provide alternatives and more of a dashboard breakdown which I am working on right now.
+I built a fish-specific search tool with a little help from [Joe Oliver]() that would allow people to find out how overfished a fish population is. The idea is also to provide alternatives and more of a dashboard breakdown which I am working on right now.
 
 I clustered the fish into different categories of 'threat level' or overfishedness using KMeans Clustering in `SciKitLearn`. I used fishing rate, population size and an indicator of the health of the population (the rate of growth in the last 5 years) as variables.
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/cluster.png?raw=true)
 
-I wanted to use 'length at age' as a variable because that appears to be a good measure of a healthy fish population, but it looks like getting that information for all the fish species I was working with would be a much longer process than I had the time for in this project.
+I wanted to use 'length at age' as a variable because that is a good measure of a healthy fish population, but it looks like getting that information for all the fish species I was working with would be a much longer process than I had the time for in this project.
 
 The  clusters:
 
@@ -95,23 +95,21 @@ GREEN - healthy population and not overfished, bon apetit!
 
 ### Further info and efforts
 
-With a bit of digging on the interweb - gotta love it - I found countless organisations, listed at the bottom of this post, who are feverishly campaigning and recruiting to tackle these problems. 
+With a bit of digging on the interweb I found countless organisations, listed at the bottom of this post, who are feverishly campaigning and recruiting to tackle these problems. 
 
 The Seawatch app, this is very similar to what I have done, but with more time, money and manpower. However, they don't show the changes in the fish and this is a pretty useful chunk of information for the public to digest. It is far more impactful if someone says, "don't eat this fish, look here's why", than just, "don't eat this fish." In the same way you want to educate your children on _why_ they can't go around hitting things, or eat an entire bowl of haribo. That reaction to evidence stays an important influencer of our behaviour and in this way, data visualisations can be completely necessary.
 
-#####Videos
+##### Videos
 
-[The Black Fish](http://theblackfish.org/) is a super cool organisation based in the UK and the Netherlands that aim to keep fishing practices legal and pressure the government to set higher standards. They work in the Baltic and Mediterrenean seas, where illegal fishing is rife. 
-
-[Losing Nemo](https://vimeo.com/66514539?raw=true "Losing Nemo")
+[The Black Fish](http://theblackfish.org/) is a super cool organisation based in the UK and the Netherlands that aim to keep fishing practices legal and pressure the government to set higher standards. They work in the Baltic and Mediterrenean seas, where illegal fishing is rife. They film [Losing Nemo](https://vimeo.com/66514539?raw=true) is there informational video on the state of over and illegal fishing.
 
 Another fantastic short film which aims to educate people on overfishing was made by ---
 
 [video]()
 
-Ofcourse [The End of The Line]() is a very moving and comprehensive documentary on the state of the oceans and the corruption within fisheries. 
+__The End of The Line__ is a very moving and comprehensive documentary on the state of the oceans and the corruption within fisheries. 
 
-#####Google
+##### Google
 
 [The Global Fishing Watch](http://globalfishingwatch.org/) is google's attempt to pick out illegal fishing practices with a little help from enthusiastic volunteers.
 
