@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: Linear regressions and movies
+title: GENDER MOVIE FUN
 excerpt: "Assessing gender equality in movies"
 categories: [Metis Projects]
 comments: true
