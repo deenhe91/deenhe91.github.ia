@@ -5,7 +5,7 @@ excerpt: "leaky boots and cross bags"
 categories: [Data Thoughts]
 comments: true
 image: 
-  feature: 
+  feature: http://66.media.tumblr.com/tumblr_lt4kzqtRxc1qa554ro1_1280.jpg
   credit: 
   creditlink: 
 
