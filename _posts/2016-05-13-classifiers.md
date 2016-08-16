@@ -18,9 +18,12 @@ Perhaps the two biggest personal lessons I learnt at Metis were learnt during th
 
 ### Procrastination will kill you.
 
-I did not know what to do. And I did not stick to any idea that I had. Initially we started in groups with vague aims of classifying a genre into a subgenre. We went to the spotify music hackathon, bright-eyed and bushy-tailed and ready for adventure. Though the hackathon itself was fab and the speakers were inspiring - we didn't figure out our subgenre problem. The million song dataset wouldn't fit on my AWS, _and_ the spotify API didn't return the things that we were interested in. The fields were empty. Additionally, the awesome python libraries that we could use to analyse audio files was not cooperating with my python3. All of these barriers would have been circumventable if only I believed in the cause. I said yes to this because I was excited to work with music but I classifying genres into subgenres was not something I felt I could put my heart into. And so all of these hiccups felt all the more monumental. With retrospect I could have done some pretty neat classification problems surrounding music.
+I did not know what to do. And I did not stick to any idea that I had. Initially we started in groups with vague aims of classifying a genre into a subgenre. We went to the spotify music hackathon, bright-eyed and bushy-tailed and ready for adventure. Though the hackathon itself was fab and the speakers were inspiring - we didn't figure out our subgenre problem. The million song dataset wouldn't fit on my AWS, _and_ the spotify API didn't return the things that we were interested in. The fields of interest were empty. Additionally, the awesome python libraries that we could use to analyse audio files was not cooperating with my `python3`. All of these barriers would have been circumventable if only I had believed in the cause. I said yes to this because I was excited to work with music but classifying genres into subgenres was not something I felt I could put my heart into. And so all of these hiccups felt all the more monumental. 
 
-and I will probably explore these now I have some 'free' time (ahum. job-hunting.) but at the time these did not come to me. I looked up datasets and debated playing with calcium signalling data ([is a neuron of interest or not?](http://neurofinder.codeneuro.org/)), or are mushrooms edible or not, or even does this person have Parkinson's or not? Some SUPER interesting things kicking about there but procrastination killed them all. And 36 hours before presentation time, I decided to classify leaf images to corresponding tree species. This was fine, but given the time strain I had very little opportunity to do deeper interesting analysis or to seriously consider the problem or uses of this classifier.
+With retrospect I could have done some pretty neat classification problems surrounding music.
+and I will probably explore these now I have some 'free' time (ahum. job-hunting.) but at the time these did not come to me. 
+
+I looked up datasets and debated playing with calcium signalling data ([is a neuron of interest or not?](http://neurofinder.codeneuro.org/)), or are mushrooms edible or not, or even does this person have Parkinson's or not? Some SUPER interesting things kicking about there but procrastination killed them all. And 36 hours before presentation time, I decided to classify leaf images to corresponding tree species. This was fine, but given the time strain I had very little opportunity to dig deeper and do some interesting analysis or to seriously consider the problem or uses of this classifier.
 
 Moral of the story: Find a project and _stick to it_. You can make something interesting out of everything. 
 
@@ -37,28 +40,21 @@ Anyway, these two valuable lessons are now learnt and I shall carry them with me
 
 ## The project
 
-I got this dataset from [UCI]() along with a paper by --- explaining his logic and process. I used openCV to extract some of the features he mentioned in his thesis. All of which were present in the dataset itself, but just to get a feel for the openCV package and learn a bit about image processing.
+I got this dataset from [UCI]() along with a paper by Pedro explaining his logic and process. I used openCV to extract some of the features he mentioned in his thesis (all of which were present in the dataset itself) to get a feel for the openCV package and learn a bit about image processing.
 
 #### basic cleaning
 
-I remember when I started working with and how long it took to get the basics down because everyone assumes they are a no-brainer. So I'm going to mention a little about cleaning the data in every project I post. 
+This data was pretty clean already so it was just a case of organising and understanding it. I replaced string nans with float `nan` so that `pandas` would recognise them as non-values.
 
-This data was pretty clean already so it was just a case of organising and understanding it.
-
-I replaced string nans with float `nan` so that they would be recognised as non-values specifically.
-
-I grouped my data by species to have a look at the summary of differed variables per species. To see whether something was largely nans and just to understand the metrics a little better because they consisted of things like 'Eccentricity', 'Solidity' and 'Isoperimetric Factor'... (see end for explanation of these terms).
+I grouped my data by species to have a look at the summary of differed variables per species. To see whether something was largely `nans` and just to understand the metrics a little better because they consisted of things like 'Eccentricity', 'Solidity' and 'Isoperimetric Factor'... (see end for explanation of these terms).
 
 I created a reduced dataset that didn't have things in it I wasn't planning on using in my analysis and I `pickled` that so that I could just load it up again if I quit the programme.
 
 __The test-train split__. I had 30 species and only 8-15 specimens per species so it was important to do a stratified split so that all the species were present in both the training and the test set.
 
 I used `seaborn` and `matplotlib` to plot some of the features(variables) in the training set.
-Included having some fun with violin and swarm plots. Just another way of visualising the distribution within a feature. This violin plot is the coloured section, which represents the density of data points at a certain value and the swarm plot just puts the actual data points on there as well.
 
-![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_swarmplot.png?raw=true)
-
-Using feature importance analysis to pull out the most important features can be quite prudent. Sometimes some of the features are mathematically related to each other. Also, in the leaf dataset there were 16. Lots of variables means lots of dimensions which makes it harder to glean relevant insights. 
+I used feature importance analysis to pull out the most important features as lots of variables means lots of dimensions which makes it harder to glean relevant insights. 
 
 It couldn't hurt to prune some out. 
 
@@ -74,7 +70,7 @@ A little sidenote - I plotted a scatter matrix for my features which is just a m
 
 ##### LOGISTIC REGRESSION
 
-Logistic regression is just regression where the dependent variable (the thing you are predicting) is categorical (splits into categories). This is most effectively used, or designed for, binary models. Usually in cases of multiple unordered categories, the regression model to use is _Multinomial Linear Regression_ which doesn't have a handy function in scikit learn (sit tight for more on this). When applied to a problem with multiple categories, like the leaf dataset, a logistic regression analysis will assess the probability that something is in one category compared to all other categories. 
+Logistic regression is regression where the dependent variable (the thing you are predicting) is categorical (splits into categories). This is most effectively used, or designed for, binary models. Usually in cases of multiple unordered categories, the regression model to use is _Multinomial Linear Regression_ which doesn't have a handy function in scikit learn (sit tight for more on this). When applied to a problem with multiple categories, like the leaf dataset, a logistic regression analysis will assess the probability that something is in one category compared to all other categories. 
 
 Logistic regression assumes a clear cut off. The green line in the example below is the probability of a data point being 'a case' given 1 feature. The blue dots are cases and the red ones are not. A classic example the probability of a student passing a test given the number of hours they spend studying for that test. Blue is pass, red is fail, and the numbers on the x axis are the number of hours spent studying. It seems logical that the probability of passing increases with study hours.
 
@@ -89,17 +85,14 @@ SVM stands for __Support Vector Machine__. It's basic idea is that you define a 
 
 Using a kernel means drawing the line in a higher dimensional space and then reducing the dimensionality so that the line no longer looks straight. Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting. 
 
-I find that this [MIT lecture](https://www.youtube.com/watch?v=_PwhiWxHK8o) is super helpful. I also love chalkboards.
+I find that this [MIT lecture](https://www.youtube.com/watch?v=_PwhiWxHK8o) is really helpful. Also chalkboards are the best.
 
-##### K NEAREST NEIGHBOURS
-
-I also attempted to classify the leaves using a KNN algorithm.
 
 ##### DECISION TREES and RANDOM FORESTS
 
 Decision trees and random forests are probably my favourite type of classification algorithm because they are really intuitive  but also really effective in lots of situations. You run the risk of overfitting, but random forests help there. 
 
-A decision tree consists of a starting point, where you have ALL your data, and then you split that data by asking a simple yes/no question and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorted than 10cm. You set how many questions you want to ask, or in the correct lingo, how many levels you want the tree to contain and _Voilá_! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.
+Decision trees use if-then statements to define patterns in the data. A decision tree consists of a starting point, where you have ALL your training data, and then you split that data by asking a simple yes/no question and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorted than 10cm. You set how many questions you want to ask, or in the correct lingo, how many levels you want the tree to contain and _Voilá_! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.
 
 Random Forests just do the same process multiple times (lots of decision trees) and then take the mode or mean prediction of the sum of the trees. The good thing about Random Forests is that they can reduce the risk of overfitting that can happen with Decision Trees. 
 
@@ -111,15 +104,6 @@ Here's the breakdown:
 
 The y axis shows the accuracy score. Terrible that it doesn't have labels.. I know..
 
-The `classification_report`, which is just a lovely little function in sklearn, and breaks down the accuracy into recall and precision:
-
---CLASSIFICATION REPORT--
-
-### Brute forcing it
-
-I wanted to see whether using a naive bayes image classifier would return better or worse results than the above, more restrained process of picking out specific mathematical representations of the image.
-
-So I loaded all the actual images of the leaves, which were luckily attached to the dataset, and binarised them using the cv2 package. This returns a vector where each value represents the likelihood that that pixel will be black. 
 
 
 
