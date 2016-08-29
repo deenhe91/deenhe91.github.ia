@@ -43,7 +43,7 @@ Now there were many constraints here that meant that these were limited. Time be
 
 I wanted some practice using Amazon Web Services so I decided to do all the newspaper stuff on an AWS instance using vim from my terminal. This involved setting up an instance and _ssh_ing into it whenever I wanted to work on that part of the project. I then used [`scp -i`](http://stackoverflow.com/questions/11304895/how-to-scp-a-folder-from-remote-to-local) to copy things from the instance to my local computer when I wanted to visualise or present. 
 
-I used the Guardian API to request all links to pages containing content on __Scottish Independence__, __Scottish referendum__, __Nicola Sturgeon__ and __Alex Salmond__. This returned about 35,000 links which were categorised into articles, web blogs, video, images and interactive. I just wanted to use the articles, so I took the article links and fed them into a BeautifulSoup scraper that I built to collect the article text.
+I used the Guardian API to request all links to pages containing content on __Scottish Independence__, __Scottish referendum__, __Nicola Sturgeon__ and __Alex Salmond__. This returned about 35,000 links which were categorised into articles, web blogs, video, images and interactive. I just wanted to use the articles, so I took the article links and fed them into a [Newspaper](http://newspaper.readthedocs.io/en/latest/) scraper that I built to collect the article text.
 
 It kept tripping up and throwing an error so I introduced a neat little trick to keep it running. 
 
@@ -74,7 +74,9 @@ for val in GuardianArticles['article']:
 
 Using `try:, except: Pass`, when the scraper encountered an article that didn't fit the bill, it would just skip over it. I included `print('pass')` and a counter so I could see how many didn't work. Luckily it was a tiny percentage of the total number of articles. Some 40 links out of 18,000.
 
+When plotted across a timeline we can see a that in general, the number of available articles on the topic is skewed towards more recent years. In addition, we can see a spike in the number of articles on the day of the referendum in 2014 and the general election in 2015. Just what would be expected.
 
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/articledistribution.png?raw=true)
 
 
 
