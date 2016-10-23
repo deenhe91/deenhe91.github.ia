@@ -6,7 +6,7 @@ categories: [Data Thoughts]
 comments: true
 image: 
   feature: http://66.media.tumblr.com/tumblr_lt4kzqtRxc1qa554ro1_1280.jpg
-  credit: 
+  credit: The Little Price, Antoine de Saint Exupéry
   creditlink: 
 
 ---
