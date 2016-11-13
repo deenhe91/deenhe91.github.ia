@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MODEL VALIDATION
+title: model validation
 excerpt: "leaky boots and cross bags"
 categories: [Data Thoughts]
 comments: true
