@@ -1,6 +1,6 @@
 ---
 layout: post
-title: OVERFISHING
+title: overfishing
 excerpt: "Keystone project: Building an overfishing app and raising awareness."
 categories: [Metis Projects]
 comments: true
