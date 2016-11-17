@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css' />
+    <meta charset="utf-8">
+    <title>D3 Basics</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <style>
+      rect:hover {
+        border: 10px solid blue;
+      }
+    </style>
+  </head>
+  <body>
+  <style>
+  svg {
+  font-family: "Muli";
+
+  }
+  </style>
+    <script>
+
+    console.log("heree")
+
+     var dataset = [0.381013, 0.415884, 0.591724, 0.596981, 0.667715];
+
+     var colorScale = d3.scale.linear().domain([0,5]).range(["lightgray","lightblue"]);
+     // var y = d3.scaleLinear()
+     //            .range([height, 0]);
+
+
+
+     var svg = d3.select("body").append("svg")
+       .attr("width", 250)
+       .attr("height", 400);
+
+    svg.append("text")      // text label for the x axis
+        .attr("x", 110 )
+        .attr("y",  275 )
+        .style("text-anchor", "middle")
+        .text("ERA");
+
+     svg.selectAll("rect")
+       .data(dataset)
+       .enter().append("rect")
+       .attr("y", function(d, i) { return 250 - (d*320); }) 
+       .attr("width", 30)
+       .attr("height", function(d) { return d * 320; })
+       .attr("x", function(d, i) { return i * 45; })
+       // .on({
+       //  "mouseover": function(d, i){
+       //    console.log("d", d, "i", i)
+       //    console.log(this.attr)
+       //    // this.style.width = "1000px"
+       //    // this.attr('width', 44)
+       //    //   .style('fill', 'gray')
+       //    // d3.select("rect")
+       //    //  .attr("width", 33)
+       //    //  .style("fill", "gray")
+       //  },
+       //  "mouseout": function(){
+       //    d3.select("rect")
+       //      .attr("width", 30)
+       //      .style("fill", function(d, i) { return colorScale(i);})
+       //  },
+       //  "click": function(){
+       //    console.log("click")
+       //  }
+       // })
+       .style("fill", function(d, i) { return colorScale(i); });
+     var xAxis = d3.svg.axis().scale(x).tickPadding(7).orient("bottom");
+     xAxis.tickValues(d3.range(20, 80, 5));
+    </script>
+  </body>
+</html>
