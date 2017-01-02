@@ -6,7 +6,7 @@ excerpt: "The rhetoric of the Scottish National Party"
 categories: [Metis Projects]
 comments: true
 image:
-  feature: 
+  feature: https://github.com/deenhe91/deenhe91.github.io/blob/master/images/edinburgh.png?raw=true
   credit: 
   creditlink:
 ---
@@ -27,6 +27,7 @@ I grew up in Scotland. And in recent years there's been some interesting controv
 
 So in 2014 Scotland held a long-awaited independence referendum. The sentiment was clear, the leave campaign was far louder but there were many of us who felt we were better together and devolution was a better choice. The Scottish National Party instigated the referendum and this party was led by Alex Salmond, a target for the media and a seemingly spiteful and resentable man. Leave lost, 49 to 51%. After this heavy disappointed for half of the country, Salmond resigned and Nicola Sturgeon took his place as leader of the SNP party. In the 8 months that followed, Sturgeon gained massive support from leavers and remainers alike and in the 2015 General Election the SNP won 97% of the seats in Scotland. This map clearly highlights the extent of her total domination of the country:
 
+![](https://static.independent.co.uk/s3fs-public/thumbnails/image/2014/11/15/16/v2-sturgeon-pa.jpg)
 
 
 #### The Question
@@ -77,6 +78,9 @@ Using `try:, except: Pass`, when the scraper encountered an article that didn't 
 When plotted across a timeline we can see a that in general, the number of available articles on the topic is skewed towards more recent years. In addition, we can see a spike in the number of articles on the day of the referendum in 2014 and the general election in 2015. Just what would be expected.
 
 ![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/articledistribution.png?raw=true)
+
+
+
 
 
 
