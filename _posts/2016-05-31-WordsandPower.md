@@ -1,8 +1,8 @@
 ---
 
 layout: post
-title: WORDS AND POWER
-excerpt: "The rhetoric of the Scottish National Party"
+title: words and power
+excerpt: "the rhetoric of the Scottish National Party"
 categories: [Metis Projects]
 comments: true
 image:
