@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>overfishing</title>
+  <meta name="description" content="Keystone project: Building an overfishing app and raising awareness.">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="canonical" href="/articles/2016-06/Overfishing">
+  <link rel="alternate" type="application/rss+xml" title="Hannah" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/madfun2.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">Hannah Deen</a>
+  <span class="author_job">data scientist: Amsterdam, London, NYC</span>
+  <span class="author_bio mbm"></span>
+  <nav class="nav">
+    <ul class="nav-list">
+       
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:hannah.deen91@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/deenhe" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/deenhe91" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <div class="back-home">
+  <a href="/">< back Home.</a>
+</div>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "http://www.greenpeace.org/international/Global/international/photos/oceans/2014/GP04BW5.jpg"
+  
+  alt="overfishing feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="overfishing">overfishing</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        23 JUN 2016
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    5 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h3 id="the-final-stretch">The final stretch</h3>
+
+<p>here’s a link to a pdf of the final presentation I gave on career day, 23rd June: <a href="https://github.com/deenhe91/fish_app/blob/master/fish_.pdf">link.</a></p>
+
+<p>Overfishing is one of the biggest and most neglected issues of our time. The oceans play a crucial role in maintainig a stable atmosphere and also provide food for billions of people on earth. Maintaining a healthy ecosystem is important everywhere, but in the oceans, an unbalanced and collapsing ecosystem results in substantial effects on the levels of CO2 in our atmosphere and thus has catastrophic effects, not just for economies that rely on fishing to sustain them, but also for fish populations and ultimately our environment.</p>
+
+<p>For my final project at Metis, I clustered fish species into levels of threat, and used these in an <a href="github.com/deenhe91/fish_app">app</a> so that users can input the name of a fish and find out how threatened or overfished that species currently is.</p>
+
+<p>I got my data from <a href="http://noaa.gov">NOAA</a>, which provided information on over 500 species of fish over an average of 60 years.</p>
+
+<p>I also collected data from the <a href="https://www.wcpfc.int">WCPFC</a> and did some analysis on that which I’ll talk about later.</p>
+
+<h3 id="exploratory-analysis">Exploratory Analysis</h3>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/IMG_20160610_113730.jpg?raw=true" alt="" /></p>
+
+<p>Amidst the many groupbys and pyplots a very clear pattern emerged. Most of these fish populations are severely declining. It was quite shocking to view such an obvious trend.</p>
+
+<p>Here is a plot of the aggregated ‘exploitation rate’ of all tuna types in the data set, over time. It is a simple measure of the proportion of a population that is caught. So you can see that the percentage of the population caught has increased dramatically over the past 60 years.</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ERTuna.png?raw=true" alt="" /></p>
+
+<p>This could be because total catch has increased, or because the population size has decreased. When we look at plots of catch rates, which is essentially how much fish is caught per unit effort, you can see that this is decreasing…</p>
+
+<p>BIG EYE</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/BET_meancatchrate.png?raw=true" alt="" /></p>
+
+<p>ALBACORE</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ALBmeancatchrate.png?raw=true" alt="" /></p>
+
+<p>YELLOWFIN</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/YFTmeancatchrate.png?raw=true" alt="" /></p>
+
+<p>This indicates that the number of available tuna have dropped, and not just that we’re getting better at catching them.</p>
+
+<h4 id="by-month-by-region-by-fish-fuzzy-matching">By month, By region, By fish? Fuzzy-Matching</h4>
+
+<p>I used the fuzzy matching python package <code>fuzzywuzzy</code>, to pull out fish by region. First I used fuzzywuzzy to detect all fish in Pacific and Atlantic regions and then <code>numpy.where()</code> to pull out indices of all the fish in those regions.</p>
+
+<p>I made separate dataframes for Pacific and Atlantic fish to analyse the differences in overfishing between the two major oceans.</p>
+
+<ul>
+  <li>more to come here -</li>
+</ul>
+
+<h4 id="missing-data">Missing Data</h4>
+
+<p>This is just one snapshot of the data I had, namely the mean mortality rate (over the 60 year time period) of fish species in the Pacific…</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/missingdata.png?raw=true" alt="" title="Pacific" /></p>
+
+<p>…and Atlantic oceans.</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/missingdata2.png?raw=true" alt="" title="Atlantic" /></p>
+
+<p>You can’t glean an awful lot from these plots, but it shows you just how much data is missing, especially in the Pacific. Some fish had information on total catch, others had information on available biomass or mortality rate. Some had no information at all.</p>
+
+<p>I tried using <code>PyBrain</code> to fill in these gaps with a recursive neural network.</p>
+
+<h4 id="apping">Apping</h4>
+
+<p>This part required some serious readjustment of my understanding of the internet It was a really enjoyable and fascinating task. I’ll do a post on understanding app buidling in the next couple of weeks with a link to the live web app. In the meantime you can have a gander at the app format on my <a href="https://github.com/deenhe91/fish_app">github page</a>.</p>
+
+<p>I built a fish-specific search tool with a little help from <a href="">Joe Oliver</a> that would allow people to find out how overfished a fish population is. The idea is also to provide alternatives and more of a dashboard breakdown which I am working on right now.</p>
+
+<p>I clustered the fish into different categories of ‘threat level’ or overfishedness using KMeans Clustering in <code>SciKitLearn</code>. I used fishing rate, population size and an indicator of the health of the population (the rate of growth in the last 5 years) as variables.</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/cluster.png?raw=true" alt="" /></p>
+
+<p>I wanted to use ‘length at age’ as a variable because that is a good measure of a healthy fish population, but it looks like getting that information for all the fish species I was working with would be a much longer process than I had the time for in this project.</p>
+
+<p>The  clusters:</p>
+
+<p>RED - overfished and dwindling/unhealthy population, do not eat.</p>
+
+<p>ORANGE - low population size but not necessarily over-fished, treat with caution.</p>
+
+<p>GREEN - healthy population and not overfished, bon apetit!</p>
+
+<h3 id="further-info-and-efforts">Further info and efforts</h3>
+
+<p>With a bit of digging on the interweb I found countless organisations, listed at the bottom of this post, who are feverishly campaigning and recruiting to tackle these problems.</p>
+
+<p>The Seawatch app, this is very similar to what I have done, but with more time, money and manpower. However, they don’t show the changes in the fish and this is a pretty useful chunk of information for the public to digest. It is far more impactful if someone says, “don’t eat this fish, look here’s why”, than just, “don’t eat this fish.” In the same way you want to educate your children on <em>why</em> they can’t go around hitting things, or eat an entire bowl of haribo. That reaction to evidence stays an important influencer of our behaviour and in this way, data visualisations can be completely necessary.</p>
+
+<h5 id="videos">Videos</h5>
+
+<p><a href="http://theblackfish.org/">The Black Fish</a> is a super cool organisation based in the UK and the Netherlands that aim to keep fishing practices legal and pressure the government to set higher standards. They work in the Baltic and Mediterrenean seas, where illegal fishing is rife. They film <a href="https://vimeo.com/66514539?raw=true">Losing Nemo</a> is there informational video on the state of over and illegal fishing.</p>
+
+<p>Another fantastic short film which aims to educate people on overfishing was made by —</p>
+
+<p><a href="">video</a></p>
+
+<p><strong>The End of The Line</strong> is a very moving and comprehensive documentary on the state of the oceans and the corruption within fisheries.</p>
+
+<h5 id="google">Google</h5>
+
+<p><a href="http://globalfishingwatch.org/">The Global Fishing Watch</a> is google’s attempt to pick out illegal fishing practices with a little help from enthusiastic volunteers.</p>
+
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2016-06/Overfishing" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2016-06/Overfishing" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2016-06/Overfishing" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2016-06/Overfishing" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2016-06/Overfishing" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2017 Hannah Deen. Powered by <a href="http://jekyllrb.com/">Jekyll</a>, <a href="http://github.com/renyuanz/leonids/">leonids theme</a> made with <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+</body>
+</html>

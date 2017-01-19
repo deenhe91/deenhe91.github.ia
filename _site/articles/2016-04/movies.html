@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>gender equality in the cinema</title>
+  <meta name="description" content="an assessment of gender equality across different cinematic eras">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="canonical" href="/articles/2016-04/movies">
+  <link rel="alternate" type="application/rss+xml" title="Hannah" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/madfun2.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">Hannah Deen</a>
+  <span class="author_job">data scientist: Amsterdam, London, NYC</span>
+  <span class="author_bio mbm"></span>
+  <nav class="nav">
+    <ul class="nav-list">
+       
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:hannah.deen91@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/deenhe" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/deenhe91" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <div class="back-home">
+  <a href="/">< back Home.</a>
+</div>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "https://cdn.theatlantic.com/assets/media/img/mt/2014/03/heathers1/lead_large.jpg"
+  
+  alt="gender equality in the cinema feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="gender equality in the cinema">gender equality in the cinema</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        25 APR 2016
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    5 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <p>Inspired by Matt Daniels and Hannah Anderson’s <a href="http://polygraph.cool/movies">polygraph.cool</a> Film Dialogue breakdown, I ventured into the world of gender distribution in movies. I used, in part, the painstakingly collected polygraphcool data, which includes the number of lines spoken by male characters in a collection of 2000 movies.</p>
+
+<p>Matt Daniels and Hannah Anderson had already worked hella hard and split the movie scripts by character and by comparing to IMDB, assigned a sex and age to each character’s actor/actress. The resulting metadata as well as some of the data is publicly available on <a href="https://github.com/matthewfdaniels/scripts/">Matt Daniels’ github</a> page for scrutiny and further data fun.</p>
+
+<p>I wanted to use all this lovely data to see whether it was possible to predict the year a movie came out in based on it’s character and line ratio.</p>
+
+<p>I wanted to include genre in my analysis because there is a big difference in the standard distribution of female and male characters in movies of different genres. For example, war movies tend to contain way more male characters and romantic movies are generally more balanced. Because the proportion of movies of each genre that come out every year isn’t standard, it is better to analyse temporal changes in gender on the screen per genre. For this I needed to scrape.</p>
+
+<h4 id="web-scraping-with-beautiful-soup">Web scraping with Beautiful Soup</h4>
+
+<p>I collected data on genre by scraping Box Office Mojo using <a href="https://www.crummy.com/software/BeautifulSoup/">Beautiful Soup</a>
+(I will have another post outlining the scraping process). I scraped data on all the movies they have on the site including info on budget and domestic gross in case I decided to use that later on. The data I needed was in a table. I looped through the <code>tr</code>s and filled in a pandas dataframe as I went, then saved as a csv.</p>
+
+<h4 id="data-wrangling">Data wrangling</h4>
+<p>I read both my csv files in as pandas dataframes so I could clean and preprocess anything I needed to using pandas.</p>
+
+<pre><code class="language-python">import pandas as pd
+
+mojo_df = pd.read_csv('&lt;path_to_mojo_csv&gt;', encoding="ISO-8859-1")
+polygraph_df = pd.read_csv('&lt;path_to_polygraph_csv&gt;', encoding="ISO-8859-1")
+</code></pre>
+<p>I wanted to create parameters that represented the number of female to male characters and lines, so I calculated ratios.</p>
+
+<pre><code class="language-python">f_ratio = []
+
+for lines in df_new['lines_data']:
+    male = sum(int(i) for i in lines.strip())/len(lines)
+    female = 7.01 - male
+    f_ratio.append(female/male)
+
+merged_df['ratio']= pd.DataFrame(f_ratio)
+
+</code></pre>
+
+<p>The dataset from polygraph cool contains data on the number of lines spoken by male characters in the film. It looks kind of like this:</p>
+
+<pre><code>777777743444644573433242343644335344577426232474643156414755254322274446
+435735475636346433676546667757777777777444445553753342242525544252544775263
+14275553245514656245322356255535653566626437343576645667766774
+</code></pre>
+
+<p>Nice, huh?
+It assumes that a minute of dialogue is approximately 14 lines (using average speaking pace of 140 words/min, and average 10 words/line). Each number in the string there represents the number of lines spoken by a male every half minute. So, what I calculate there as <code>f ratio</code>, is the <em>maximum</em> number of lines a woman could possibly speak in a film, if she spoke during every available second. A generous estimate, comprendez? By the way, the above lines correspond to <em>Avatar</em>, 2009, for which the ratio is <code>0.52</code>.</p>
+
+<p>Ok, moving on. I had to create dummy variables of the genres. This means generating a column for each genre and assigning a 1 if the movie is of that genre and a 0 if it’s not. But I had 67 genres so this enlarged my feature space by quite a bit and I didn’t want to make life too difficult for myself.</p>
+
+<p>To reduce the feature space, I condensed some of the more obscure genres into broader ones. Obscure meaning ‘Comedy’ was originally split into ‘Comedy’, ‘Comedy/Drama’, ‘Comedy/Thriller’, ‘Comedy/Crime’, etc. It was a little tricky sometimes, for example, does ‘War Romance’ go into ‘War’ or ‘Romance’? In the end I manually condensed the genres, reducing the 67 genres to 10.</p>
+
+<pre><code class="language-python">genre_collapser = {
+	'Action':'Action',
+   'Action / Adventure':'Action',
+   'Action / Crime':'Action',
+   'Action Comedy':'Action',
+   'Action Drama':'Action'
+   }
+
+for i in range(len(mojo_df['genre'])):
+    mojo_df.ix[i,'genre'] = genre_collapser[mojo_df.ix[i,'genre']]
+</code></pre>
+
+<p>Now I could create my dummy variables without feature space concerns:</p>
+
+<pre><code class="language-python">df_dummied = pd.get_dummies(df_reduced_merged['genre'], prefix='genre')
+df_dummied = df_dummies.drop('genre_None', axis=1)
+</code></pre>
+<p>The <code>prefix</code> parameter there prefixes each genre name with the word ‘genre’, to keep our column names clear.</p>
+
+<pre><code class="language-python">polygraph_df["movie"] = polygraph_df["year"].map(str) + " " + polygraph_df["title"]
+mojo_df["movie"] = mojo_df["year"].map(str) + " " + mojo_df["title"]
+</code></pre>
+<!-- ![Alt text](http://potherca.github.io/StackOverflow/question.13808020.include-an-svg-hosted-on-github-in-markdown/controllers_brief.svg) -->
+
+<p>Now I had all this cleaned data from Box Office Mojo and I only needed the genres for the movies from the polygraph movies.</p>
+
+<p>I created a column containing the year of release and movie title, and merged the two dataframes on that column. This was to avoid mixing up movies with the same title that came out in different years. This approach worked well except for one movie, <em>Crash</em>, which according to IMDB came out in 2004 but in the dataset it came out in 2005. Whoops. Other than that the movies seem to be solidly matched. I now had 1198 movies left in my dataset.</p>
+
+<pre><code class="language-python">merged_df = pd.merge(mojo_df, polygraph_df, on=['movie'])
+</code></pre>
+
+<p>As there is so much to consider when predicting the specific year that a movie comes out, I helped myself a little by predicting the era instead. By taking this approach, the problem becomes one of classification as I now have to show which discrete category a movie belongs to. First to sort the movies:</p>
+
+<pre><code class="language-python">eras = [str(year)[2] for year in merged_df['year']]
+merged_df['era'] = eras
+
+print(merged_df.groupby('era')['intercept'].sum())
+
+  era
+  0    411
+  1    273
+  3      1
+  4      3
+  5      1
+  6      4
+  7     24
+  8     76
+  9    264
+</code></pre>
+
+<p>By performing the sum() function on the intercept column (which is a list on ones), I found that the 30s, 40s, 50s and 60s each contained fewer than 5 movies - that sample size is too small so I binned them. Now I was focusing on the 70s, 80s, 90s, 00s and 10s. I plotted the mean female-male ratio of all the movies in each era, which gave me this:</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/era_ratio.png?raw=true" alt="" /></p>
+
+<p>That seems like a pretty convincing trend, doesn’t it? Not conclusive by any means, but we can see that the mean ratio increases steadily at every era. So there’s hope!</p>
+
+<p>The sizes of each category are pretty varied (although the dataset is pretty small), so I 
+<!-- stratified test/train split -->
+<!-- what can you do about varied category sizes? --></p>
+
+<iframe src="https://raw.githubusercontent.com/deenhe91/deenhe91.github.io/master/images/eras.html"></iframe>
+
+<h4 id="model-building">Model building</h4>
+
+<p>Random Forest</p>
+
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2016-04/movies" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2016-04/movies" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2016-04/movies" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2016-04/movies" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2016-04/movies" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2017 Hannah Deen. Powered by <a href="http://jekyllrb.com/">Jekyll</a>, <a href="http://github.com/renyuanz/leonids/">leonids theme</a> made with <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+</body>
+</html>

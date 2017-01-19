@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hannah</title>
+    <description>adventures in pythonland</description>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 02 Jan 2017 13:25:34 +0000</pubDate>
+    <lastBuildDate>Mon, 02 Jan 2017 13:25:34 +0000</lastBuildDate>
+    <generator>Jekyll v3.1.3</generator>
+    
+      <item>
+        <title>thoughts from the frontier</title>
+        <description>&lt;h2 id=&quot;nips&quot;&gt;NIPS&lt;/h2&gt;
+
+&lt;p&gt;As the Magic conference rounds up on Sunday evening at the CCIB in Barcelona, leagues of nerds arrive to register for the 2016 NIPS conference. As was driven home at the intro talks, the conference has close to doubled in size from last year with a total of 6000 attendees. I collect my badge, my name spelled correctly - a surprisingly difficult task to achieve, I’ve learnt from many mispelled coffee cups and name tags throughout my life - and I am ready. To my delight, the giant, edgy conference centre is minutes away from the sparkling mediterranean sea front.&lt;/p&gt;
+
+&lt;p&gt;The mix of people is surprising. There is definitely an air of fandom in the building, especially when people like Yan Le Cun stroll through, wearing the same badge we all do. It feels like a movie star has entered the building, people honing in him from all corners of the room to express their admiration. The range in age, race and industry is quite astonishing. Even the sex divide is shrinking with 900 of the 6000 being women it doesn’t feel as much as a boy’s club as it did. The old timers, men and women who have been in the field since the birth of deep learning in the 80s are here; as are some high school kids, who, enamoured with TensorFlow, wanted to come and see their dreams turned to reality.&lt;/p&gt;
+
+&lt;p&gt;The field is so broad, and the conference getting so big, that it was argued that perhaps we needed individual conferences for more specific topics. NIPS Health, NIPS Theory, NIPS NLP, NIPS Vision, so the list goes on. But one of the main attractions of this conference is it’s interdisciplinarity. I had lunch with neuroscientists, ecologists, mathmeticians, physicists and risk management analysts. It was fascinating to sit with these people and hear what they had to say about machine learning. Of course you can attend the conference and pick and choose subject matter in depth, like a specialist update, &lt;em&gt;or&lt;/em&gt; you can go and get a broader understanding of just how relevant machine learning and neural nets are to just about every field out there. Except conservation.&lt;/p&gt;
+
+&lt;p&gt;This, for me, was a massive drawback and I hope that more attention will be given to the power of machine learning and technology in the eco-driven sectors. Whether it’s detecting poaching, illegal overfishing, or building algorithms that classify bird calls so you can collect biodiversity data by having sensors in gardens and national parks, the potential for machine learning in conservation is significant and should be given the space. NIPS was largely focused on theory and technique, it is afterall, a showcase of the latest and greatest in information processing research so not an application-based conference in any sense. However, there were definite themes that grabbed the spotlight (healthcare, image generation, robotics), so why there was no attention given to eco-related machine learning is beyond me.&lt;/p&gt;
+
+&lt;p&gt;Despite this, it is a conference worth attending for anyone with an interest in machine learning, and a testament to it’s success in multiple areas.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
+        <link>/articles/2016-12/NIPS2016</link>
+        <guid isPermaLink="true">/articles/2016-12/NIPS2016</guid>
+        
+        
+        <category>NIPS 2016</category>
+        
+      </item>
+    
+      <item>
+        <title>but why &#39;learning&#39;?</title>
+        <description>&lt;p&gt;When trying to explain some machine learning concept to a friend, family member, or client, I have been confronted with the question: “But what is the &lt;em&gt;learning&lt;/em&gt; part of machine learning?”. This is a fair question. A common misconception is that machine learning is the process by which a machine learns from experience - that when it gives the wrong prediction for new data, the machine must adapt to the new observations and, in time, the model becomes more complex and accurate as with the human brain. This is not what data scientists and statisticians mean when they talk about machine learning. In fact, those processes, perhaps more commonly used in the field of Artificial Intelligence, are referred to as &lt;strong&gt;online machine learning&lt;/strong&gt;. This uses machine learning algorithms, but they are embedded in systems which are able to assess results and instigate retraining of the models. It is the kind of technology that inspires &lt;em&gt;her&lt;/em&gt; and &lt;em&gt;I, robot&lt;/em&gt; and is preeeetty cool. Okay, but the question remains, why is machine learning, machine &lt;em&gt;learning&lt;/em&gt;, then?&lt;/p&gt;
+
+&lt;p&gt;What it boils down to, is the stage we call ‘training’. During the model training period, the model (or ‘machine’) learns to perform a specific task. To give an example, machine learning is often used for classification tasks. A binary classifier is an algorithm used to determine whether something is one thing or not.&lt;/p&gt;
+
+&lt;p&gt;Say you have data on 1000 guitars. The data tells you how much they weigh, when they were made, something about how they sound - perhaps how loud they are. What you really want, is a model that will tell you whether a guitar is electric or acoustic. Luckily, the data you have is labelled, which means that it tells you which guitars are acoustic and which are electric. Using this data, you can do ‘supervised machine learning’ and build a model that &lt;em&gt;learns&lt;/em&gt; to determine whether a guitar is electric or acoustic based on the data you give it. Different machine learning algorithms will achieve this by &lt;a href=&quot;http://deenhe91.github.io/articles/2016-05/classifiers&quot;&gt;different means&lt;/a&gt;, but that process of training a model so that, ultimately you can say to it &lt;em&gt;“okay, I have a guitar that weighs 2kg, plays at 60dB and was built in 1970”&lt;/em&gt;, it can tell you, &lt;em&gt;“I’m 87% percent certain that that’s an acoustic guitar.”&lt;/em&gt; is the machine’s &lt;strong&gt;learning&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once the training period is over, no further automatic machine learning happens unless you build the model into a system that analyses it’s own accuracy and retrains. But that initial training stage is essential and can be incredibly valuable in easing or reducing tedious tasks, as well as supplementing difficult ones like medical diagnoses.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 13 Nov 2016 00:00:00 +0000</pubDate>
+        <link>/articles/2016-11/learnhow</link>
+        <guid isPermaLink="true">/articles/2016-11/learnhow</guid>
+        
+        
+        <category>Data Thoughts</category>
+        
+      </item>
+    
+      <item>
+        <title>let the machines decide</title>
+        <description>&lt;h3 id=&quot;will-they-or-wont-they-reoffend&quot;&gt;will they or won’t they reoffend&lt;/h3&gt;
+
+&lt;p&gt;What is the limit to what you can let the machines decide? In the States, the COMPAS recidivism algorithm is used to determine how likely a convicted criminal is to commit another crime once released. This score is &lt;em&gt;owned&lt;/em&gt; by &lt;a href=&quot;http://www.northpointeinc.com/&quot;&gt;Northpointe, Inc.&lt;/a&gt;. This means that the justice system is heavily influenced by an unelected corporate power. Of course, because they are a private organisation who make their money, in part, from the use of their recidivism algorithm, the algorithm is black-boxed. So individual people are scored and tried based on a number between 1 and 10 that a machine supplies. &lt;a href=&quot;https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm&quot;&gt;ProPublica’s analysis&lt;/a&gt; of whether this tool was biased towards certain groups found that &lt;em&gt;“black defendants were far more likely than white defendants to be incorrectly judged to be at a higher risk of recidivism, while white defendants were more likely than black defendants to be incorrectly flagged as low risk”&lt;/em&gt;. This is sadly unsurprising, given the race situation in the US, and it is one clear reason why we should exercise far more caution in how and when we rely on Machine Learning to show us the way.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-right-thing-for-the-wrong-reasons&quot;&gt;the right thing, for the wrong reasons…&lt;/h3&gt;
+
+&lt;h4 id=&quot;or-the-wrong-thing-for-the-right-ones&quot;&gt;…or the wrong thing for the right ones?&lt;/h4&gt;
+
+&lt;p&gt;Machine Learning is incredibly useful, and allows us to achieve beautiful and interesting things. Whether it is self-driving cars or &lt;a href=&quot;http://www.theatlantic.com/health/archive/2016/08/could-artificial-intelligence-improve-psychiatry/496964/?single_page=true&quot;&gt;supplementing medical diagnoses&lt;/a&gt;, it holds much promise. I am also a firm believer that incorporating it into business architecture can do a lot of good. The giant evil Tesco has shown us that machine learning can be used to drastically increase efficiency when it comes to supermarket stocking, saving energy and massively reducing food waste. In my eyes, this is a BIG PLUS - even if it was probably done for less saintly reasons than saving the environment. The amount of waste in every element of society is shocking, and introducing a bit of smart to our tech will not hurt us. But when do the motives become important? Where do you draw the line on &lt;em&gt;who&lt;/em&gt; can collect &lt;em&gt;what&lt;/em&gt; data?&lt;/p&gt;
+
+&lt;p&gt;It certainly appears that the businesses I read about and work with show a keen interest in machine learning for two reasons.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/tap-tycoon-cheats.jpg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;To reduce ‘waste’ in their spending and if that happens to coincide with reducing energy waste, food waste or any other kind of waste then that’s just lucky.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;To gain power to make more money. Data is big. Everyone wants to collect and find ways to use it to make other people spend. more. money.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;And though I always considered myself as the kind of person who wants to do good things for people and the world, this is where I find myself now - the dragon’s den. Here I need to consider how I can collect data so that I can assure that companies can make the most money.&lt;/p&gt;
+
+&lt;h3 id=&quot;being-the-bad-guy&quot;&gt;being the bad guy?&lt;/h3&gt;
+
+&lt;p&gt;Let me give you an example of a little quandary I am struggling with. Shops collect data on transactions. This is not new. People have been keeping accurate records of transactions for their business for hundreds, or thousands, of years. Even the acient Sumerians of Mesopotamia kept records of taxes and trade. Today, companies are thinking of ever-cleverer ways of using this stored information. Netflix recommends shows based on what we watch and Spotify generates our Discover Weekly lists based on our listening history, companies want to give us the most relevant advertising possible. And they can do that by, for example, looking at what their customers buy and how often. It’s a pretty simple and oft-used framework and I think I have made my peace with it. If I have to look at advertising, I would much rather be shown advertising that is relevant to me and what I like. However, say you add the identity of the cashier to those transaction details. Now as a company, you know which cashiers do better than others in which stores. Which cashiers attract more customers. You introduce this little quirk and jobs are on the line. Incorporate that info into a classifier and it can tell you whether it’s worth firing someone or not. Booya.&lt;/p&gt;
+
+&lt;p&gt;The thing is, though this may seem genius to some companies. The interactions of employees and who is valuable to your store and who isn’t is far more nuanced than this metric may have you believe. Say you use the frequency of transactions processed by a cashier as a measure of that cashier’s ‘popularity’ with the customers, or work ethic. And maybe you added a metric for availability, how many hours they work. You probably add some time aspect because how many transactions get processed would probably rely heavily on the time of day… Of course you add their salary. These are all parameters worthy of our firing classifier but the algorithm is still not going to capture who keeps spirits high in the team. Maybe you have an employee who is always helping the others. A problem-solver. This person may be invaluable to the team but to the classifier they’ll be a good one for firing because the number of transactions they process is way below the others. And of course, none of this takes into account the personal situation of the employees. Two people are classified as fireable, one more so than the other, but that one happens to be going through a divorce and actually needs the money and support of a daily routine much more so than the other person.&lt;/p&gt;
+
+&lt;p&gt;There are many conversations to be had regarding our responsibility around data science, and until we have them, perhaps we should keep the final decision making to ourselves.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 15 Oct 2016 00:00:00 +0000</pubDate>
+        <link>/articles/2016-10/ethics</link>
+        <guid isPermaLink="true">/articles/2016-10/ethics</guid>
+        
+        
+        <category>Data Thoughts</category>
+        
+      </item>
+    
+      <item>
+        <title>first day at work</title>
+        <description>&lt;h1 id=&quot;todays-the-day&quot;&gt;today’s the day&lt;/h1&gt;
+
+&lt;p&gt;So guess what?! that take home challenge did the job and I am now a paid data scientist at Qlouder. Nice, eh?
+Here starts a new journey. Although I will most definitely be incorporating my mad data knowledge into my work here, I also have a lot of development stuff to learn. And that journey of discovery is something I will be ardently documenting for your reading pleasure. And my own peace of mind.&lt;/p&gt;
+
+&lt;p&gt;Of course I can’t go blabbing about all the ins and outs of the top-secret projects I’ll be working on, but I will be sharing some (starting off basic) things that I learn along the way. WOOP.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 19 Sep 2016 00:00:00 +0000</pubDate>
+        <link>/articles/2016-09/firstdayatwork</link>
+        <guid isPermaLink="true">/articles/2016-09/firstdayatwork</guid>
+        
+        
+        <category>hello world</category>
+        
+      </item>
+    
+      <item>
+        <title>a couple of apis, an app and some animals</title>
+        <description>&lt;h1 id=&quot;my-take-home-challenge&quot;&gt;my take-home challenge&lt;/h1&gt;
+
+&lt;p&gt;Last week I interviewed with a tech company near Utrecht and they gave me a 7-day take home challenge to prove my worth before we could talk about hiring. The challenge involved using google’s machine learning APIs, specifically the &lt;a href=&quot;https://cloud.google.com/vision/&quot;&gt;Google Vision API&lt;/a&gt; to classify an arbitrary number of images (1,000-10,000) from a site with publicly available images. My experience with app building and servers is more limited than with building models but my interest in it is just as strong, so I was excited at the challenge.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Here’s the finished &lt;a href=&quot;https://storage.googleapis.com/q-dev-challenge-hannah.appspot.com/index.html&quot;&gt;app&lt;/a&gt;&lt;/strong&gt;
+&lt;strong&gt;and here’s my Github &lt;a href=&quot;https://github.com/deenhe91/QloudAnimals&quot;&gt;repo&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I needed to understand all the parts, moving and static of this machine, so I drew out some workflows. I knew I needed to get images, which meant using an image website API. Those images would have to be sent to Google and classified somehow. The results of that needed to be stored in a database (the company asked me to use &lt;a href=&quot;https://firebase.google.com/&quot;&gt;Firebase&lt;/a&gt;, another new thing) and then that database would have to be accessed by a user looking up a specific animal in a simple front-end situation.&lt;/p&gt;
+
+&lt;h2 id=&quot;flickr-and-the-images&quot;&gt;flickr and the images&lt;/h2&gt;
+
+&lt;p&gt;I chose flickr, specifically the &lt;code&gt;groups.pools.getPhotos&lt;/code&gt; &lt;a href=&quot;flickr.com/services/api/explore/flickr.groups.pools.getPhotos&quot;&gt;API&lt;/a&gt; (even though I had to create a yahoo account in order to use it…) The quality of the images available is much higher than say, &lt;em&gt;imgur&lt;/em&gt;, and the developer toolkit, or &lt;em&gt;‘App Garden’&lt;/em&gt;, is pretty well documented and easy to implement.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
+import requests
+
+flickr_key = &#39;&amp;lt;YOUR ACCOUNT KEY&amp;gt;&#39;
+flickr_secret = &#39;&amp;lt;YOUR ACCOUNT SECRET&amp;gt;&#39;
+
+flickr_file = []
+
+for i in range(10):
+	r = requests.get(&#39;https://api.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&amp;amp;api_key=&amp;lt;API KEY&amp;gt;
+	&amp;amp;group_id=&amp;lt;GROUP ID&amp;gt;&amp;amp;per_page=500&amp;amp;page=&#39;+str(i)+&#39;&amp;amp;format=json&amp;amp;nojsoncallback=1&#39;)
+
+	flickr_json = r.json()
+	flickr_file.append(flickr_json)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Using this API returned lots of information regarding each image within a specified ‘group’, which is basically a collection of images with a common theme that you can add to. I then parsed the information that was relevant to me and saved it, so I wouldn’t have to overstay my flickr-api-welcome if it went wrong.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
+img_info = flickr_list[&#39;photos&#39;][&#39;photo&#39;]
+
+with open(&#39;flickr.json&#39;, &#39;w&#39;) as outfile:
+	json.dump(flickr_file, outfile)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I then had to compile URLs that pointed to each image so that they could be downloaded, but the format that flickr provided didn’t work. However, looking at the page source…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/page_source.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;we can see the true format for the image URL. The format looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;and all of the required fields were in the flickr API response. Hoorah!&lt;/p&gt;
+
+&lt;p&gt;The Google Vision API requires you to &lt;em&gt;either&lt;/em&gt; use images that are stored in Google Storage, &lt;em&gt;or&lt;/em&gt; send in the base64 encoded image as a string. So I downloaded the image at each URL using &lt;code&gt;shutil&lt;/code&gt;, base64 encoded it using &lt;code&gt;b64&lt;/code&gt; and then sent that string to Google.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
+import shutil
+import b64
+
+b64_strings = [] # create list of b64_strings
+
+for url in urls:
+
+	response = requests.get(url, stream=True)
+	
+	with open(&#39;img.png&#39;, &#39;wb&#39;) as f:
+		shutil.copyfileobj(response.raw, f)
+
+	with open(&#39;img.png&#39;, &#39;rb&#39;) as f:
+		encoded_string = base64.b64encode(f.read())
+
+		b64_strings.append(encoded_string)
+
+del response
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Actually, I started off going through the process step by step, and saving along the way with the intention of turning it into a smooth running pipeline at the end. First I wanted to test whether each step worked without having to repeat any working processes. Because the name of the stored image, &lt;code&gt;img.png&lt;/code&gt; remained the same, it was replaced at each iteration and I didn’t hold onto anything in memory that I didn’t need to.&lt;/p&gt;
+
+&lt;h2 id=&quot;google-and-the-vision&quot;&gt;google and the vision&lt;/h2&gt;
+
+&lt;p&gt;In order to use the API from my remote server, I had to create an environmental variable called ‘GOOGLE_APPLICATION_CREDENTIALS’ pointing to the file where my credentials were stored. You can see below, you just use &lt;code&gt;os&lt;/code&gt; to do this. When you create your credentials with Google, a JSON file is automatically downloaded to your computer so just make sure that’s in the right directory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
+import os 
+from googleapiclient import discovery 
+from oauth2client.client import GoogleCredentials 
+
+DISCOVERY_URL = &#39;https://vision.googleapis.com/$discovery/rest?version=v1&#39;
+# because I was using the google vision API
+
+os.environ[&#39;GOOGLE_APPLICATION_CREDENTIALS&#39;] = &#39;&amp;lt;json file where your credentials are stored&amp;gt;&#39;
+
+credentials = GoogleCredentials.get_application_default()	
+
+service = discovery.build(&#39;vision&#39;, &#39;v1&#39;, credentials=credentials, discoveryServiceUrl=DISCOVERY_URL)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can play around with the parameters a bit and specify what kind of detection you want (e.g. face, landmark, text). But I was just interested in animals so I set it to standard &lt;code&gt;&#39;LABEL_DETECTION&#39;&lt;/code&gt;. I then set the parameters to max 5 labels per image, and saved the results in a python dictionary along with the score of that label and the url in a tuple, so that when it came to front end, I could return results by score and show the corresponding image.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;{&#39;label&#39;: [(score, &#39;url&#39;), (score, &#39;url&#39;), (score, &#39;url&#39;)]}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Every now and again a differently formatted or failed result would be returned so I introduced a conditional &lt;code&gt;if&lt;/code&gt; statement where it would also tell me if an image had been skipped. That way I would know that there was something wrong with my code or the request if too many were being skipped.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
+googlers = []
+
+for string in b64_strings:
+
+	service_request = service.images().annotate(body={&#39;requests&#39;: [{&#39;image&#39;: {&#39;content&#39;: string.decode(&#39;UTF-8&#39;)},&#39;features&#39;: [{&#39;type&#39;: &#39;LABEL_DETECTION&#39;,&#39;maxResults&#39;: 5}]}]})
+
+	response = service_request.execute()
+
+	if &#39;labelAnnotations&#39; in response[&#39;responses&#39;][0]:
+		labels = response[&#39;responses&#39;][0][&#39;labelAnnotations&#39;]
+		print(&#39;string :&#39;+ str(i))
+	else:
+		print(&#39;SKIPPED string : &#39; +str(i))
+	googlers.append(labels)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Loads of the labels were not relevant to my own search criteria. As this needed to be an animal classifier, I was only really interested in animal images and animal labels. Originally I wanted to find a way to filter out irrelevant labels. Until I realised how much fun Google’s misidentification could be.&lt;/p&gt;
+
+&lt;h3 id=&quot;these-beautiful-butterflies-enjoying-a-feeder&quot;&gt;These beautiful butterflies enjoying a feeder?&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/maitai.jpg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;google-reckons-its-a-mai-tai&quot;&gt;Google reckons it’s a Mai Tai.&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/real_maitai.jpg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;oh-and-then-this-one-is-labeled-as-air-force&quot;&gt;Oh, and then this one is labeled as ‘Air Force’..&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/airforce.jpg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The funny thing about these ‘mistakes’ is that you can see why those images may have been classified the way they were. The butterflies do look a bit like a MaiTai and those birds being labeled Air Force is pretty hilarious. Maybe Google just has a great sense of humour. If you go and look at the &lt;a href=&quot;https://storage.googleapis.com/q-dev-challenge-hannah.appspot.com/index.html&quot;&gt;app&lt;/a&gt; you can see what kind of mistakes Google Vision still makes for yourself.&lt;/p&gt;
+
+&lt;h2 id=&quot;firebase-and-the-storages&quot;&gt;firebase and the storages&lt;/h2&gt;
+
+&lt;p&gt;Firebase is a backend system, absorbed by Google in 2014, for iOS, Android and the web that allows you to store and sync data instantly. It’s a really nice service that you can work with through the firebase API or manually through their console. I had to use the console in the end because of python3 clashes - more on this in the &lt;strong&gt;future and improvements&lt;/strong&gt; section below.&lt;/p&gt;
+
+&lt;p&gt;Setting up a firebase project was easy, and I had a google project associated with the challenge and the Google Vision API already so I just linked the two togethere (there’s a button for that) and navigated to the Database tab. As I had saved the dictionary as a JSON file, I could just import it into the firebase database manually and the result looked like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
+import json
+
+with open(&#39;firebase.json&#39;, &#39;w&#39;) as file:
+	json.dump(dict_for_firebase, file)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/Screenshot_fb.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now for the front-end…&lt;/p&gt;
+
+&lt;h2 id=&quot;users-and-the-interface&quot;&gt;users and the interface&lt;/h2&gt;
+
+&lt;p&gt;One day to go and I had a whole front-end to build.&lt;/p&gt;
+
+&lt;p&gt;I started building locally, and checking my progress using a python simple server. In python3, this is done by navigating to the directory where your app files are stored and then typing &lt;code&gt;$ python3 -m simple.server&lt;/code&gt; on the command line.&lt;/p&gt;
+
+&lt;p&gt;In the HTML file you need to authorise your firebase access like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;
+    &amp;lt;script src=&quot;https://www.gstatic.com/firebasejs/3.3.0/firebase.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+      &amp;lt;script&amp;gt;
+
+    // Initialize Firebase
+
+    var config = {
+      apiKey: &quot;&amp;lt;API KEY&amp;gt;&quot;,
+      authDomain: &quot;&amp;lt;PROJECT NAME&amp;gt;.firebaseapp.com&quot;,
+      databaseURL: &quot;https://&amp;lt;PROJECT NAME&amp;gt;.firebaseio.com&quot;,
+      storageBucket: &quot;&amp;lt;PROJECT NAME&amp;gt;.appspot.com&quot;,
+    };
+    
+    firebase.initializeApp(config);
+
+  &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then the connection to the firebase database is established in the javascript file. I did this using &lt;code&gt;firebase.database.ref()&lt;/code&gt;, specifying where in your database I want to get to. I had &lt;code&gt;searchID&lt;/code&gt; so that I could change the input depending on the label that the user would type into the search bar.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+function getSearchImages(searchID){
+	var animalRef = firebase.database().ref(&#39;data/&#39;+searchID+&#39;/&#39;);
+	animalRef.on(&#39;value&#39;, function(snapshot) {
+  
+  		var response = snapshot.val();
+  		for (var index in response) {
+    		addImage(response[index][1]);
+  		}
+	});
+};
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Because some of the labels returned by Google Vision were pretty specific or obscure (ahum… &lt;em&gt;‘hofmannophila pseudospretella’&lt;/em&gt;, &lt;em&gt;‘nova scotia duck tolling retriever’&lt;/em&gt;, &lt;em&gt;‘small to medium sized cats’&lt;/em&gt;) I wanted to have an autocomplete function in the search bar. This was made possible with some magical jQuery with a &lt;a href=&quot;https://jqueryui.com/autocomplete/&quot;&gt;UI widget&lt;/a&gt;. Upon pressing enter or choosing from the drop-down suggestions, the relevant images could be loaded.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+
+$(function() {
+	var nameRef = firebase.database().ref(&#39;labels/&#39;)
+	nameRef.on(&#39;value&#39;, function(snapshot) {
+		var names = snapshot.val()
+
+	    $(&quot;#tags&quot;).autocomplete({
+	    	source: names,
+	    	focus: function( event, ui ) {
+		    	$( &quot;#tags&quot; ).val( ui.item.label );
+		      	return false;
+		    },
+	    	select: function(event, ui){
+	    		var searchID = ui.item.value
+	    		clearImages();
+	    		getSearchImages(searchID);
+			}
+		})
+	})
+});
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;future-and-improvements&quot;&gt;future and improvements&lt;/h3&gt;
+
+&lt;h4 id=&quot;firebase-api&quot;&gt;firebase API&lt;/h4&gt;
+
+&lt;p&gt;What I really wanted to do was fill my firebase iteratively but with the time constraints and python clashes I changed tact. You can still see the code for using the firebase API with python in the repo. In order to get my front-end started more quickly I resorted to saving all my results in JSON and manually imported it into my firebase storage via the console. If I wanted an active pipeline, however, that updates the database on a regular basis, I would need to sort out the API.&lt;/p&gt;
+
+&lt;h4 id=&quot;image-scaling&quot;&gt;image scaling&lt;/h4&gt;
+
+&lt;p&gt;The image containers are set to a size most common to flickr images, but there are some cropped or portrait images that don’t fit the format so those images appear stretched on the site. It would be good to find a different approach or be able to scale the image containers to the original image format to prevent this.&lt;/p&gt;
+
+&lt;h4 id=&quot;image-ranking&quot;&gt;image ranking&lt;/h4&gt;
+
+&lt;p&gt;Ideally I’d like to rank the returned images by the score returned by the Google API. I have them saved in the firebase database and I hope to implement this soon.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 03 Sep 2016 00:00:00 +0000</pubDate>
+        <link>/articles/2016-09/takehome</link>
+        <guid isPermaLink="true">/articles/2016-09/takehome</guid>
+        
+        
+        <category>Data Thoughts</category>
+        
+      </item>
+    
+      <item>
+        <title>model validation</title>
+        <description>&lt;p&gt;Being a good data scientist is not about knowing how to build a model. That’s relatively easy, as soon as you know how to use &lt;code&gt;python&lt;/code&gt; and &lt;code&gt;scikit learn&lt;/code&gt; you’re golden. You can build machine learning models to your heart’s content. But that is useless if you can’t interpret the results of that model. You get an accuracy score but &lt;em&gt;what does that mean&lt;/em&gt;? If you have a high accuracy score for something that, logically, cannot possible be that accurate, then you need to be able to spot that and realise that you can’t do your winner dance just yet. It is not easy to predict something. Humans are incredibly good at predicting things and we have process &lt;em&gt;11 billion&lt;/em&gt; bits of information every second. Of course we aren’t aware of all this madness, but it allows that little bubble of blooming up consciousness to be somewhat meaningful.&lt;/p&gt;
+
+&lt;p&gt;The models we build are relatively simple (in most cases), but often they are used to predict complex problems. And we should not expect an accuracy of 80 or 90% in most cases. So, first step, be aware of what your problem is. If you are predicting, &lt;em&gt;what&lt;/em&gt; are you predicting and imagine yourself predicting it. What would you yourself need to make a good estimate of whether something will happen or not.&lt;/p&gt;
+
+&lt;p&gt;I was listening to the latest &lt;a href=&quot;http://dataskeptic.com/epnotes/predictive-models-on-random-data.php&quot;&gt;Data Skeptic&lt;/a&gt; episode today and Kyle interviewed this total boss, Claudia Perlich who spent the half hour leading an enlightening discourse on the world of model validation and data detective work. It was fascinating so I wanted to share some of that on here. Both for future reference, and potentially to pass on her wisdom to anyone else who is interested.&lt;/p&gt;
+
+&lt;h3 id=&quot;leakage&quot;&gt;Leakage&lt;/h3&gt;
+
+&lt;p&gt;Leakage in terms of machine learning, is the creation of unexpected additional information in the training data. Perlich and colleagues wrote &lt;a href=&quot;http://dstillery.com/wp-content/uploads/2014/05/Leakage-in-Data-Mining-Formulation-Detection-and-Avoidance.pdf&quot;&gt;this paper&lt;/a&gt; on the topic.&lt;/p&gt;
+
+&lt;h4 id=&quot;kdd-cup-2008&quot;&gt;KDD-Cup 2008&lt;/h4&gt;
+
+&lt;p&gt;Perlich and her team took part in a machine learning competition where the aim was to predict whether a patient had breast cancer based on mammography data.&lt;/p&gt;
+
+&lt;p&gt;They found that when including the randomly assigned 10-digit patient number to the model, the accuracy of the model improved by 30%. That’s an insane improvement, especially considering the patient ID is supposed to have no bearing on the test outcome whatsoever. When digging deeper into the origins of the provided dataset, Perlich discovered that to ensure they had enough data for the competition, data was collected from four different centres - including both treatment centres and test centres. The randomly assigned ID numbers bore some trace of these centres and, as the likelihood of a patient having cancer is drastically different based on whether they are only being tested, or whether they are actually being treated, the model could just accurately predict which centre the patient image data came from and, in doing so, automatically increases the likelihood that they do or do not have cancer.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-merge-was-done-without-obfuscating-the-source&quot;&gt;&lt;em&gt;“the merge was done without obfuscating the source”&lt;/em&gt;&lt;/h2&gt;
+
+&lt;p&gt;Obfuscation means to confuse or obscure the original and intended meaning in the data. Without doing this, the labels to be predicted may unintentionally already be in the dataset, as in the previous example, and renders the model useless for real-world use.&lt;/p&gt;
+
+&lt;h3 id=&quot;stacking&quot;&gt;Stacking&lt;/h3&gt;
+
+&lt;p&gt;This was another super cool thing that I didn’t previously know about. Sometimes, depending on the specific environment or situation of your problem, even though globally it’s the same problem, the optimum model to use varies and yet may be equally valid. In this case you need to alter which model you use based on certain specifications. In stacking, you can have one model to predict which model would be best to use, and then another layer where you use the chosen model for your initial problem.&lt;/p&gt;
+
+&lt;p&gt;I hadn’t thought of models in this way but of course machine learning can be embedded on many different levels, and to work in tandem. I hope to explore this idea further and blog up some examples in the near future.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
+        <link>/articles/2016-07/validation</link>
+        <guid isPermaLink="true">/articles/2016-07/validation</guid>
+        
+        
+        <category>Data Thoughts</category>
+        
+      </item>
+    
+      <item>
+        <title>overfishing</title>
+        <description>&lt;h3 id=&quot;the-final-stretch&quot;&gt;The final stretch&lt;/h3&gt;
+
+&lt;p&gt;here’s a link to a pdf of the final presentation I gave on career day, 23rd June: &lt;a href=&quot;https://github.com/deenhe91/fish_app/blob/master/fish_.pdf&quot;&gt;link.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Overfishing is one of the biggest and most neglected issues of our time. The oceans play a crucial role in maintainig a stable atmosphere and also provide food for billions of people on earth. Maintaining a healthy ecosystem is important everywhere, but in the oceans, an unbalanced and collapsing ecosystem results in substantial effects on the levels of CO2 in our atmosphere and thus has catastrophic effects, not just for economies that rely on fishing to sustain them, but also for fish populations and ultimately our environment.&lt;/p&gt;
+
+&lt;p&gt;For my final project at Metis, I clustered fish species into levels of threat, and used these in an &lt;a href=&quot;github.com/deenhe91/fish_app&quot;&gt;app&lt;/a&gt; so that users can input the name of a fish and find out how threatened or overfished that species currently is.&lt;/p&gt;
+
+&lt;p&gt;I got my data from &lt;a href=&quot;http://noaa.gov&quot;&gt;NOAA&lt;/a&gt;, which provided information on over 500 species of fish over an average of 60 years.&lt;/p&gt;
+
+&lt;p&gt;I also collected data from the &lt;a href=&quot;https://www.wcpfc.int&quot;&gt;WCPFC&lt;/a&gt; and did some analysis on that which I’ll talk about later.&lt;/p&gt;
+
+&lt;h3 id=&quot;exploratory-analysis&quot;&gt;Exploratory Analysis&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/IMG_20160610_113730.jpg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Amidst the many groupbys and pyplots a very clear pattern emerged. Most of these fish populations are severely declining. It was quite shocking to view such an obvious trend.&lt;/p&gt;
+
+&lt;p&gt;Here is a plot of the aggregated ‘exploitation rate’ of all tuna types in the data set, over time. It is a simple measure of the proportion of a population that is caught. So you can see that the percentage of the population caught has increased dramatically over the past 60 years.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ERTuna.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This could be because total catch has increased, or because the population size has decreased. When we look at plots of catch rates, which is essentially how much fish is caught per unit effort, you can see that this is decreasing…&lt;/p&gt;
+
+&lt;p&gt;BIG EYE&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/BET_meancatchrate.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ALBACORE&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ALBmeancatchrate.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;YELLOWFIN&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/YFTmeancatchrate.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This indicates that the number of available tuna have dropped, and not just that we’re getting better at catching them.&lt;/p&gt;
+
+&lt;h4 id=&quot;by-month-by-region-by-fish-fuzzy-matching&quot;&gt;By month, By region, By fish? Fuzzy-Matching&lt;/h4&gt;
+
+&lt;p&gt;I used the fuzzy matching python package &lt;code&gt;fuzzywuzzy&lt;/code&gt;, to pull out fish by region. First I used fuzzywuzzy to detect all fish in Pacific and Atlantic regions and then &lt;code&gt;numpy.where()&lt;/code&gt; to pull out indices of all the fish in those regions.&lt;/p&gt;
+
+&lt;p&gt;I made separate dataframes for Pacific and Atlantic fish to analyse the differences in overfishing between the two major oceans.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;more to come here -&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;missing-data&quot;&gt;Missing Data&lt;/h4&gt;
+
+&lt;p&gt;This is just one snapshot of the data I had, namely the mean mortality rate (over the 60 year time period) of fish species in the Pacific…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/missingdata.png?raw=true&quot; alt=&quot;&quot; title=&quot;Pacific&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;…and Atlantic oceans.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/missingdata2.png?raw=true&quot; alt=&quot;&quot; title=&quot;Atlantic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can’t glean an awful lot from these plots, but it shows you just how much data is missing, especially in the Pacific. Some fish had information on total catch, others had information on available biomass or mortality rate. Some had no information at all.&lt;/p&gt;
+
+&lt;p&gt;I tried using &lt;code&gt;PyBrain&lt;/code&gt; to fill in these gaps with a recursive neural network.&lt;/p&gt;
+
+&lt;h4 id=&quot;apping&quot;&gt;Apping&lt;/h4&gt;
+
+&lt;p&gt;This part required some serious readjustment of my understanding of the internet It was a really enjoyable and fascinating task. I’ll do a post on understanding app buidling in the next couple of weeks with a link to the live web app. In the meantime you can have a gander at the app format on my &lt;a href=&quot;https://github.com/deenhe91/fish_app&quot;&gt;github page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I built a fish-specific search tool with a little help from &lt;a href=&quot;&quot;&gt;Joe Oliver&lt;/a&gt; that would allow people to find out how overfished a fish population is. The idea is also to provide alternatives and more of a dashboard breakdown which I am working on right now.&lt;/p&gt;
+
+&lt;p&gt;I clustered the fish into different categories of ‘threat level’ or overfishedness using KMeans Clustering in &lt;code&gt;SciKitLearn&lt;/code&gt;. I used fishing rate, population size and an indicator of the health of the population (the rate of growth in the last 5 years) as variables.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/cluster.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I wanted to use ‘length at age’ as a variable because that is a good measure of a healthy fish population, but it looks like getting that information for all the fish species I was working with would be a much longer process than I had the time for in this project.&lt;/p&gt;
+
+&lt;p&gt;The  clusters:&lt;/p&gt;
+
+&lt;p&gt;RED - overfished and dwindling/unhealthy population, do not eat.&lt;/p&gt;
+
+&lt;p&gt;ORANGE - low population size but not necessarily over-fished, treat with caution.&lt;/p&gt;
+
+&lt;p&gt;GREEN - healthy population and not overfished, bon apetit!&lt;/p&gt;
+
+&lt;h3 id=&quot;further-info-and-efforts&quot;&gt;Further info and efforts&lt;/h3&gt;
+
+&lt;p&gt;With a bit of digging on the interweb I found countless organisations, listed at the bottom of this post, who are feverishly campaigning and recruiting to tackle these problems.&lt;/p&gt;
+
+&lt;p&gt;The Seawatch app, this is very similar to what I have done, but with more time, money and manpower. However, they don’t show the changes in the fish and this is a pretty useful chunk of information for the public to digest. It is far more impactful if someone says, “don’t eat this fish, look here’s why”, than just, “don’t eat this fish.” In the same way you want to educate your children on &lt;em&gt;why&lt;/em&gt; they can’t go around hitting things, or eat an entire bowl of haribo. That reaction to evidence stays an important influencer of our behaviour and in this way, data visualisations can be completely necessary.&lt;/p&gt;
+
+&lt;h5 id=&quot;videos&quot;&gt;Videos&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://theblackfish.org/&quot;&gt;The Black Fish&lt;/a&gt; is a super cool organisation based in the UK and the Netherlands that aim to keep fishing practices legal and pressure the government to set higher standards. They work in the Baltic and Mediterrenean seas, where illegal fishing is rife. They film &lt;a href=&quot;https://vimeo.com/66514539?raw=true&quot;&gt;Losing Nemo&lt;/a&gt; is there informational video on the state of over and illegal fishing.&lt;/p&gt;
+
+&lt;p&gt;Another fantastic short film which aims to educate people on overfishing was made by —&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;&quot;&gt;video&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The End of The Line&lt;/strong&gt; is a very moving and comprehensive documentary on the state of the oceans and the corruption within fisheries.&lt;/p&gt;
+
+&lt;h5 id=&quot;google&quot;&gt;Google&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://globalfishingwatch.org/&quot;&gt;The Global Fishing Watch&lt;/a&gt; is google’s attempt to pick out illegal fishing practices with a little help from enthusiastic volunteers.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
+        <link>/articles/2016-06/Overfishing</link>
+        <guid isPermaLink="true">/articles/2016-06/Overfishing</guid>
+        
+        
+        <category>Metis Projects</category>
+        
+      </item>
+    
+      <item>
+        <title>WORDS AND POWER</title>
+        <description>&lt;h4 id=&quot;background&quot;&gt;Background&lt;/h4&gt;
+
+&lt;p&gt;Natural Language Processing is one of the reasons I love data science. Perhaps because every level of it has some semantic value. There is information that is intricately tied to your upbringing, experience, perception of the world, in every word, every sentence. The data doesn’t necessarily have to be large to be more meaningful to you. For example, 
+an incredible poem with an enormous amount of information regardless of how many words are there.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;“For sale: baby shoes, never worn.” - Ernest Hemmingway&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;And as the number of varying words we have available to us increases, the complexity increases, we can pick up currents of new information. Glean insights into crowd behaviours and perceptions. A window into the workings of an individual on one level, and into the workings of an entire organisation, country or culture on another level.&lt;/p&gt;
+
+&lt;p&gt;Now I have waxed myself lyrical, I’ll move on to the NLP project I undertook.&lt;/p&gt;
+
+&lt;p&gt;I grew up in Scotland. And in recent years there’s been some interesting controversy up there. Scotland became swallowed up by Britain in the 18th Century and hasn’t fully recovered (emotionally) since. And though Scotland benefits financially from the union with England, politically and socially it is a very bad pairing. Scotland is a far more socialist country than England. It is also a country well-loved by left-leaning hippy types which makes it a beautiful, creative and low-key country. England has a population 10 times that of Scotland, and though I love England too, I find my love largely directed at London where diversity and creativity is at a peak. But the majority of England is politically right-minded.&lt;/p&gt;
+
+&lt;p&gt;So in 2014 Scotland held a long-awaited independence referendum. The sentiment was clear, the leave campaign was far louder but there were many of us who felt we were better together and devolution was a better choice. The Scottish National Party instigated the referendum and this party was led by Alex Salmond, a target for the media and a seemingly spiteful and resentable man. Leave lost, 49 to 51%. After this heavy disappointed for half of the country, Salmond resigned and Nicola Sturgeon took his place as leader of the SNP party. In the 8 months that followed, Sturgeon gained massive support from leavers and remainers alike and in the 2015 General Election the SNP won 97% of the seats in Scotland. This map clearly highlights the extent of her total domination of the country:&lt;/p&gt;
+
+&lt;h4 id=&quot;the-question&quot;&gt;The Question&lt;/h4&gt;
+
+&lt;p&gt;My question is, how did she pull it off? And is it possible to see changes in the way that people talked about the SNP before and after the referendum and leading up to the election that meant that &lt;em&gt;even though&lt;/em&gt; the majority of the country had voiced their opinion as contradicting the &lt;strong&gt;main&lt;/strong&gt; incentive of the SNP, they still voted them in. Everywhere.&lt;/p&gt;
+
+&lt;p&gt;My approach here was two-fold. I wanted to look at what Sturgeon and Salmond had said, and also at what the papers had said.&lt;/p&gt;
+
+&lt;h4 id=&quot;limitations&quot;&gt;Limitations&lt;/h4&gt;
+
+&lt;p&gt;Now there were many constraints here that meant that these were limited. Time being the main one. Also, the transcripts of public speeches of Sturgeon and Salmond weren’t as readily available as I’d hoped and the best thing I could find was the General Election debate which included Sturgeon and 5 other party leaders. The other was limited in that the Guardian is the only UK newspaper with an API. So my newspaper representation of the case was limited to that one newspaper.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-approach&quot;&gt;The approach&lt;/h4&gt;
+
+&lt;p&gt;I wanted some practice using Amazon Web Services so I decided to do all the newspaper stuff on an AWS instance using vim from my terminal. This involved setting up an instance and _ssh_ing into it whenever I wanted to work on that part of the project. I then used &lt;a href=&quot;http://stackoverflow.com/questions/11304895/how-to-scp-a-folder-from-remote-to-local&quot;&gt;&lt;code&gt;scp -i&lt;/code&gt;&lt;/a&gt; to copy things from the instance to my local computer when I wanted to visualise or present.&lt;/p&gt;
+
+&lt;p&gt;I used the Guardian API to request all links to pages containing content on &lt;strong&gt;Scottish Independence&lt;/strong&gt;, &lt;strong&gt;Scottish referendum&lt;/strong&gt;, &lt;strong&gt;Nicola Sturgeon&lt;/strong&gt; and &lt;strong&gt;Alex Salmond&lt;/strong&gt;. This returned about 35,000 links which were categorised into articles, web blogs, video, images and interactive. I just wanted to use the articles, so I took the article links and fed them into a &lt;a href=&quot;http://newspaper.readthedocs.io/en/latest/&quot;&gt;Newspaper&lt;/a&gt; scraper that I built to collect the article text.&lt;/p&gt;
+
+&lt;p&gt;It kept tripping up and throwing an error so I introduced a neat little trick to keep it running.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
+for val in GuardianArticles[&#39;article&#39;]:
+        try:
+                a = Article(val[1])
+                a.download()
+                a.parse()
+                a.nlp()
+
+                article={ &quot;url&quot;: val[1],
+                        &quot;text&quot;:a.text,
+                        &quot;keywords&quot;:a.keywords,
+                        &quot;authors&quot; : a.authors,
+                        &quot;date&quot; : val[0] }
+
+                article_id = guardian_articles.insert_one(article)
+                print(article_id)
+
+        except:
+                print(&#39;pass&#39;)
+                pass
+
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Using &lt;code&gt;try:, except: Pass&lt;/code&gt;, when the scraper encountered an article that didn’t fit the bill, it would just skip over it. I included &lt;code&gt;print(&#39;pass&#39;)&lt;/code&gt; and a counter so I could see how many didn’t work. Luckily it was a tiny percentage of the total number of articles. Some 40 links out of 18,000.&lt;/p&gt;
+
+&lt;p&gt;When plotted across a timeline we can see a that in general, the number of available articles on the topic is skewed towards more recent years. In addition, we can see a spike in the number of articles on the day of the referendum in 2014 and the general election in 2015. Just what would be expected.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/articledistribution.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 31 May 2016 00:00:00 +0000</pubDate>
+        <link>/articles/2016-05/WordsandPower</link>
+        <guid isPermaLink="true">/articles/2016-05/WordsandPower</guid>
+        
+        
+        <category>Metis Projects</category>
+        
+      </item>
+    
+      <item>
+        <title>classification</title>
+        <description>&lt;h2 id=&quot;before-i-start&quot;&gt;before I start…&lt;/h2&gt;
+
+&lt;p&gt;Perhaps the two biggest personal lessons I learnt at Metis were learnt during this project.&lt;/p&gt;
+
+&lt;h3 id=&quot;procrastination-will-kill-you&quot;&gt;procrastination will kill you.&lt;/h3&gt;
+
+&lt;p&gt;I did not know what to do. And I did not stick to any idea that I had. Initially we started in groups with vague aims of classifying a genre into a subgenre. We went to the spotify music hackathon, bright-eyed and bushy-tailed and ready for adventure. Though the hackathon itself was fab and the speakers were inspiring - we didn’t figure out our subgenre problem. The million song dataset wouldn’t fit on my AWS, &lt;em&gt;and&lt;/em&gt; the spotify API didn’t return the things that we were interested in. The fields of interest were empty. Additionally, the awesome python libraries that we could use to analyse audio files was not cooperating with my &lt;code&gt;python3&lt;/code&gt;. All of these barriers would have been circumventable if only I had believed in the cause. I said yes to this because I was excited to work with music but classifying genres into subgenres was not something I felt I could put my heart into. And so all of these hiccups felt all the more monumental.&lt;/p&gt;
+
+&lt;p&gt;With retrospect I could have done some pretty neat classification problems surrounding music.
+and I will probably explore these now I have some ‘free’ time (ahum. job-hunting.) but at the time these did not come to me.&lt;/p&gt;
+
+&lt;p&gt;I looked up datasets and debated playing with calcium signalling data (&lt;a href=&quot;http://neurofinder.codeneuro.org/&quot;&gt;is a neuron of interest or not?&lt;/a&gt;), or are mushrooms edible or not, or even does this person have Parkinson’s or not? Some SUPER interesting things kicking about there but procrastination killed them all. And 36 hours before presentation time, I decided to classify leaf images to corresponding tree species. This was fine, but given the time strain I had very little opportunity to dig deeper and do some interesting analysis or to seriously consider the problem or uses of this classifier.&lt;/p&gt;
+
+&lt;p&gt;Moral of the story: Find a project and &lt;em&gt;stick to it&lt;/em&gt;. You can make something interesting out of everything.&lt;/p&gt;
+
+&lt;h3 id=&quot;dont-try-and-change-the-world-with-every-project&quot;&gt;don’t try and change the world with every project.&lt;/h3&gt;
+
+&lt;p&gt;You will &lt;strong&gt;always&lt;/strong&gt; be disappointed. &lt;strong&gt;Always&lt;/strong&gt;. One of my main issues is having to make everything I do ‘important’ to justify putting time into it. But ultimately this course is about learning the ropes. Taking on seemingly less serious topics will allow faster blooming of my technical capabilities.
+I have always appreciated the little things and I get excited by small logic problems and even things like data cleaning (&lt;em&gt;HOW??&lt;/em&gt;) but if I have to present a project I have had a tendency to overthink and search for the much much bigger picture. This has made it difficult to get excited about things that just have a simple bigger picture. Or projects that are only focused on ‘increasing revenue’. But I have realised how detrimental this is. For the leaf project I went to lengths to make up a story about the APOCALYPSE! Are you ready?&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;…it is 50 years in the future, and infrastructure has collapsed. It is more and more difficult to find reliable, safe and affordable medicine and so the people are turning back to nature for their remedies. For this reason they need a classifier to tell them, based on an image of the leaf, what the tree species is and whether that plant is medicinally useful to you…&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yes. Our fantastic teacher Vinny pointed out that actually we don’t need an apocalyptic future to justify a leaf classifier and it can be useful for education, park rangers and many other entirely relevant things.&lt;/p&gt;
+
+&lt;p&gt;Anyway, these two valuable lessons are now learnt and I shall carry them with me forever.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-project&quot;&gt;the project&lt;/h2&gt;
+
+&lt;p&gt;I got this dataset from &lt;a href=&quot;&quot;&gt;UCI&lt;/a&gt; along with a paper by Pedro explaining his logic and process. I used openCV to extract some of the features he mentioned in his thesis (all of which were present in the dataset itself) to get a feel for the openCV package and learn a bit about image processing.&lt;/p&gt;
+
+&lt;h4 id=&quot;cleaning-up-the-data&quot;&gt;cleaning up the data&lt;/h4&gt;
+
+&lt;p&gt;This data was pretty clean already so it was just a case of organising and understanding it. I replaced string nans with float &lt;code&gt;nan&lt;/code&gt; so that &lt;code&gt;pandas&lt;/code&gt; would recognise them as non-values.&lt;/p&gt;
+
+&lt;p&gt;I grouped my data by species to have a look at the summary of differed variables per species. To see whether something was largely &lt;code&gt;nans&lt;/code&gt; and just to understand the metrics a little better because they consisted of things like ‘Eccentricity’, ‘Solidity’ and ‘Isoperimetric Factor’… (see end for explanation of these terms).&lt;/p&gt;
+
+&lt;p&gt;I created a reduced dataset that didn’t have things in it I wasn’t planning on using in my analysis and I &lt;code&gt;pickled&lt;/code&gt; that so that I could just load it up again if I quit the programme.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The test-train split&lt;/strong&gt;. I had 30 species and only 8-15 specimens per species so it was important to do a stratified split so that all the species were present in both the training and the test set.&lt;/p&gt;
+
+&lt;p&gt;I used &lt;code&gt;seaborn&lt;/code&gt; and &lt;code&gt;matplotlib&lt;/code&gt; to plot some of the features(variables) in the training set.&lt;/p&gt;
+
+&lt;p&gt;I used feature importance analysis to pull out the most important features as lots of variables means lots of dimensions which makes it harder to glean relevant insights.&lt;/p&gt;
+
+&lt;p&gt;It couldn’t hurt to prune some out.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_features.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I tried running my classifier models with the top 9 (and then 10, and then 11) features but my accuracy score for each model dropped a lot, some by 20 points. So I stuck with all 16.&lt;/p&gt;
+
+&lt;p&gt;A little sidenote - I plotted a scatter matrix for my features which is just a matrix of scatter plots that shows you how each pair of variables are related. Down the diagonal (where the one variable would be compared with itself) is a KDE plot for that particular variable. That just shows the distribution within the variable. This is a great and reasonable quick way to visually understand your data and the relaitonships within it - that is, if you don’t have more than 10 or 15 variables..&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ClassScatter_matrix.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;a-little-summary-of-the-classifiers&quot;&gt;A little summary of the classifiers&lt;/h3&gt;
+
+&lt;h5 id=&quot;logistic-regression&quot;&gt;LOGISTIC REGRESSION&lt;/h5&gt;
+
+&lt;p&gt;Logistic regression is regression where the dependent variable (the thing you are predicting) is categorical (splits into categories). This is most effectively used, or designed for, binary models. Usually in cases of multiple unordered categories, the regression model to use is &lt;em&gt;Multinomial Linear Regression&lt;/em&gt; which doesn’t have a handy function in scikit learn (sit tight for more on this). When applied to a problem with multiple categories, like the leaf dataset, a logistic regression analysis will assess the probability that something is in one category compared to all other categories.&lt;/p&gt;
+
+&lt;p&gt;Logistic regression assumes a clear cut off. The green line in the example below is the probability of a data point being ‘a case’ given 1 feature. The blue dots are cases and the red ones are not. A classic example the probability of a student passing a test given the number of hours they spend studying for that test. Blue is pass, red is fail, and the numbers on the x axis are the number of hours spent studying. It seems logical that the probability of passing increases with study hours.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/140.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;svm&quot;&gt;SVM&lt;/h5&gt;
+
+&lt;p&gt;SVM stands for &lt;strong&gt;Support Vector Machine&lt;/strong&gt;. It’s basic idea is that you define a decision boundary using the ‘widest street’ approach. This means that you want to draw a line that has on either side of it, the biggest margin possible between the two categories. Wihout a &lt;strong&gt;kernel&lt;/strong&gt;, SVMs are only really useful for data that is linearly divided. It looks a little like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/svmsimple.jpg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using a kernel means drawing the line in a higher dimensional space and then reducing the dimensionality so that the line no longer looks straight. Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting.&lt;/p&gt;
+
+&lt;p&gt;I find that this &lt;a href=&quot;https://www.youtube.com/watch?v=_PwhiWxHK8o&quot;&gt;MIT lecture&lt;/a&gt; is really helpful. Also chalkboards are the best.&lt;/p&gt;
+
+&lt;h5 id=&quot;decision-trees-and-random-forests&quot;&gt;DECISION TREES and RANDOM FORESTS&lt;/h5&gt;
+
+&lt;p&gt;Decision trees and random forests are probably my favourite type of classification algorithm because they are really intuitive  but also really effective in lots of situations. You run the risk of overfitting, but random forests help there.&lt;/p&gt;
+
+&lt;p&gt;Decision trees use if-then statements to define patterns in the data. A decision tree consists of a starting point, where you have ALL your training data, and then you split that data by asking a simple yes/no question and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorted than 10cm. You set how many questions you want to ask, or in the correct lingo, how many levels you want the tree to contain and &lt;em&gt;Voilá&lt;/em&gt;! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.&lt;/p&gt;
+
+&lt;p&gt;Random Forests just do the same process multiple times (lots of decision trees) and then take the mode or mean prediction of the sum of the trees. The good thing about Random Forests is that they can reduce the risk of overfitting that can happen with Decision Trees.&lt;/p&gt;
+
+&lt;p&gt;And LOW AND BEHOLD, for my leaf dataset the Random Forest classifier was the most accurate. Which was just perfect. Because leaves. And trees. And forests. Geddit?&lt;/p&gt;
+
+&lt;p&gt;Here’s the breakdown:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_accuracy.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The y axis shows the accuracy score. Terrible that it doesn’t have labels.. I know..&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 13 May 2016 00:00:00 +0000</pubDate>
+        <link>/articles/2016-05/classifiers</link>
+        <guid isPermaLink="true">/articles/2016-05/classifiers</guid>
+        
+        
+        <category>Metis Projects</category>
+        
+      </item>
+    
+      <item>
+        <title>gender equality in the cinema</title>
+        <description>&lt;p&gt;Inspired by Matt Daniels and Hannah Anderson’s &lt;a href=&quot;http://polygraph.cool/movies&quot;&gt;polygraph.cool&lt;/a&gt; Film Dialogue breakdown, I ventured into the world of gender distribution in movies. I used, in part, the painstakingly collected polygraphcool data, which includes the number of lines spoken by male characters in a collection of 2000 movies.&lt;/p&gt;
+
+&lt;p&gt;Matt Daniels and Hannah Anderson had already worked hella hard and split the movie scripts by character and by comparing to IMDB, assigned a sex and age to each character’s actor/actress. The resulting metadata as well as some of the data is publicly available on &lt;a href=&quot;https://github.com/matthewfdaniels/scripts/&quot;&gt;Matt Daniels’ github&lt;/a&gt; page for scrutiny and further data fun.&lt;/p&gt;
+
+&lt;p&gt;I wanted to use all this lovely data to see whether it was possible to predict the year a movie came out in based on it’s character and line ratio.&lt;/p&gt;
+
+&lt;p&gt;I wanted to include genre in my analysis because there is a big difference in the standard distribution of female and male characters in movies of different genres. For example, war movies tend to contain way more male characters and romantic movies are generally more balanced. Because the proportion of movies of each genre that come out every year isn’t standard, it is better to analyse temporal changes in gender on the screen per genre. For this I needed to scrape.&lt;/p&gt;
+
+&lt;h4 id=&quot;web-scraping-with-beautiful-soup&quot;&gt;Web scraping with Beautiful Soup&lt;/h4&gt;
+
+&lt;p&gt;I collected data on genre by scraping Box Office Mojo using &lt;a href=&quot;https://www.crummy.com/software/BeautifulSoup/&quot;&gt;Beautiful Soup&lt;/a&gt;
+(I will have another post outlining the scraping process). I scraped data on all the movies they have on the site including info on budget and domestic gross in case I decided to use that later on. The data I needed was in a table. I looped through the &lt;code&gt;tr&lt;/code&gt;s and filled in a pandas dataframe as I went, then saved as a csv.&lt;/p&gt;
+
+&lt;h4 id=&quot;data-wrangling&quot;&gt;Data wrangling&lt;/h4&gt;
+&lt;p&gt;I read both my csv files in as pandas dataframes so I could clean and preprocess anything I needed to using pandas.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd
+
+mojo_df = pd.read_csv(&#39;&amp;lt;path_to_mojo_csv&amp;gt;&#39;, encoding=&quot;ISO-8859-1&quot;)
+polygraph_df = pd.read_csv(&#39;&amp;lt;path_to_polygraph_csv&amp;gt;&#39;, encoding=&quot;ISO-8859-1&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I wanted to create parameters that represented the number of female to male characters and lines, so I calculated ratios.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;f_ratio = []
+
+for lines in df_new[&#39;lines_data&#39;]:
+    male = sum(int(i) for i in lines.strip())/len(lines)
+    female = 7.01 - male
+    f_ratio.append(female/male)
+
+merged_df[&#39;ratio&#39;]= pd.DataFrame(f_ratio)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The dataset from polygraph cool contains data on the number of lines spoken by male characters in the film. It looks kind of like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;777777743444644573433242343644335344577426232474643156414755254322274446
+435735475636346433676546667757777777777444445553753342242525544252544775263
+14275553245514656245322356255535653566626437343576645667766774
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nice, huh?
+It assumes that a minute of dialogue is approximately 14 lines (using average speaking pace of 140 words/min, and average 10 words/line). Each number in the string there represents the number of lines spoken by a male every half minute. So, what I calculate there as &lt;code&gt;f ratio&lt;/code&gt;, is the &lt;em&gt;maximum&lt;/em&gt; number of lines a woman could possibly speak in a film, if she spoke during every available second. A generous estimate, comprendez? By the way, the above lines correspond to &lt;em&gt;Avatar&lt;/em&gt;, 2009, for which the ratio is &lt;code&gt;0.52&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ok, moving on. I had to create dummy variables of the genres. This means generating a column for each genre and assigning a 1 if the movie is of that genre and a 0 if it’s not. But I had 67 genres so this enlarged my feature space by quite a bit and I didn’t want to make life too difficult for myself.&lt;/p&gt;
+
+&lt;p&gt;To reduce the feature space, I condensed some of the more obscure genres into broader ones. Obscure meaning ‘Comedy’ was originally split into ‘Comedy’, ‘Comedy/Drama’, ‘Comedy/Thriller’, ‘Comedy/Crime’, etc. It was a little tricky sometimes, for example, does ‘War Romance’ go into ‘War’ or ‘Romance’? In the end I manually condensed the genres, reducing the 67 genres to 10.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;genre_collapser = {
+	&#39;Action&#39;:&#39;Action&#39;,
+   &#39;Action / Adventure&#39;:&#39;Action&#39;,
+   &#39;Action / Crime&#39;:&#39;Action&#39;,
+   &#39;Action Comedy&#39;:&#39;Action&#39;,
+   &#39;Action Drama&#39;:&#39;Action&#39;
+   }
+
+for i in range(len(mojo_df[&#39;genre&#39;])):
+    mojo_df.ix[i,&#39;genre&#39;] = genre_collapser[mojo_df.ix[i,&#39;genre&#39;]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now I could create my dummy variables without feature space concerns:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;df_dummied = pd.get_dummies(df_reduced_merged[&#39;genre&#39;], prefix=&#39;genre&#39;)
+df_dummied = df_dummies.drop(&#39;genre_None&#39;, axis=1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;prefix&lt;/code&gt; parameter there prefixes each genre name with the word ‘genre’, to keep our column names clear.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;polygraph_df[&quot;movie&quot;] = polygraph_df[&quot;year&quot;].map(str) + &quot; &quot; + polygraph_df[&quot;title&quot;]
+mojo_df[&quot;movie&quot;] = mojo_df[&quot;year&quot;].map(str) + &quot; &quot; + mojo_df[&quot;title&quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- ![Alt text](http://potherca.github.io/StackOverflow/question.13808020.include-an-svg-hosted-on-github-in-markdown/controllers_brief.svg) --&gt;
+
+&lt;p&gt;Now I had all this cleaned data from Box Office Mojo and I only needed the genres for the movies from the polygraph movies.&lt;/p&gt;
+
+&lt;p&gt;I created a column containing the year of release and movie title, and merged the two dataframes on that column. This was to avoid mixing up movies with the same title that came out in different years. This approach worked well except for one movie, &lt;em&gt;Crash&lt;/em&gt;, which according to IMDB came out in 2004 but in the dataset it came out in 2005. Whoops. Other than that the movies seem to be solidly matched. I now had 1198 movies left in my dataset.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;merged_df = pd.merge(mojo_df, polygraph_df, on=[&#39;movie&#39;])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As there is so much to consider when predicting the specific year that a movie comes out, I helped myself a little by predicting the era instead. By taking this approach, the problem becomes one of classification as I now have to show which discrete category a movie belongs to. First to sort the movies:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;eras = [str(year)[2] for year in merged_df[&#39;year&#39;]]
+merged_df[&#39;era&#39;] = eras
+
+print(merged_df.groupby(&#39;era&#39;)[&#39;intercept&#39;].sum())
+
+  era
+  0    411
+  1    273
+  3      1
+  4      3
+  5      1
+  6      4
+  7     24
+  8     76
+  9    264
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By performing the sum() function on the intercept column (which is a list on ones), I found that the 30s, 40s, 50s and 60s each contained fewer than 5 movies - that sample size is too small so I binned them. Now I was focusing on the 70s, 80s, 90s, 00s and 10s. I plotted the mean female-male ratio of all the movies in each era, which gave me this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/era_ratio.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That seems like a pretty convincing trend, doesn’t it? Not conclusive by any means, but we can see that the mean ratio increases steadily at every era. So there’s hope!&lt;/p&gt;
+
+&lt;p&gt;The sizes of each category are pretty varied (although the dataset is pretty small), so I 
+&lt;!-- stratified test/train split --&gt;
+&lt;!-- what can you do about varied category sizes? --&gt;&lt;/p&gt;
+
+&lt;iframe src=&quot;https://raw.githubusercontent.com/deenhe91/deenhe91.github.io/master/images/eras.html&quot;&gt;&lt;/iframe&gt;
+
+&lt;h4 id=&quot;model-building&quot;&gt;Model building&lt;/h4&gt;
+
+&lt;p&gt;Random Forest&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 25 Apr 2016 00:00:00 +0000</pubDate>
+        <link>/articles/2016-04/movies</link>
+        <guid isPermaLink="true">/articles/2016-04/movies</guid>
+        
+        
+        <category>Metis Projects</category>
+        
+      </item>
+    
+  </channel>
+</rss>

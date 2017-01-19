@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>a couple of apis, an app and some animals</title>
+  <meta name="description" content="using Google, APIs and loads of image classification">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="canonical" href="/articles/2016-09/takehome">
+  <link rel="alternate" type="application/rss+xml" title="Hannah" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/madfun2.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">Hannah Deen</a>
+  <span class="author_job">data scientist: Amsterdam, London, NYC</span>
+  <span class="author_bio mbm"></span>
+  <nav class="nav">
+    <ul class="nav-list">
+       
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:hannah.deen91@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/deenhe" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/deenhe91" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <div class="back-home">
+  <a href="/">< back Home.</a>
+</div>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "https://github.com/deenhe91/deenhe91.github.io/blob/master/images/code.jpg?raw=true"
+  
+  alt="a couple of apis, an app and some animals feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="a couple of apis, an app and some animals">a couple of apis, an app and some animals</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        3 SEP 2016
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    9 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h1 id="my-take-home-challenge">my take-home challenge</h1>
+
+<p>Last week I interviewed with a tech company near Utrecht and they gave me a 7-day take home challenge to prove my worth before we could talk about hiring. The challenge involved using google’s machine learning APIs, specifically the <a href="https://cloud.google.com/vision/">Google Vision API</a> to classify an arbitrary number of images (1,000-10,000) from a site with publicly available images. My experience with app building and servers is more limited than with building models but my interest in it is just as strong, so I was excited at the challenge.</p>
+
+<p><strong>Here’s the finished <a href="https://storage.googleapis.com/q-dev-challenge-hannah.appspot.com/index.html">app</a></strong>
+<strong>and here’s my Github <a href="https://github.com/deenhe91/QloudAnimals">repo</a></strong></p>
+
+<p>I needed to understand all the parts, moving and static of this machine, so I drew out some workflows. I knew I needed to get images, which meant using an image website API. Those images would have to be sent to Google and classified somehow. The results of that needed to be stored in a database (the company asked me to use <a href="https://firebase.google.com/">Firebase</a>, another new thing) and then that database would have to be accessed by a user looking up a specific animal in a simple front-end situation.</p>
+
+<h2 id="flickr-and-the-images">flickr and the images</h2>
+
+<p>I chose flickr, specifically the <code>groups.pools.getPhotos</code> <a href="flickr.com/services/api/explore/flickr.groups.pools.getPhotos">API</a> (even though I had to create a yahoo account in order to use it…) The quality of the images available is much higher than say, <em>imgur</em>, and the developer toolkit, or <em>‘App Garden’</em>, is pretty well documented and easy to implement.</p>
+
+<pre><code class="language-python">
+import requests
+
+flickr_key = '&lt;YOUR ACCOUNT KEY&gt;'
+flickr_secret = '&lt;YOUR ACCOUNT SECRET&gt;'
+
+flickr_file = []
+
+for i in range(10):
+	r = requests.get('https://api.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&amp;api_key=&lt;API KEY&gt;
+	&amp;group_id=&lt;GROUP ID&gt;&amp;per_page=500&amp;page='+str(i)+'&amp;format=json&amp;nojsoncallback=1')
+
+	flickr_json = r.json()
+	flickr_file.append(flickr_json)
+</code></pre>
+
+<p>Using this API returned lots of information regarding each image within a specified ‘group’, which is basically a collection of images with a common theme that you can add to. I then parsed the information that was relevant to me and saved it, so I wouldn’t have to overstay my flickr-api-welcome if it went wrong.</p>
+
+<pre><code class="language-python">
+img_info = flickr_list['photos']['photo']
+
+with open('flickr.json', 'w') as outfile:
+	json.dump(flickr_file, outfile)
+
+</code></pre>
+
+<p>I then had to compile URLs that pointed to each image so that they could be downloaded, but the format that flickr provided didn’t work. However, looking at the page source…</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/page_source.png?raw=true" alt="" /></p>
+
+<p>we can see the true format for the image URL. The format looks like this:</p>
+
+<p><code>https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg</code></p>
+
+<p>and all of the required fields were in the flickr API response. Hoorah!</p>
+
+<p>The Google Vision API requires you to <em>either</em> use images that are stored in Google Storage, <em>or</em> send in the base64 encoded image as a string. So I downloaded the image at each URL using <code>shutil</code>, base64 encoded it using <code>b64</code> and then sent that string to Google.</p>
+
+<pre><code class="language-python">
+import shutil
+import b64
+
+b64_strings = [] # create list of b64_strings
+
+for url in urls:
+
+	response = requests.get(url, stream=True)
+	
+	with open('img.png', 'wb') as f:
+		shutil.copyfileobj(response.raw, f)
+
+	with open('img.png', 'rb') as f:
+		encoded_string = base64.b64encode(f.read())
+
+		b64_strings.append(encoded_string)
+
+del response
+</code></pre>
+
+<p>Actually, I started off going through the process step by step, and saving along the way with the intention of turning it into a smooth running pipeline at the end. First I wanted to test whether each step worked without having to repeat any working processes. Because the name of the stored image, <code>img.png</code> remained the same, it was replaced at each iteration and I didn’t hold onto anything in memory that I didn’t need to.</p>
+
+<h2 id="google-and-the-vision">google and the vision</h2>
+
+<p>In order to use the API from my remote server, I had to create an environmental variable called ‘GOOGLE_APPLICATION_CREDENTIALS’ pointing to the file where my credentials were stored. You can see below, you just use <code>os</code> to do this. When you create your credentials with Google, a JSON file is automatically downloaded to your computer so just make sure that’s in the right directory.</p>
+
+<pre><code class="language-python">
+import os 
+from googleapiclient import discovery 
+from oauth2client.client import GoogleCredentials 
+
+DISCOVERY_URL = 'https://vision.googleapis.com/$discovery/rest?version=v1'
+# because I was using the google vision API
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '&lt;json file where your credentials are stored&gt;'
+
+credentials = GoogleCredentials.get_application_default()	
+
+service = discovery.build('vision', 'v1', credentials=credentials, discoveryServiceUrl=DISCOVERY_URL)
+
+</code></pre>
+
+<p>You can play around with the parameters a bit and specify what kind of detection you want (e.g. face, landmark, text). But I was just interested in animals so I set it to standard <code>'LABEL_DETECTION'</code>. I then set the parameters to max 5 labels per image, and saved the results in a python dictionary along with the score of that label and the url in a tuple, so that when it came to front end, I could return results by score and show the corresponding image.</p>
+
+<p><code>{'label': [(score, 'url'), (score, 'url'), (score, 'url')]}</code></p>
+
+<p>Every now and again a differently formatted or failed result would be returned so I introduced a conditional <code>if</code> statement where it would also tell me if an image had been skipped. That way I would know that there was something wrong with my code or the request if too many were being skipped.</p>
+
+<pre><code class="language-python">
+googlers = []
+
+for string in b64_strings:
+
+	service_request = service.images().annotate(body={'requests': [{'image': {'content': string.decode('UTF-8')},'features': [{'type': 'LABEL_DETECTION','maxResults': 5}]}]})
+
+	response = service_request.execute()
+
+	if 'labelAnnotations' in response['responses'][0]:
+		labels = response['responses'][0]['labelAnnotations']
+		print('string :'+ str(i))
+	else:
+		print('SKIPPED string : ' +str(i))
+	googlers.append(labels)
+
+</code></pre>
+
+<p>Loads of the labels were not relevant to my own search criteria. As this needed to be an animal classifier, I was only really interested in animal images and animal labels. Originally I wanted to find a way to filter out irrelevant labels. Until I realised how much fun Google’s misidentification could be.</p>
+
+<h3 id="these-beautiful-butterflies-enjoying-a-feeder">These beautiful butterflies enjoying a feeder?</h3>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/maitai.jpg?raw=true" alt="" /></p>
+
+<h3 id="google-reckons-its-a-mai-tai">Google reckons it’s a Mai Tai.</h3>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/real_maitai.jpg?raw=true" alt="" /></p>
+
+<h3 id="oh-and-then-this-one-is-labeled-as-air-force">Oh, and then this one is labeled as ‘Air Force’..</h3>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/airforce.jpg?raw=true" alt="" /></p>
+
+<p>The funny thing about these ‘mistakes’ is that you can see why those images may have been classified the way they were. The butterflies do look a bit like a MaiTai and those birds being labeled Air Force is pretty hilarious. Maybe Google just has a great sense of humour. If you go and look at the <a href="https://storage.googleapis.com/q-dev-challenge-hannah.appspot.com/index.html">app</a> you can see what kind of mistakes Google Vision still makes for yourself.</p>
+
+<h2 id="firebase-and-the-storages">firebase and the storages</h2>
+
+<p>Firebase is a backend system, absorbed by Google in 2014, for iOS, Android and the web that allows you to store and sync data instantly. It’s a really nice service that you can work with through the firebase API or manually through their console. I had to use the console in the end because of python3 clashes - more on this in the <strong>future and improvements</strong> section below.</p>
+
+<p>Setting up a firebase project was easy, and I had a google project associated with the challenge and the Google Vision API already so I just linked the two togethere (there’s a button for that) and navigated to the Database tab. As I had saved the dictionary as a JSON file, I could just import it into the firebase database manually and the result looked like this:</p>
+
+<pre><code class="language-python">
+import json
+
+with open('firebase.json', 'w') as file:
+	json.dump(dict_for_firebase, file)
+
+</code></pre>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/Screenshot_fb.png?raw=true" alt="" /></p>
+
+<p>Now for the front-end…</p>
+
+<h2 id="users-and-the-interface">users and the interface</h2>
+
+<p>One day to go and I had a whole front-end to build.</p>
+
+<p>I started building locally, and checking my progress using a python simple server. In python3, this is done by navigating to the directory where your app files are stored and then typing <code>$ python3 -m simple.server</code> on the command line.</p>
+
+<p>In the HTML file you need to authorise your firebase access like so:</p>
+
+<pre><code class="language-html">
+    &lt;script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"&gt;&lt;/script&gt;
+      &lt;script&gt;
+
+    // Initialize Firebase
+
+    var config = {
+      apiKey: "&lt;API KEY&gt;",
+      authDomain: "&lt;PROJECT NAME&gt;.firebaseapp.com",
+      databaseURL: "https://&lt;PROJECT NAME&gt;.firebaseio.com",
+      storageBucket: "&lt;PROJECT NAME&gt;.appspot.com",
+    };
+    
+    firebase.initializeApp(config);
+
+  &lt;/script&gt;
+</code></pre>
+
+<p>Then the connection to the firebase database is established in the javascript file. I did this using <code>firebase.database.ref()</code>, specifying where in your database I want to get to. I had <code>searchID</code> so that I could change the input depending on the label that the user would type into the search bar.</p>
+
+<pre><code class="language-javascript">
+function getSearchImages(searchID){
+	var animalRef = firebase.database().ref('data/'+searchID+'/');
+	animalRef.on('value', function(snapshot) {
+  
+  		var response = snapshot.val();
+  		for (var index in response) {
+    		addImage(response[index][1]);
+  		}
+	});
+};
+
+</code></pre>
+
+<p>Because some of the labels returned by Google Vision were pretty specific or obscure (ahum… <em>‘hofmannophila pseudospretella’</em>, <em>‘nova scotia duck tolling retriever’</em>, <em>‘small to medium sized cats’</em>) I wanted to have an autocomplete function in the search bar. This was made possible with some magical jQuery with a <a href="https://jqueryui.com/autocomplete/">UI widget</a>. Upon pressing enter or choosing from the drop-down suggestions, the relevant images could be loaded.</p>
+
+<pre><code class="language-javascript">
+
+$(function() {
+	var nameRef = firebase.database().ref('labels/')
+	nameRef.on('value', function(snapshot) {
+		var names = snapshot.val()
+
+	    $("#tags").autocomplete({
+	    	source: names,
+	    	focus: function( event, ui ) {
+		    	$( "#tags" ).val( ui.item.label );
+		      	return false;
+		    },
+	    	select: function(event, ui){
+	    		var searchID = ui.item.value
+	    		clearImages();
+	    		getSearchImages(searchID);
+			}
+		})
+	})
+});
+
+</code></pre>
+
+<h3 id="future-and-improvements">future and improvements</h3>
+
+<h4 id="firebase-api">firebase API</h4>
+
+<p>What I really wanted to do was fill my firebase iteratively but with the time constraints and python clashes I changed tact. You can still see the code for using the firebase API with python in the repo. In order to get my front-end started more quickly I resorted to saving all my results in JSON and manually imported it into my firebase storage via the console. If I wanted an active pipeline, however, that updates the database on a regular basis, I would need to sort out the API.</p>
+
+<h4 id="image-scaling">image scaling</h4>
+
+<p>The image containers are set to a size most common to flickr images, but there are some cropped or portrait images that don’t fit the format so those images appear stretched on the site. It would be good to find a different approach or be able to scale the image containers to the original image format to prevent this.</p>
+
+<h4 id="image-ranking">image ranking</h4>
+
+<p>Ideally I’d like to rank the returned images by the score returned by the Google API. I have them saved in the firebase database and I hope to implement this soon.</p>
+
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2016-09/takehome" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2016-09/takehome" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2016-09/takehome" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2016-09/takehome" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2016-09/takehome" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2017 Hannah Deen. Powered by <a href="http://jekyllrb.com/">Jekyll</a>, <a href="http://github.com/renyuanz/leonids/">leonids theme</a> made with <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+</body>
+</html>

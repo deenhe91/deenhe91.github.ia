@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>model validation</title>
+  <meta name="description" content="leaky boots and cross bags">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="canonical" href="/articles/2016-07/validation">
+  <link rel="alternate" type="application/rss+xml" title="Hannah" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/madfun2.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">Hannah Deen</a>
+  <span class="author_job">data scientist: Amsterdam, London, NYC</span>
+  <span class="author_bio mbm"></span>
+  <nav class="nav">
+    <ul class="nav-list">
+       
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:hannah.deen91@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/deenhe" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/deenhe91" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <div class="back-home">
+  <a href="/">< back Home.</a>
+</div>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "http://66.media.tumblr.com/tumblr_lt4kzqtRxc1qa554ro1_1280.jpg"
+  
+  alt="model validation feature image">
+
+  
+  <span class="image-credit">Photo Credit: <a href="">The Little Price, Antoine de Saint Exupéry</a></span>
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="model validation">model validation</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        12 JUL 2016
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    3 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <p>Being a good data scientist is not about knowing how to build a model. That’s relatively easy, as soon as you know how to use <code>python</code> and <code>scikit learn</code> you’re golden. You can build machine learning models to your heart’s content. But that is useless if you can’t interpret the results of that model. You get an accuracy score but <em>what does that mean</em>? If you have a high accuracy score for something that, logically, cannot possible be that accurate, then you need to be able to spot that and realise that you can’t do your winner dance just yet. It is not easy to predict something. Humans are incredibly good at predicting things and we have process <em>11 billion</em> bits of information every second. Of course we aren’t aware of all this madness, but it allows that little bubble of blooming up consciousness to be somewhat meaningful.</p>
+
+<p>The models we build are relatively simple (in most cases), but often they are used to predict complex problems. And we should not expect an accuracy of 80 or 90% in most cases. So, first step, be aware of what your problem is. If you are predicting, <em>what</em> are you predicting and imagine yourself predicting it. What would you yourself need to make a good estimate of whether something will happen or not.</p>
+
+<p>I was listening to the latest <a href="http://dataskeptic.com/epnotes/predictive-models-on-random-data.php">Data Skeptic</a> episode today and Kyle interviewed this total boss, Claudia Perlich who spent the half hour leading an enlightening discourse on the world of model validation and data detective work. It was fascinating so I wanted to share some of that on here. Both for future reference, and potentially to pass on her wisdom to anyone else who is interested.</p>
+
+<h3 id="leakage">Leakage</h3>
+
+<p>Leakage in terms of machine learning, is the creation of unexpected additional information in the training data. Perlich and colleagues wrote <a href="http://dstillery.com/wp-content/uploads/2014/05/Leakage-in-Data-Mining-Formulation-Detection-and-Avoidance.pdf">this paper</a> on the topic.</p>
+
+<h4 id="kdd-cup-2008">KDD-Cup 2008</h4>
+
+<p>Perlich and her team took part in a machine learning competition where the aim was to predict whether a patient had breast cancer based on mammography data.</p>
+
+<p>They found that when including the randomly assigned 10-digit patient number to the model, the accuracy of the model improved by 30%. That’s an insane improvement, especially considering the patient ID is supposed to have no bearing on the test outcome whatsoever. When digging deeper into the origins of the provided dataset, Perlich discovered that to ensure they had enough data for the competition, data was collected from four different centres - including both treatment centres and test centres. The randomly assigned ID numbers bore some trace of these centres and, as the likelihood of a patient having cancer is drastically different based on whether they are only being tested, or whether they are actually being treated, the model could just accurately predict which centre the patient image data came from and, in doing so, automatically increases the likelihood that they do or do not have cancer.</p>
+
+<h2 id="the-merge-was-done-without-obfuscating-the-source"><em>“the merge was done without obfuscating the source”</em></h2>
+
+<p>Obfuscation means to confuse or obscure the original and intended meaning in the data. Without doing this, the labels to be predicted may unintentionally already be in the dataset, as in the previous example, and renders the model useless for real-world use.</p>
+
+<h3 id="stacking">Stacking</h3>
+
+<p>This was another super cool thing that I didn’t previously know about. Sometimes, depending on the specific environment or situation of your problem, even though globally it’s the same problem, the optimum model to use varies and yet may be equally valid. In this case you need to alter which model you use based on certain specifications. In stacking, you can have one model to predict which model would be best to use, and then another layer where you use the chosen model for your initial problem.</p>
+
+<p>I hadn’t thought of models in this way but of course machine learning can be embedded on many different levels, and to work in tandem. I hope to explore this idea further and blog up some examples in the near future.</p>
+
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2016-07/validation" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2016-07/validation" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2016-07/validation" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2016-07/validation" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2016-07/validation" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2017 Hannah Deen. Powered by <a href="http://jekyllrb.com/">Jekyll</a>, <a href="http://github.com/renyuanz/leonids/">leonids theme</a> made with <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+</body>
+</html>
