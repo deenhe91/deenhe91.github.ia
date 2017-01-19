@@ -5,23 +5,27 @@
     <description>adventures in pythonland</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 02 Jan 2017 13:25:34 +0000</pubDate>
-    <lastBuildDate>Mon, 02 Jan 2017 13:25:34 +0000</lastBuildDate>
+    <pubDate>Thu, 19 Jan 2017 15:06:53 +0000</pubDate>
+    <lastBuildDate>Thu, 19 Jan 2017 15:06:53 +0000</lastBuildDate>
     <generator>Jekyll v3.1.3</generator>
     
       <item>
         <title>thoughts from the frontier</title>
-        <description>&lt;h2 id=&quot;nips&quot;&gt;NIPS&lt;/h2&gt;
+        <description>&lt;h1 id=&quot;nips-2016&quot;&gt;NIPS 2016&lt;/h1&gt;
 
-&lt;p&gt;As the Magic conference rounds up on Sunday evening at the CCIB in Barcelona, leagues of nerds arrive to register for the 2016 NIPS conference. As was driven home at the intro talks, the conference has close to doubled in size from last year with a total of 6000 attendees. I collect my badge, my name spelled correctly - a surprisingly difficult task to achieve, I’ve learnt from many mispelled coffee cups and name tags throughout my life - and I am ready. To my delight, the giant, edgy conference centre is minutes away from the sparkling mediterranean sea front.&lt;/p&gt;
+&lt;p&gt;As the Magic conference rounds up on Sunday evening at the CCIB in Barcelona and the fur and crystal-clad magicians roll up their mats and head into the night, leagues of nerds arrive to register for the 30th annual Neural Information Processing Systems (NIPS) conference. As was driven home at the intro talks, the conference has close to doubled in size since last year with a total of 6000 attendees. I collect my badge, my name spelled correctly - a pleasant surprise after years of misspelled coffee cups and name tags - and I am ready. To my delight, the giant, edgy conference centre is minutes away from the sparkling mediterranean sea front, giving the eager conference goers plenty of opportunity to ponder optimisation problems with their toes in the sand.&lt;/p&gt;
 
-&lt;p&gt;The mix of people is surprising. There is definitely an air of fandom in the building, especially when people like Yan Le Cun stroll through, wearing the same badge we all do. It feels like a movie star has entered the building, people honing in him from all corners of the room to express their admiration. The range in age, race and industry is quite astonishing. Even the sex divide is shrinking with 900 of the 6000 being women it doesn’t feel as much as a boy’s club as it did. The old timers, men and women who have been in the field since the birth of deep learning in the 80s are here; as are some high school kids, who, enamoured with TensorFlow, wanted to come and see their dreams turned to reality.&lt;/p&gt;
+&lt;p&gt;The range in age, race and industry is quite astonishing. Even the gender divide is shrinking and with 900 of the 6000 being women it doesn’t feel as much as a boy’s club as it did. The old timers, men and women who have been in the field since the birth of deep learning in the 70s are here. As are some high school kids, who, enamoured with TensorFlow, wanted to come and see what it was all about.&lt;/p&gt;
 
-&lt;p&gt;The field is so broad, and the conference getting so big, that it was argued that perhaps we needed individual conferences for more specific topics. NIPS Health, NIPS Theory, NIPS NLP, NIPS Vision, so the list goes on. But one of the main attractions of this conference is it’s interdisciplinarity. I had lunch with neuroscientists, ecologists, mathmeticians, physicists and risk management analysts. It was fascinating to sit with these people and hear what they had to say about machine learning. Of course you can attend the conference and pick and choose subject matter in depth, like a specialist update, &lt;em&gt;or&lt;/em&gt; you can go and get a broader understanding of just how relevant machine learning and neural nets are to just about every field out there. Except conservation.&lt;/p&gt;
+&lt;p&gt;The mix of people is surprising. There is definitely an air of fandom in the building, especially when people like Yann LeCun stroll through, wearing the same badge we all are. It feels like a movie star is in the house, with people honing in from all corners of the room to express their admiration. In his talk, he entranced us all with his stories of the original team of Neural Network believers. His focus was on Generative Adversarial Networks, playing to the tune of the conference in general. The craze around GANs was palpable. They have shown much success in the past year and the talks and tutorials ranged from how to train a GAN, to new techniques on 3D Model generation and the use of &lt;a href=&quot;https://arxiv.org/abs/1610.02454&quot;&gt;‘what-where’ GANs&lt;/a&gt;. The importance of being able to generate labels for data in an unsupervised or semi-supervised fashion was a popular mantra. This is important because we have the knowledge and the tools to build models and gain insights but collecting enough of the right data is often time consuming, expensive and difficult.&lt;/p&gt;
 
-&lt;p&gt;This, for me, was a massive drawback and I hope that more attention will be given to the power of machine learning and technology in the eco-driven sectors. Whether it’s detecting poaching, illegal overfishing, or building algorithms that classify bird calls so you can collect biodiversity data by having sensors in gardens and national parks, the potential for machine learning in conservation is significant and should be given the space. NIPS was largely focused on theory and technique, it is afterall, a showcase of the latest and greatest in information processing research so not an application-based conference in any sense. However, there were definite themes that grabbed the spotlight (healthcare, image generation, robotics), so why there was no attention given to eco-related machine learning is beyond me.&lt;/p&gt;
+&lt;h2 id=&quot;the-challenge-of-the-next-several-years-is-to-let-machines-learn-from-raw-unlabeled-data-such-as-images-videos-and-text--yann-lecun&quot;&gt;“&lt;em&gt;The challenge of the next several years is to let machines learn from raw, unlabeled data, such as images, videos and text.&lt;/em&gt;” -Yann LeCun&lt;/h2&gt;
 
-&lt;p&gt;Despite this, it is a conference worth attending for anyone with an interest in machine learning, and a testament to it’s success in multiple areas.&lt;/p&gt;
+&lt;p&gt;The field of Machine Learning has gained much traction and has become so broad that NIPS struggled to embody everything the field has to offer. Multiple symposium tracks, ‘areas’ and floors along with rotating poster presentations tackled this problem to some extent but it was still argued that perhaps we needed individual conferences for more specific topics. NIPS Health, NIPS Theory, NIPS NLP, NIPS Vision, so the list goes on. But one of the main strengths of this conference is its interdisciplinarity. I had lunch with neuroscientists, ecologists, mathematicians, physicists and risk management analysts. It was fascinating to sit with these people and hear how machine learning had its role in all these different disciplines. You can attend the conference and pick and choose subject matter in depth, like a specialist update, or you can go and get a broader understanding of how relevant machine learning and neural nets are to virtually every field out there. Neural nets are being used to predict product demand at Amazon, to build chatbots at Facebook and to predict drug compatibility in the search for new medical options in complex disease. They are being used to summarise text and analyse sentiment. And of course, the field of vision is booming with neural nets being used to generate images, to complete images, for object and event detection.&lt;/p&gt;
+
+&lt;p&gt;To my disappointment, the range of topics did not extend to conservation. This, for me, was a massive drawback and I hope that more attention will be given to the power of machine learning and technology in the eco-driven sectors. Whether it’s detecting poaching, illegal overfishing, or building algorithms that classify bird calls so you can collect biodiversity data by having sensors in gardens and national parks, the potential for machine learning in conservation is significant and should be given the space. NIPS was largely focused on theory and technique, it is afterall, a showcase of the latest and greatest in information processing research so not an application-based conference in any sense. However, there were definite themes that grabbed the spotlight (healthcare, image generation, robotics), so why there was no attention given to eco-related machine learning is beyond me.&lt;/p&gt;
+
+&lt;p&gt;Despite this, it is a conference worth attending for anyone with an interest in machine learning, and a testament to machine learning’s success in multiple areas.&lt;/p&gt;
 </description>
         <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
         <link>/articles/2016-12/NIPS2016</link>
@@ -363,9 +367,9 @@ $(function() {
     
       <item>
         <title>model validation</title>
-        <description>&lt;p&gt;Being a good data scientist is not about knowing how to build a model. That’s relatively easy, as soon as you know how to use &lt;code&gt;python&lt;/code&gt; and &lt;code&gt;scikit learn&lt;/code&gt; you’re golden. You can build machine learning models to your heart’s content. But that is useless if you can’t interpret the results of that model. You get an accuracy score but &lt;em&gt;what does that mean&lt;/em&gt;? If you have a high accuracy score for something that, logically, cannot possible be that accurate, then you need to be able to spot that and realise that you can’t do your winner dance just yet. It is not easy to predict something. Humans are incredibly good at predicting things and we have process &lt;em&gt;11 billion&lt;/em&gt; bits of information every second. Of course we aren’t aware of all this madness, but it allows that little bubble of blooming up consciousness to be somewhat meaningful.&lt;/p&gt;
+        <description>&lt;p&gt;Being a good data scientist is not about knowing how to build a model. That’s relatively easy, as soon as you know how to use &lt;code&gt;python&lt;/code&gt; and &lt;code&gt;scikit learn&lt;/code&gt; you’re golden. You can build machine learning models to your heart’s content. But that is useless if you can’t interpret the results of that model. You get an accuracy score but &lt;em&gt;what does that mean&lt;/em&gt;? If you have a high accuracy score for something that, logically, cannot possible be that accurate, then you need to be able to spot that and realise that you can’t do your winner dance just yet. It is not easy to predict something. Humans are incredibly good at predicting things and we have the ability to  process &lt;em&gt;11 billion&lt;/em&gt; bits of information every second. Of course we aren’t aware of all this madness, but it allows that little bubble of blooming up conscious thought to be somewhat meaningful.&lt;/p&gt;
 
-&lt;p&gt;The models we build are relatively simple (in most cases), but often they are used to predict complex problems. And we should not expect an accuracy of 80 or 90% in most cases. So, first step, be aware of what your problem is. If you are predicting, &lt;em&gt;what&lt;/em&gt; are you predicting and imagine yourself predicting it. What would you yourself need to make a good estimate of whether something will happen or not.&lt;/p&gt;
+&lt;p&gt;The models we build as data scientists are relatively simple (in most cases), but often they are used to predict complex problems. And we should not expect an accuracy of 80 or 90% in most cases. So, first step, be aware of what your problem is. If you are predicting, &lt;em&gt;what&lt;/em&gt; are you predicting and imagine yourself predicting it. What would you yourself need to make a good estimate of whether something will happen or not.&lt;/p&gt;
 
 &lt;p&gt;I was listening to the latest &lt;a href=&quot;http://dataskeptic.com/epnotes/predictive-models-on-random-data.php&quot;&gt;Data Skeptic&lt;/a&gt; episode today and Kyle interviewed this total boss, Claudia Perlich who spent the half hour leading an enlightening discourse on the world of model validation and data detective work. It was fascinating so I wanted to share some of that on here. Both for future reference, and potentially to pass on her wisdom to anyone else who is interested.&lt;/p&gt;
 
@@ -379,7 +383,7 @@ $(function() {
 
 &lt;p&gt;They found that when including the randomly assigned 10-digit patient number to the model, the accuracy of the model improved by 30%. That’s an insane improvement, especially considering the patient ID is supposed to have no bearing on the test outcome whatsoever. When digging deeper into the origins of the provided dataset, Perlich discovered that to ensure they had enough data for the competition, data was collected from four different centres - including both treatment centres and test centres. The randomly assigned ID numbers bore some trace of these centres and, as the likelihood of a patient having cancer is drastically different based on whether they are only being tested, or whether they are actually being treated, the model could just accurately predict which centre the patient image data came from and, in doing so, automatically increases the likelihood that they do or do not have cancer.&lt;/p&gt;
 
-&lt;h2 id=&quot;the-merge-was-done-without-obfuscating-the-source&quot;&gt;&lt;em&gt;“the merge was done without obfuscating the source”&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-merge-was-done-without-obfuscating-the-source---perlich&quot;&gt;&lt;em&gt;“the merge was done without obfuscating the source”&lt;/em&gt; - Perlich&lt;/h2&gt;
 
 &lt;p&gt;Obfuscation means to confuse or obscure the original and intended meaning in the data. Without doing this, the labels to be predicted may unintentionally already be in the dataset, as in the previous example, and renders the model useless for real-world use.&lt;/p&gt;
 
@@ -514,7 +518,7 @@ $(function() {
       </item>
     
       <item>
-        <title>WORDS AND POWER</title>
+        <title>words and power</title>
         <description>&lt;h4 id=&quot;background&quot;&gt;Background&lt;/h4&gt;
 
 &lt;p&gt;Natural Language Processing is one of the reasons I love data science. Perhaps because every level of it has some semantic value. There is information that is intricately tied to your upbringing, experience, perception of the world, in every word, every sentence. The data doesn’t necessarily have to be large to be more meaningful to you. For example, 
@@ -529,6 +533,8 @@ an incredible poem with an enormous amount of information regardless of how many
 &lt;p&gt;I grew up in Scotland. And in recent years there’s been some interesting controversy up there. Scotland became swallowed up by Britain in the 18th Century and hasn’t fully recovered (emotionally) since. And though Scotland benefits financially from the union with England, politically and socially it is a very bad pairing. Scotland is a far more socialist country than England. It is also a country well-loved by left-leaning hippy types which makes it a beautiful, creative and low-key country. England has a population 10 times that of Scotland, and though I love England too, I find my love largely directed at London where diversity and creativity is at a peak. But the majority of England is politically right-minded.&lt;/p&gt;
 
 &lt;p&gt;So in 2014 Scotland held a long-awaited independence referendum. The sentiment was clear, the leave campaign was far louder but there were many of us who felt we were better together and devolution was a better choice. The Scottish National Party instigated the referendum and this party was led by Alex Salmond, a target for the media and a seemingly spiteful and resentable man. Leave lost, 49 to 51%. After this heavy disappointed for half of the country, Salmond resigned and Nicola Sturgeon took his place as leader of the SNP party. In the 8 months that followed, Sturgeon gained massive support from leavers and remainers alike and in the 2015 General Election the SNP won 97% of the seats in Scotland. This map clearly highlights the extent of her total domination of the country:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://static.independent.co.uk/s3fs-public/thumbnails/image/2014/11/15/16/v2-sturgeon-pa.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;the-question&quot;&gt;The Question&lt;/h4&gt;
 
@@ -590,9 +596,8 @@ for val in GuardianArticles[&#39;article&#39;]:
     
       <item>
         <title>classification</title>
-        <description>&lt;h2 id=&quot;before-i-start&quot;&gt;before I start…&lt;/h2&gt;
-
-&lt;p&gt;Perhaps the two biggest personal lessons I learnt at Metis were learnt during this project.&lt;/p&gt;
+        <description>&lt;h3 id=&quot;before-i-start&quot;&gt;before I start…&lt;/h3&gt;
+&lt;p&gt;I want to highlight the two biggest personal lessons I learnt at Metis were learnt during this project.&lt;/p&gt;
 
 &lt;h3 id=&quot;procrastination-will-kill-you&quot;&gt;procrastination will kill you.&lt;/h3&gt;
 
@@ -608,21 +613,19 @@ and I will probably explore these now I have some ‘free’ time (ahum. job-hun
 &lt;h3 id=&quot;dont-try-and-change-the-world-with-every-project&quot;&gt;don’t try and change the world with every project.&lt;/h3&gt;
 
 &lt;p&gt;You will &lt;strong&gt;always&lt;/strong&gt; be disappointed. &lt;strong&gt;Always&lt;/strong&gt;. One of my main issues is having to make everything I do ‘important’ to justify putting time into it. But ultimately this course is about learning the ropes. Taking on seemingly less serious topics will allow faster blooming of my technical capabilities.
-I have always appreciated the little things and I get excited by small logic problems and even things like data cleaning (&lt;em&gt;HOW??&lt;/em&gt;) but if I have to present a project I have had a tendency to overthink and search for the much much bigger picture. This has made it difficult to get excited about things that just have a simple bigger picture. Or projects that are only focused on ‘increasing revenue’. But I have realised how detrimental this is. For the leaf project I went to lengths to make up a story about the APOCALYPSE! Are you ready?&lt;/p&gt;
+I have always appreciated the little things and I get excited by small logic problems and even things like data cleaning but if I have to present a project I have had a tendency to overthink and search for the much much bigger picture. This has made it difficult to get excited about things that just have a simple bigger picture. Or projects that are only focused on ‘increasing revenue’. But I have realised how detrimental this is. For the leaf project I went to lengths to make up a story about the APOCALYPSE! Are you ready?&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;…it is 50 years in the future, and infrastructure has collapsed. It is more and more difficult to find reliable, safe and affordable medicine and so the people are turning back to nature for their remedies. For this reason they need a classifier to tell them, based on an image of the leaf, what the tree species is and whether that plant is medicinally useful to you…&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Yes. Our fantastic teacher Vinny pointed out that actually we don’t need an apocalyptic future to justify a leaf classifier and it can be useful for education, park rangers and many other entirely relevant things.&lt;/p&gt;
 
-&lt;p&gt;Anyway, these two valuable lessons are now learnt and I shall carry them with me forever.&lt;/p&gt;
-
 &lt;h2 id=&quot;the-project&quot;&gt;the project&lt;/h2&gt;
 
-&lt;p&gt;I got this dataset from &lt;a href=&quot;&quot;&gt;UCI&lt;/a&gt; along with a paper by Pedro explaining his logic and process. I used openCV to extract some of the features he mentioned in his thesis (all of which were present in the dataset itself) to get a feel for the openCV package and learn a bit about image processing.&lt;/p&gt;
+&lt;p&gt;I got this dataset from &lt;a href=&quot;http://archive.ics.uci.edu/ml/datasets/Leaf&quot;&gt;UCI&lt;/a&gt; along with a paper by Pedro explaining his logic and process. I used openCV to extract some of the features he mentioned in his thesis (all of which were present in the dataset itself) to get a feel for the openCV package and learn a bit about image processing.&lt;/p&gt;
 
 &lt;h4 id=&quot;cleaning-up-the-data&quot;&gt;cleaning up the data&lt;/h4&gt;
 
-&lt;p&gt;This data was pretty clean already so it was just a case of organising and understanding it. I replaced string nans with float &lt;code&gt;nan&lt;/code&gt; so that &lt;code&gt;pandas&lt;/code&gt; would recognise them as non-values.&lt;/p&gt;
+&lt;p&gt;This data was pretty clean already so it was just a case of organising and understanding it. I replaced string nans with &lt;code&gt;float(nan)&lt;/code&gt; so that &lt;code&gt;pandas&lt;/code&gt; would recognise them as non-values.&lt;/p&gt;
 
 &lt;p&gt;I grouped my data by species to have a look at the summary of differed variables per species. To see whether something was largely &lt;code&gt;nans&lt;/code&gt; and just to understand the metrics a little better because they consisted of things like ‘Eccentricity’, ‘Solidity’ and ‘Isoperimetric Factor’… (see end for explanation of these terms).&lt;/p&gt;
 
@@ -648,7 +651,7 @@ I have always appreciated the little things and I get excited by small logic pro
 
 &lt;h5 id=&quot;logistic-regression&quot;&gt;LOGISTIC REGRESSION&lt;/h5&gt;
 
-&lt;p&gt;Logistic regression is regression where the dependent variable (the thing you are predicting) is categorical (splits into categories). This is most effectively used, or designed for, binary models. Usually in cases of multiple unordered categories, the regression model to use is &lt;em&gt;Multinomial Linear Regression&lt;/em&gt; which doesn’t have a handy function in scikit learn (sit tight for more on this). When applied to a problem with multiple categories, like the leaf dataset, a logistic regression analysis will assess the probability that something is in one category compared to all other categories.&lt;/p&gt;
+&lt;p&gt;Logistic regression is regression where the dependent variable (the thing you are predicting) is categorical (splits into categories). This is most effectively used, or designed for, binary models. Usually in cases of multiple unordered categories, the regression model to use is &lt;em&gt;Multinomial Linear Regression&lt;/em&gt; which doesn’t have a handy function in scikit learn. When applied to a problem with multiple categories, like the leaf dataset, a logistic regression analysis will assess the probability that something is in one category compared to all other categories.&lt;/p&gt;
 
 &lt;p&gt;Logistic regression assumes a clear cut off. The green line in the example below is the probability of a data point being ‘a case’ given 1 feature. The blue dots are cases and the red ones are not. A classic example the probability of a student passing a test given the number of hours they spend studying for that test. Blue is pass, red is fail, and the numbers on the x axis are the number of hours spent studying. It seems logical that the probability of passing increases with study hours.&lt;/p&gt;
 
@@ -658,27 +661,27 @@ I have always appreciated the little things and I get excited by small logic pro
 
 &lt;p&gt;SVM stands for &lt;strong&gt;Support Vector Machine&lt;/strong&gt;. It’s basic idea is that you define a decision boundary using the ‘widest street’ approach. This means that you want to draw a line that has on either side of it, the biggest margin possible between the two categories. Wihout a &lt;strong&gt;kernel&lt;/strong&gt;, SVMs are only really useful for data that is linearly divided. It looks a little like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/svmsimple.jpg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://3.bp.blogspot.com/_UqlrkHvPijw/TJupAi2ztMI/AAAAAAAAAFI/6EVz1pmA1vs/s1600/svm.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Using a kernel means drawing the line in a higher dimensional space and then reducing the dimensionality so that the line no longer looks straight. Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting.&lt;/p&gt;
+&lt;p&gt;Using a kernel means drawing the line in a higher dimensional space and then reducing the dimensionality so that the line no longer looks straight. 
+&lt;img src=&quot;http://www.sbaban.org/wp-content/uploads/2013/11/svm.jpg&quot; alt=&quot;&quot; /&gt;
+Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting.&lt;/p&gt;
 
-&lt;p&gt;I find that this &lt;a href=&quot;https://www.youtube.com/watch?v=_PwhiWxHK8o&quot;&gt;MIT lecture&lt;/a&gt; is really helpful. Also chalkboards are the best.&lt;/p&gt;
+&lt;p&gt;I find that this &lt;a href=&quot;https://www.youtube.com/watch?v=_PwhiWxHK8o&quot;&gt;MIT lecture&lt;/a&gt; is really helpful. Chalkboards are the best.&lt;/p&gt;
 
 &lt;h5 id=&quot;decision-trees-and-random-forests&quot;&gt;DECISION TREES and RANDOM FORESTS&lt;/h5&gt;
 
 &lt;p&gt;Decision trees and random forests are probably my favourite type of classification algorithm because they are really intuitive  but also really effective in lots of situations. You run the risk of overfitting, but random forests help there.&lt;/p&gt;
 
-&lt;p&gt;Decision trees use if-then statements to define patterns in the data. A decision tree consists of a starting point, where you have ALL your training data, and then you split that data by asking a simple yes/no question and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorted than 10cm. You set how many questions you want to ask, or in the correct lingo, how many levels you want the tree to contain and &lt;em&gt;Voilá&lt;/em&gt;! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.&lt;/p&gt;
+&lt;p&gt;Decision trees use if-then statements to define patterns in the data. A decision tree consists of a starting point, where you have ALL your training data, and then you split that data by asking a simple yes/no question and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorter than 10cm. You set how many questions you want to ask, or in the correct lingo, how many levels you want the tree to contain and &lt;em&gt;Voilá&lt;/em&gt;! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.&lt;/p&gt;
 
 &lt;p&gt;Random Forests just do the same process multiple times (lots of decision trees) and then take the mode or mean prediction of the sum of the trees. The good thing about Random Forests is that they can reduce the risk of overfitting that can happen with Decision Trees.&lt;/p&gt;
 
-&lt;p&gt;And LOW AND BEHOLD, for my leaf dataset the Random Forest classifier was the most accurate. Which was just perfect. Because leaves. And trees. And forests. Geddit?&lt;/p&gt;
+&lt;p&gt;LOW AND BEHOLD, for my leaf dataset the Random Forest classifier was the most accurate. Which was just perfect. Because leaves. And trees. And forests. Geddit?&lt;/p&gt;
 
-&lt;p&gt;Here’s the breakdown:&lt;/p&gt;
+&lt;p&gt;Here’s the breakdown, where the y axis shows the accuracy score:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_accuracy.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The y axis shows the accuracy score. Terrible that it doesn’t have labels.. I know..&lt;/p&gt;
 
 </description>
         <pubDate>Fri, 13 May 2016 00:00:00 +0000</pubDate>
