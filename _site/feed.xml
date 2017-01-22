@@ -5,9 +5,44 @@
     <description>adventures in pythonland</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 19 Jan 2017 15:06:53 +0000</pubDate>
-    <lastBuildDate>Thu, 19 Jan 2017 15:06:53 +0000</lastBuildDate>
+    <pubDate>Sun, 22 Jan 2017 18:09:57 +0000</pubDate>
+    <lastBuildDate>Sun, 22 Jan 2017 18:09:57 +0000</lastBuildDate>
     <generator>Jekyll v3.1.3</generator>
+    
+      <item>
+        <title>where do we go from here?</title>
+        <description>&lt;h2 id=&quot;new-years-resolutions&quot;&gt;new year’s resolutions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;“Pick a word! A word to live by for the coming year.”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Up until now, I have lived my live according to the opportunities that presented themselves, and what I felt like I would enjoy doing. It’s why I picked my degree in Physiology, and promptly switched to Neuroscience. It’s why I carried on my Neuroscience studies to Master’s level. And it’s how I landed my current job. It’s the nice, accidental, gravitational stream of my life. I do it because I can, because the people who’s opinions I care about will approve, and because it seems like not such a bad choice. I don’t necessarily disagree with that way of living your life. But. I have now come to realise that there are places I want to be. Things I am truly passionate about, and that the work I am doing now does not fulfill me. So I knew instantly when I was asked that question that my answer was &lt;em&gt;“Deliberate. In 2017 I will be deliberate.”&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;two-things-you-should-know-about-the-wiiise-woman&quot;&gt;two things you should know about the wiiise woman!&lt;/h3&gt;
+&lt;p&gt;At school, or anywhere else for that matter, it was never made clear to us the extent and variation in work out there, or how we could go about finding the thing that would hit our buttons. Tickle our nips. It was doctor, lawyer, teacher, nurse, etc. Noble professions (some more than others) but it forced a lot of us to choose blindly, squeeze ourselves into boxes unfit. It has taken my entire education, three moves to different countries and 6 months of working in the corporate world to get some inkling of what it is that is important to me in work and money-making.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-environment&quot;&gt;the environment&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/GWjBr5aqu66Pu/giphy.gif?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Environmental awareness has been at the forefront of my mind forever. My parents brought me up thinking about how we use energy, and the products and food we buy and what we use to clean the house, etc. The ever-present green around me has made conservation and nature a key part of my psyche and seeing the waste and ignorance around me is fantastic motivation to be more proactive in spreading the message. The conversation I had with someone at the NIPS conference last year, was one of a series of events that emphasised my need to contribute something more to our efforts in environmental conservation than just my own recycling and mindful diet. Connecting people to their environments through technology was a pretty promising and exciting idea.&lt;/p&gt;
+
+&lt;h4 id=&quot;communication-is-key&quot;&gt;communication is key&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;http://livingincinema.com/wp-content/uploads/2012/01/who-are-you.jpg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I have been writing stories and poems from the age of 6. Not surprising as I am borne of linguistical parents. My dad is a dutch author and radio man, and my mum is a dutch language and literature teacher. They were surprised at the scientific path I took but also pleased. Taking after my grandfathers, perhaps. The thing is, what I enjoyed most about my studies was writing essays, writing articles. Assessing how things were phrased, thinking critically about how the results were visualised and discussed. I have an ear for lyrics, I love books. I love writing this blog - which, amittedly started off as a project dump for the bootcamp but it has spiralled wildly out of control and is now a place where I solidify my thoughts into actual live-internet blog post creatures. The point is, communication is key. And whatever I delve into next, it must be heavily steeped in creative, effective and enjoyable communication.&lt;/p&gt;
+
+&lt;p&gt;Those are my two things. My points to which I will deliberately move in the coming months. &lt;em&gt;Do you know why you do what you do? Or why you don’t do what you would do if you could do or should?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.alice-in-wonderland.net/wp-content/uploads/cheshire-cat-5.jpg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
+        <link>/articles/2017-01/dreams</link>
+        <guid isPermaLink="true">/articles/2017-01/dreams</guid>
+        
+        
+        <category>Life Thoughts</category>
+        
+      </item>
     
       <item>
         <title>thoughts from the frontier</title>
@@ -106,9 +141,7 @@
         <description>&lt;h1 id=&quot;todays-the-day&quot;&gt;today’s the day&lt;/h1&gt;
 
 &lt;p&gt;So guess what?! that take home challenge did the job and I am now a paid data scientist at Qlouder. Nice, eh?
-Here starts a new journey. Although I will most definitely be incorporating my mad data knowledge into my work here, I also have a lot of development stuff to learn. And that journey of discovery is something I will be ardently documenting for your reading pleasure. And my own peace of mind.&lt;/p&gt;
-
-&lt;p&gt;Of course I can’t go blabbing about all the ins and outs of the top-secret projects I’ll be working on, but I will be sharing some (starting off basic) things that I learn along the way. WOOP.&lt;/p&gt;
+Here starts a new journey. Although I will most definitely be incorporating my mad data knowledge into my work here, I also have a lot of development stuff to learn. And that journey of discovery is something I will be documenting for your reading pleasure. And my own peace of mind.&lt;/p&gt;
 </description>
         <pubDate>Mon, 19 Sep 2016 00:00:00 +0000</pubDate>
         <link>/articles/2016-09/firstdayatwork</link>
@@ -687,132 +720,6 @@ Simple, right? When you use kernels correctly SVMs can be super useful for all k
         <pubDate>Fri, 13 May 2016 00:00:00 +0000</pubDate>
         <link>/articles/2016-05/classifiers</link>
         <guid isPermaLink="true">/articles/2016-05/classifiers</guid>
-        
-        
-        <category>Metis Projects</category>
-        
-      </item>
-    
-      <item>
-        <title>gender equality in the cinema</title>
-        <description>&lt;p&gt;Inspired by Matt Daniels and Hannah Anderson’s &lt;a href=&quot;http://polygraph.cool/movies&quot;&gt;polygraph.cool&lt;/a&gt; Film Dialogue breakdown, I ventured into the world of gender distribution in movies. I used, in part, the painstakingly collected polygraphcool data, which includes the number of lines spoken by male characters in a collection of 2000 movies.&lt;/p&gt;
-
-&lt;p&gt;Matt Daniels and Hannah Anderson had already worked hella hard and split the movie scripts by character and by comparing to IMDB, assigned a sex and age to each character’s actor/actress. The resulting metadata as well as some of the data is publicly available on &lt;a href=&quot;https://github.com/matthewfdaniels/scripts/&quot;&gt;Matt Daniels’ github&lt;/a&gt; page for scrutiny and further data fun.&lt;/p&gt;
-
-&lt;p&gt;I wanted to use all this lovely data to see whether it was possible to predict the year a movie came out in based on it’s character and line ratio.&lt;/p&gt;
-
-&lt;p&gt;I wanted to include genre in my analysis because there is a big difference in the standard distribution of female and male characters in movies of different genres. For example, war movies tend to contain way more male characters and romantic movies are generally more balanced. Because the proportion of movies of each genre that come out every year isn’t standard, it is better to analyse temporal changes in gender on the screen per genre. For this I needed to scrape.&lt;/p&gt;
-
-&lt;h4 id=&quot;web-scraping-with-beautiful-soup&quot;&gt;Web scraping with Beautiful Soup&lt;/h4&gt;
-
-&lt;p&gt;I collected data on genre by scraping Box Office Mojo using &lt;a href=&quot;https://www.crummy.com/software/BeautifulSoup/&quot;&gt;Beautiful Soup&lt;/a&gt;
-(I will have another post outlining the scraping process). I scraped data on all the movies they have on the site including info on budget and domestic gross in case I decided to use that later on. The data I needed was in a table. I looped through the &lt;code&gt;tr&lt;/code&gt;s and filled in a pandas dataframe as I went, then saved as a csv.&lt;/p&gt;
-
-&lt;h4 id=&quot;data-wrangling&quot;&gt;Data wrangling&lt;/h4&gt;
-&lt;p&gt;I read both my csv files in as pandas dataframes so I could clean and preprocess anything I needed to using pandas.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd
-
-mojo_df = pd.read_csv(&#39;&amp;lt;path_to_mojo_csv&amp;gt;&#39;, encoding=&quot;ISO-8859-1&quot;)
-polygraph_df = pd.read_csv(&#39;&amp;lt;path_to_polygraph_csv&amp;gt;&#39;, encoding=&quot;ISO-8859-1&quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I wanted to create parameters that represented the number of female to male characters and lines, so I calculated ratios.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;f_ratio = []
-
-for lines in df_new[&#39;lines_data&#39;]:
-    male = sum(int(i) for i in lines.strip())/len(lines)
-    female = 7.01 - male
-    f_ratio.append(female/male)
-
-merged_df[&#39;ratio&#39;]= pd.DataFrame(f_ratio)
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The dataset from polygraph cool contains data on the number of lines spoken by male characters in the film. It looks kind of like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;777777743444644573433242343644335344577426232474643156414755254322274446
-435735475636346433676546667757777777777444445553753342242525544252544775263
-14275553245514656245322356255535653566626437343576645667766774
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Nice, huh?
-It assumes that a minute of dialogue is approximately 14 lines (using average speaking pace of 140 words/min, and average 10 words/line). Each number in the string there represents the number of lines spoken by a male every half minute. So, what I calculate there as &lt;code&gt;f ratio&lt;/code&gt;, is the &lt;em&gt;maximum&lt;/em&gt; number of lines a woman could possibly speak in a film, if she spoke during every available second. A generous estimate, comprendez? By the way, the above lines correspond to &lt;em&gt;Avatar&lt;/em&gt;, 2009, for which the ratio is &lt;code&gt;0.52&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Ok, moving on. I had to create dummy variables of the genres. This means generating a column for each genre and assigning a 1 if the movie is of that genre and a 0 if it’s not. But I had 67 genres so this enlarged my feature space by quite a bit and I didn’t want to make life too difficult for myself.&lt;/p&gt;
-
-&lt;p&gt;To reduce the feature space, I condensed some of the more obscure genres into broader ones. Obscure meaning ‘Comedy’ was originally split into ‘Comedy’, ‘Comedy/Drama’, ‘Comedy/Thriller’, ‘Comedy/Crime’, etc. It was a little tricky sometimes, for example, does ‘War Romance’ go into ‘War’ or ‘Romance’? In the end I manually condensed the genres, reducing the 67 genres to 10.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;genre_collapser = {
-	&#39;Action&#39;:&#39;Action&#39;,
-   &#39;Action / Adventure&#39;:&#39;Action&#39;,
-   &#39;Action / Crime&#39;:&#39;Action&#39;,
-   &#39;Action Comedy&#39;:&#39;Action&#39;,
-   &#39;Action Drama&#39;:&#39;Action&#39;
-   }
-
-for i in range(len(mojo_df[&#39;genre&#39;])):
-    mojo_df.ix[i,&#39;genre&#39;] = genre_collapser[mojo_df.ix[i,&#39;genre&#39;]]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now I could create my dummy variables without feature space concerns:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;df_dummied = pd.get_dummies(df_reduced_merged[&#39;genre&#39;], prefix=&#39;genre&#39;)
-df_dummied = df_dummies.drop(&#39;genre_None&#39;, axis=1)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;prefix&lt;/code&gt; parameter there prefixes each genre name with the word ‘genre’, to keep our column names clear.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;polygraph_df[&quot;movie&quot;] = polygraph_df[&quot;year&quot;].map(str) + &quot; &quot; + polygraph_df[&quot;title&quot;]
-mojo_df[&quot;movie&quot;] = mojo_df[&quot;year&quot;].map(str) + &quot; &quot; + mojo_df[&quot;title&quot;]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;!-- ![Alt text](http://potherca.github.io/StackOverflow/question.13808020.include-an-svg-hosted-on-github-in-markdown/controllers_brief.svg) --&gt;
-
-&lt;p&gt;Now I had all this cleaned data from Box Office Mojo and I only needed the genres for the movies from the polygraph movies.&lt;/p&gt;
-
-&lt;p&gt;I created a column containing the year of release and movie title, and merged the two dataframes on that column. This was to avoid mixing up movies with the same title that came out in different years. This approach worked well except for one movie, &lt;em&gt;Crash&lt;/em&gt;, which according to IMDB came out in 2004 but in the dataset it came out in 2005. Whoops. Other than that the movies seem to be solidly matched. I now had 1198 movies left in my dataset.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;merged_df = pd.merge(mojo_df, polygraph_df, on=[&#39;movie&#39;])
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As there is so much to consider when predicting the specific year that a movie comes out, I helped myself a little by predicting the era instead. By taking this approach, the problem becomes one of classification as I now have to show which discrete category a movie belongs to. First to sort the movies:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;eras = [str(year)[2] for year in merged_df[&#39;year&#39;]]
-merged_df[&#39;era&#39;] = eras
-
-print(merged_df.groupby(&#39;era&#39;)[&#39;intercept&#39;].sum())
-
-  era
-  0    411
-  1    273
-  3      1
-  4      3
-  5      1
-  6      4
-  7     24
-  8     76
-  9    264
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;By performing the sum() function on the intercept column (which is a list on ones), I found that the 30s, 40s, 50s and 60s each contained fewer than 5 movies - that sample size is too small so I binned them. Now I was focusing on the 70s, 80s, 90s, 00s and 10s. I plotted the mean female-male ratio of all the movies in each era, which gave me this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/era_ratio.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;That seems like a pretty convincing trend, doesn’t it? Not conclusive by any means, but we can see that the mean ratio increases steadily at every era. So there’s hope!&lt;/p&gt;
-
-&lt;p&gt;The sizes of each category are pretty varied (although the dataset is pretty small), so I 
-&lt;!-- stratified test/train split --&gt;
-&lt;!-- what can you do about varied category sizes? --&gt;&lt;/p&gt;
-
-&lt;iframe src=&quot;https://raw.githubusercontent.com/deenhe91/deenhe91.github.io/master/images/eras.html&quot;&gt;&lt;/iframe&gt;
-
-&lt;h4 id=&quot;model-building&quot;&gt;Model building&lt;/h4&gt;
-
-&lt;p&gt;Random Forest&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 25 Apr 2016 00:00:00 +0000</pubDate>
-        <link>/articles/2016-04/movies</link>
-        <guid isPermaLink="true">/articles/2016-04/movies</guid>
         
         
         <category>Metis Projects</category>
