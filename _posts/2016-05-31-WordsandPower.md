@@ -18,7 +18,6 @@ an incredible poem with an enormous amount of information regardless of how many
 
 _"For sale: baby shoes, never worn." - Ernest Hemmingway_
 
-
 And as the number of varying words we have available to us increases, the complexity increases, we can pick up currents of new information. Glean insights into crowd behaviours and perceptions. A window into the workings of an individual on one level, and into the workings of an entire organisation, country or culture on another level. 
 
 Now I have waxed myself lyrical, I'll move on to the NLP project I undertook. 

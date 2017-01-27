@@ -2,7 +2,7 @@
 layout: post
 title: model validation
 excerpt: "leaky boots and cross bags"
-categories: [Data Thoughts]
+categories: [Data]
 comments: true
 image: 
   feature: http://66.media.tumblr.com/tumblr_lt4kzqtRxc1qa554ro1_1280.jpg
