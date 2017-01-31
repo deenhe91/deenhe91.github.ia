@@ -30,7 +30,7 @@ git pull
 
 The image set for fire that I downloaded from ImageNet unsurprisingly contained a lot of fireplaces, and the smoke set contained a lot of tanks. Combat is a smokey affair.. But I wanted to avoid the model deciding that because an image contained a tank, it would score high for 'smoke' and because an image contained an empty fireplace, it would score high for 'fire'. To try and counteract this, I added a third miscellaneous category with lots of images of empty fireplaces and non-smoking tanks to try and balance out the over image set. The model ran for 400 iterations, completing with a `final test accuracy` of `94.4%`. I wanted to test it myself so downloaded a selection of images to run through the model and see what results it would give. Every time an image is passed through, the model returns a probability score for each category. So when I gave it this calming beach campfire image:
 
-[](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/Campfire.jpg?raw=true)
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/Campfire.jpg?raw=true)
 
 these were the returned scores:
 
@@ -43,7 +43,7 @@ misc (score = 0.00558)
 
 whereas a burning cigarette:
 
-[](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/cigarette.jpg?raw=true)
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/cigarette.jpg?raw=true)
 
 resulted in this:
 
@@ -56,7 +56,8 @@ misc (score = 0.04622)
 ```
 
 and a happy raccoon:
-[](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/raccoon.jpeg?raw=true)
+
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/raccoon.jpeg?raw=true)
 
 
 was not much of any of them:
