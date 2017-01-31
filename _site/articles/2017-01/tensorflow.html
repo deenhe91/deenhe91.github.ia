@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>your own image classification network</title>
+  <meta name="description" content="retraining the tensorflow Inception Network in python">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="canonical" href="/articles/2017-01/tensorflow">
+  <link rel="alternate" type="application/rss+xml" title="Hannah" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/madfun2.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">Hannah Deen</a>
+  <span class="author_job">data scientist: Amsterdam, London, NYC</span>
+  <span class="author_bio mbm"></span>
+  <nav class="nav">
+    <ul class="nav-list">
+       
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:hannah.deen91@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/deenhe" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/deenhe91" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <div class="back-home">
+  <a href="/">< back Home.</a>
+</div>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "https://jalammar.github.io/images/google-tensorflow-android.jpg"
+  
+  alt="your own image classification network feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="your own image classification network">your own image classification network</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        31 JAN 2017
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    1 min read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <p>The Inception v3 network, is a tensorflow neural network trained to distinguish between 1000 different categories from ImageNet. It was trained for the ImageNet Large Visual Recognition Challenge using the data from 2012. For this I used Google’s ‘Tensorflow for Poets’ tutorial.</p>
+
+<p>You need to have <a href="https://docs.docker.com/docker-for-mac/">docker</a> installed</p>
+
+<p>Once we’ve downloaded the flower image set make, we have to make these images available by linking them virtually:
+<code>docker run -it -v $HOME/tf_files:/tf_files  gcr.io/tensorflow/tensorflow:latest-devel</code>
+This can be any image set in the form of:</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/training_format.png?raw=true" alt="" /></p>
+
+<p>We have to retrieve the code for the Inception v3 framework…</p>
+
+<pre><code class="language-python">cd /tensorflow
+git pull
+</code></pre>
+
+<p>The image set for fire that I downloaded from ImageNet unsurprisingly contained a lot of fireplaces, and the smoke set contained a lot of tanks. Combat is a smokey affair.. But I wanted to avoid the model deciding that because an image contained a tank, it would score high for ‘smoke’ and because an image contained an empty fireplace, it would score high for ‘fire’. To try and counteract this, I added a third miscellaneous category with lots of images of empty fireplaces and non-smoking tanks to try and balance out the over image set. The model ran for 400 iterations, completing with a <code>final test accuracy</code> of <code>94.4%</code>. I wanted to test it myself so downloaded a selection of images to run through the model and see what results it would give. Every time an image is passed through, the model returns a probability score for each category. So when I gave it this calming beach campfire image:</p>
+
+<p><a href="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/Campfire.jpg?raw=true"></a></p>
+
+<p>these were the returned scores:</p>
+
+<pre><code class="language-bash">
+fire (score = 0.86540)
+smoke (score = 0.12902)
+misc (score = 0.00558)
+</code></pre>
+
+<p>whereas a burning cigarette:</p>
+
+<p><a href="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/cigarette.jpg?raw=true"></a></p>
+
+<p>resulted in this:</p>
+
+<pre><code class="language-bash">
+smoke (score = 0.79379)
+fire (score = 0.15999)
+misc (score = 0.04622)
+
+</code></pre>
+
+<p>and a happy raccoon:
+<a href="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/raccoon.jpeg?raw=true"></a></p>
+
+<p>was not much of any of them:</p>
+
+<pre><code class="language-bash">
+smoke (score = 0.48583)
+misc (score = 0.28314)
+fire (score = 0.23103)
+</code></pre>
+
+<p>Unfortunately, it wasn’t all good news.</p>
+
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2017-01/tensorflow" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2017-01/tensorflow" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2017-01/tensorflow" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2017-01/tensorflow" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2017-01/tensorflow" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2017 Hannah Deen. Powered by <a href="http://jekyllrb.com/">Jekyll</a>, <a href="http://github.com/renyuanz/leonids/">leonids theme</a> made with <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+</body>
+</html>
