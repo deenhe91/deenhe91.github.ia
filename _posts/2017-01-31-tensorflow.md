@@ -19,7 +19,7 @@ Once we've downloaded the flower image set make, we have to make these images av
 `docker run -it -v $HOME/tf_files:/tf_files  gcr.io/tensorflow/tensorflow:latest-devel`
 This can be any image set in the form of:
 
-![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/training_format.png?raw=true)
+![](https://github.com/deenhe91/deenhe91.github.io/blob/master/images/trainingset_format.png?raw=true)
 
 We have to retrieve the code for the Inception v3 framework...
 
