@@ -97,6 +97,8 @@ with tf.Session() as sess:
         print('%s (score = %.5f)' % (human_string, score))
 ```
 
+This is where you get the script:
+
 ```
 # type 'exit' to exit Docker and then:
 curl -L https://goo.gl/tx3dqg > $HOME/tf_files/label_image.py
