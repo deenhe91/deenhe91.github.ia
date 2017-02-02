@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: your own image classification network
+title: your own image classification network: part I
 excerpt: retraining the tensorflow Inception Network in python
 categories: [Data]
 comments: true
