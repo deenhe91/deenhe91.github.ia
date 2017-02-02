@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>your own image classification network</title>
+  <meta name="description" content="retraining the tensorflow Inception Network in python">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="canonical" href="/articles/2017-02/tensorflow">
+  <link rel="alternate" type="application/rss+xml" title="Hannah" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/madfun2.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">Hannah Deen</a>
+  <span class="author_job">data scientist: Amsterdam, London, NYC</span>
+  <span class="author_bio mbm"></span>
+  <nav class="nav">
+    <ul class="nav-list">
+       
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:hannah.deen91@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/deenhe" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/deenhe91" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <div class="back-home">
+  <a href="/">< back Home.</a>
+</div>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "https://jalammar.github.io/images/google-tensorflow-android.jpg"
+  
+  alt="your own image classification network feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="your own image classification network">your own image classification network</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        1 FEB 2017
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    6 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h2 id="inceptions">inceptions</h2>
+<p>The Inception v3 network is a tensorflow <a href="http://colah.github.io/posts/2014-07-Conv-Nets-Modular/">convolutional neural network</a> trained to distinguish between 1000 different categories from ImageNet. It was trained for the ImageNet Large Visual Recognition Challenge using the data from 2012. Happily for us, it is possible to retrain this model to create our own image classifier for specific image tasks.</p>
+
+<h3 id="what-is-retraining">what is <em>retraining</em>?</h3>
+<p>We can retrain the inception model by keeping all the trained layers in tact bar the last one. The first layers are responsible for things like picking out edges and basic shapes. These are necessary and universal steps for CNNs used in image classification and take a long time and a lot of images to train. The final layer of the neural net is where you can train the neural net to distinguish between certain flowers or animals, etc. Even happilyer for us, retraining this last step is well-documented and doesn’t take much time or data so we can get right to it.</p>
+
+<p>I used Google’s <a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/?utm_campaign=chrome_series_machinelearning_063016&amp;utm_source=gdev&amp;utm_medium=yt-desc#1">Tensorflow for Poets</a>  codelab as my guide for this because it’s super good.</p>
+
+<h3 id="tensorflow-for-poets-steps">tensorflow for poets steps</h3>
+
+<h4 id="one-docker">one: docker</h4>
+<p>You need to have <a href="https://docs.docker.com/docker-for-mac/">Docker</a> installed</p>
+
+<h4 id="two-the-image-set">two: the image set</h4>
+<p>We need to have a dataset to retrain on. The codelab provides a dataset of different flowers if you just want to try it out but don’t have a specific idea. If you do, then organise your image files like this:</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/trainingset_format.png?raw=true" alt="" /></p>
+
+<p>With images belonging to specific categories in folders named after that category. I wanted to be able to detect fire and smoke in images, thinking that having this run on frames of CCTV footage could be a useful safety aid.
+I used ImageNet to get my dataset. The image set for fire that I downloaded unsurprisingly contained a lot of fireplaces, and the smoke set contained a lot of tanks for some reason. I suppose combat is a smokey affair.. But I wanted to avoid the model deciding that because an image contained a tank, it would score high for ‘smoke’ and because an image contained an empty fireplace, it would score high for ‘fire’. To try and counteract this, I added a third miscellaneous category and included lots of images of empty fireplaces and non-smoking tanks to try and balance out the overall image set.</p>
+
+<h4 id="three-link-image-set-to-docker">three: link image set to docker</h4>
+<p>In order for the docker image to use the image files for retraining, we need to give the docker image access to the relevant folder, in this case <code>tf_files</code>:</p>
+
+<p><code>docker run -it -v $HOME/tf_files:/tf_files  gcr.io/tensorflow/tensorflow:latest-devel</code></p>
+
+<h4 id="four-get-inception-code">four: get inception code</h4>
+<p>The we have to retrieve the code for the Inception v3 framework…</p>
+
+<pre><code class="language-bash">cd /tensorflow
+git pull
+</code></pre>
+
+<h4 id="five-retrain-the-model">five: retrain the model</h4>
+
+<pre><code class="language-bash"># In Docker
+python tensorflow/examples/image_retraining/retrain.py \
+--bottleneck_dir=/tf_files/bottlenecks \
+--model_dir=/tf_files/inception \
+--output_graph=/tf_files/retrained_graph.pb \
+--output_labels=/tf_files/retrained_labels.txt \
+--image_dir /tf_files/&lt;imageset folder&gt;
+</code></pre>
+<p>This will set off the process. <strong>It’s that simple!</strong>. This process takes a little while, maybe half an hour. It generates ‘bottlenecks’. This is the term used for the layer just before the final output layer that we retrain to do the classification. The values are stored in <code>/tmp/bottleneck</code> so if you ever need to retrain again those values don’t have to be calculated.</p>
+
+<p>By default, the script runs 4000 training steps, but this can be adjusted. At each iteration, 10 images are picked at random from the training set and fed into the final prediction layer. The predictions are checked for accuracy by comparing them to the actual labels and then the final layer’s weights are updated accordingly through back-propogation. It’s quite fun to watch the accuracy score change as they are printed during training. There are two types of accuracy, the <strong>training accuracy</strong> and the <strong>validation accuracy</strong>. The validation accuracy is the important one. That’s the one that looks at test images, i.e. labeled images that the model hasn’t been trained on. The training accuracy is also important but a high score for that could mean the model is overfitting. Both the training and validation accuracies should be high before it is a reliable model.</p>
+
+<p>The model ran for 4000 iterations, completing with a <code>final test accuracy</code> of <code>94.4%</code>. I wanted to test it myself so downloaded a selection of images to run through the model and see what results it would give. Google codelabs provides you will a little python script that you can just curl neatly into a file called <code>label_image.py</code> and store in the <code>tf_files</code> folder.</p>
+
+<pre><code class="language-python">import tensorflow as tf, sys
+
+# change this as you see fit
+image_path = sys.argv[1]
+
+# Read in the image_data
+image_data = tf.gfile.FastGFile(image_path, 'rb').read()
+
+# Loads label file, strips off carriage return
+label_lines = [line.rstrip() for line 
+                   in tf.gfile.GFile("tf_files/retrained_labels.txt")]
+
+# Unpersists graph from file
+with tf.gfile.FastGFile("tf_files/retrained_graph.pb", 'rb') as f:
+    graph_def = tf.GraphDef()
+    graph_def.ParseFromString(f.read())
+    _ = tf.import_graph_def(graph_def, name='')
+
+with tf.Session() as sess:
+    # Feed the image_data as input to the graph and get first prediction
+    softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
+    
+    predictions = sess.run(softmax_tensor, \
+             {'DecodeJpeg/contents:0': image_data})
+    
+    # Sort to show labels of first prediction in order of confidence
+    top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
+    
+    for node_id in top_k:
+        human_string = label_lines[node_id]
+        score = predictions[0][node_id]
+        print('%s (score = %.5f)' % (human_string, score))
+</code></pre>
+
+<pre><code># type 'exit' to exit Docker and then:
+curl -L https://goo.gl/tx3dqg &gt; $HOME/tf_files/label_image.py
+</code></pre>
+<p>I created a folder in <code>tf_files</code> called <code>test_images</code>, where I could store an image that I wanted to run through the model. Then I could restart docker linked to <code>tf_files</code>,</p>
+
+<pre><code>$ docker run -it -v $HOME/tf_files:/tf_files  gcr.io/tensorflow/tensorflow:latest-devel
+</code></pre>
+
+<p>and run the following command:</p>
+
+<pre><code># In Docker
+$ python /tf_files/label_image.py /tf_files/test_images/Campfire.jpg
+</code></pre>
+
+<p>Every time an image is passed through, the model returns a probability score for each category. So when I gave it this calming beach campfire image:</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/Campfire.jpg?raw=true" alt="" /></p>
+
+<p>these were the returned scores:</p>
+
+<pre><code class="language-bash">fire (score = 0.86540)
+smoke (score = 0.12902)
+misc (score = 0.00558)
+</code></pre>
+
+<p>whereas a burning cigarette:</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/cigarette.jpg?raw=true" alt="" /></p>
+
+<p>resulted in this:</p>
+
+<pre><code>smoke (score = 0.79379)
+fire (score = 0.15999)
+misc (score = 0.04622)
+
+</code></pre>
+
+<p>and a happy raccoon:</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/raccoon.jpeg?raw=true" alt="" /></p>
+
+<p>was not much of any of them (although that is some smokey fur…):</p>
+
+<pre><code>smoke (score = 0.48583)
+misc (score = 0.28314)
+fire (score = 0.23103)
+</code></pre>
+
+<p>I wanted to label a whole bunch of images to test the effectiveness of the model in multiple different areas, so I tweaked the code to run for all the images in the <code>test_images</code> folder by adding this line inside the tf.Session():</p>
+
+<pre><code class="language-python">for filename in os.listdir(sys.argv[1]):
+    if filename.endswith(".jpg") or filename.endswith(".jpeg"): 
+</code></pre>
+
+<p>The code worked great, but also revealed some problems with the model. Images that contained a lot of white or light grey were labeled as having a high probability score for ‘smoke’, and despite the <em>fire</em> dataset containing the most images (almost 2000), fire was not likely to be labeled correctly. Perhaps this was because the majority of fire images from ImageNet were close up of fires in hearths so images containing fire like this one…</p>
+
+<p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/burningcar.jpeg?raw=true" alt="" /></p>
+
+<p>…got a 60% probability that it contained ‘smoke’ and only a 35% probability that it contained ‘fire’. In practice perhaps this isn’t a huge problem because if smoke or fire is detected that is enough of a safety measure.</p>
+
+<p>I suppose this means some updating to the dataset may be in order! More to come…</p>
+
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2017-02/tensorflow" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2017-02/tensorflow" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2017-02/tensorflow" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2017-02/tensorflow" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2017-02/tensorflow" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2017 Hannah Deen. Powered by <a href="http://jekyllrb.com/">Jekyll</a>, <a href="http://github.com/renyuanz/leonids/">leonids theme</a> made with <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+</body>
+</html>

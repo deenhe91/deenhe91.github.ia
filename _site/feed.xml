@@ -5,9 +5,166 @@
     <description>adventures in pythonland</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 31 Jan 2017 14:09:28 +0000</pubDate>
-    <lastBuildDate>Tue, 31 Jan 2017 14:09:28 +0000</lastBuildDate>
+    <pubDate>Thu, 02 Feb 2017 15:41:31 +0000</pubDate>
+    <lastBuildDate>Thu, 02 Feb 2017 15:41:31 +0000</lastBuildDate>
     <generator>Jekyll v3.1.3</generator>
+    
+      <item>
+        <title>your own image classification network</title>
+        <description>&lt;h2 id=&quot;inceptions&quot;&gt;inceptions&lt;/h2&gt;
+&lt;p&gt;The Inception v3 network is a tensorflow &lt;a href=&quot;http://colah.github.io/posts/2014-07-Conv-Nets-Modular/&quot;&gt;convolutional neural network&lt;/a&gt; trained to distinguish between 1000 different categories from ImageNet. It was trained for the ImageNet Large Visual Recognition Challenge using the data from 2012. Happily for us, it is possible to retrain this model to create our own image classifier for specific image tasks.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-retraining&quot;&gt;what is &lt;em&gt;retraining&lt;/em&gt;?&lt;/h3&gt;
+&lt;p&gt;We can retrain the inception model by keeping all the trained layers in tact bar the last one. The first layers are responsible for things like picking out edges and basic shapes. These are necessary and universal steps for CNNs used in image classification and take a long time and a lot of images to train. The final layer of the neural net is where you can train the neural net to distinguish between certain flowers or animals, etc. Even happilyer for us, retraining this last step is well-documented and doesn’t take much time or data so we can get right to it.&lt;/p&gt;
+
+&lt;p&gt;I used Google’s &lt;a href=&quot;https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/?utm_campaign=chrome_series_machinelearning_063016&amp;amp;utm_source=gdev&amp;amp;utm_medium=yt-desc#1&quot;&gt;Tensorflow for Poets&lt;/a&gt;  codelab as my guide for this because it’s super good.&lt;/p&gt;
+
+&lt;h3 id=&quot;tensorflow-for-poets-steps&quot;&gt;tensorflow for poets steps&lt;/h3&gt;
+
+&lt;h4 id=&quot;one-docker&quot;&gt;one: docker&lt;/h4&gt;
+&lt;p&gt;You need to have &lt;a href=&quot;https://docs.docker.com/docker-for-mac/&quot;&gt;Docker&lt;/a&gt; installed&lt;/p&gt;
+
+&lt;h4 id=&quot;two-the-image-set&quot;&gt;two: the image set&lt;/h4&gt;
+&lt;p&gt;We need to have a dataset to retrain on. The codelab provides a dataset of different flowers if you just want to try it out but don’t have a specific idea. If you do, then organise your image files like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/trainingset_format.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With images belonging to specific categories in folders named after that category. I wanted to be able to detect fire and smoke in images, thinking that having this run on frames of CCTV footage could be a useful safety aid.
+I used ImageNet to get my dataset. The image set for fire that I downloaded unsurprisingly contained a lot of fireplaces, and the smoke set contained a lot of tanks for some reason. I suppose combat is a smokey affair.. But I wanted to avoid the model deciding that because an image contained a tank, it would score high for ‘smoke’ and because an image contained an empty fireplace, it would score high for ‘fire’. To try and counteract this, I added a third miscellaneous category and included lots of images of empty fireplaces and non-smoking tanks to try and balance out the overall image set.&lt;/p&gt;
+
+&lt;h4 id=&quot;three-link-image-set-to-docker&quot;&gt;three: link image set to docker&lt;/h4&gt;
+&lt;p&gt;In order for the docker image to use the image files for retraining, we need to give the docker image access to the relevant folder, in this case &lt;code&gt;tf_files&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;docker run -it -v $HOME/tf_files:/tf_files  gcr.io/tensorflow/tensorflow:latest-devel&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;four-get-inception-code&quot;&gt;four: get inception code&lt;/h4&gt;
+&lt;p&gt;The we have to retrieve the code for the Inception v3 framework…&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd /tensorflow
+git pull
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;five-retrain-the-model&quot;&gt;five: retrain the model&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# In Docker
+python tensorflow/examples/image_retraining/retrain.py \
+--bottleneck_dir=/tf_files/bottlenecks \
+--model_dir=/tf_files/inception \
+--output_graph=/tf_files/retrained_graph.pb \
+--output_labels=/tf_files/retrained_labels.txt \
+--image_dir /tf_files/&amp;lt;imageset folder&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will set off the process. &lt;strong&gt;It’s that simple!&lt;/strong&gt;. This process takes a little while, maybe half an hour. It generates ‘bottlenecks’. This is the term used for the layer just before the final output layer that we retrain to do the classification. The values are stored in &lt;code&gt;/tmp/bottleneck&lt;/code&gt; so if you ever need to retrain again those values don’t have to be calculated.&lt;/p&gt;
+
+&lt;p&gt;By default, the script runs 4000 training steps, but this can be adjusted. At each iteration, 10 images are picked at random from the training set and fed into the final prediction layer. The predictions are checked for accuracy by comparing them to the actual labels and then the final layer’s weights are updated accordingly through back-propogation. It’s quite fun to watch the accuracy score change as they are printed during training. There are two types of accuracy, the &lt;strong&gt;training accuracy&lt;/strong&gt; and the &lt;strong&gt;validation accuracy&lt;/strong&gt;. The validation accuracy is the important one. That’s the one that looks at test images, i.e. labeled images that the model hasn’t been trained on. The training accuracy is also important but a high score for that could mean the model is overfitting. Both the training and validation accuracies should be high before it is a reliable model.&lt;/p&gt;
+
+&lt;p&gt;The model ran for 4000 iterations, completing with a &lt;code&gt;final test accuracy&lt;/code&gt; of &lt;code&gt;94.4%&lt;/code&gt;. I wanted to test it myself so downloaded a selection of images to run through the model and see what results it would give. Google codelabs provides you will a little python script that you can just curl neatly into a file called &lt;code&gt;label_image.py&lt;/code&gt; and store in the &lt;code&gt;tf_files&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import tensorflow as tf, sys
+
+# change this as you see fit
+image_path = sys.argv[1]
+
+# Read in the image_data
+image_data = tf.gfile.FastGFile(image_path, &#39;rb&#39;).read()
+
+# Loads label file, strips off carriage return
+label_lines = [line.rstrip() for line 
+                   in tf.gfile.GFile(&quot;tf_files/retrained_labels.txt&quot;)]
+
+# Unpersists graph from file
+with tf.gfile.FastGFile(&quot;tf_files/retrained_graph.pb&quot;, &#39;rb&#39;) as f:
+    graph_def = tf.GraphDef()
+    graph_def.ParseFromString(f.read())
+    _ = tf.import_graph_def(graph_def, name=&#39;&#39;)
+
+with tf.Session() as sess:
+    # Feed the image_data as input to the graph and get first prediction
+    softmax_tensor = sess.graph.get_tensor_by_name(&#39;final_result:0&#39;)
+    
+    predictions = sess.run(softmax_tensor, \
+             {&#39;DecodeJpeg/contents:0&#39;: image_data})
+    
+    # Sort to show labels of first prediction in order of confidence
+    top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
+    
+    for node_id in top_k:
+        human_string = label_lines[node_id]
+        score = predictions[0][node_id]
+        print(&#39;%s (score = %.5f)&#39; % (human_string, score))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;# type &#39;exit&#39; to exit Docker and then:
+curl -L https://goo.gl/tx3dqg &amp;gt; $HOME/tf_files/label_image.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I created a folder in &lt;code&gt;tf_files&lt;/code&gt; called &lt;code&gt;test_images&lt;/code&gt;, where I could store an image that I wanted to run through the model. Then I could restart docker linked to &lt;code&gt;tf_files&lt;/code&gt;,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker run -it -v $HOME/tf_files:/tf_files  gcr.io/tensorflow/tensorflow:latest-devel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and run the following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# In Docker
+$ python /tf_files/label_image.py /tf_files/test_images/Campfire.jpg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Every time an image is passed through, the model returns a probability score for each category. So when I gave it this calming beach campfire image:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/Campfire.jpg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;these were the returned scores:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;fire (score = 0.86540)
+smoke (score = 0.12902)
+misc (score = 0.00558)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;whereas a burning cigarette:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/cigarette.jpg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;resulted in this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;smoke (score = 0.79379)
+fire (score = 0.15999)
+misc (score = 0.04622)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and a happy raccoon:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/raccoon.jpeg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;was not much of any of them (although that is some smokey fur…):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;smoke (score = 0.48583)
+misc (score = 0.28314)
+fire (score = 0.23103)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I wanted to label a whole bunch of images to test the effectiveness of the model in multiple different areas, so I tweaked the code to run for all the images in the &lt;code&gt;test_images&lt;/code&gt; folder by adding this line inside the tf.Session():&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;for filename in os.listdir(sys.argv[1]):
+    if filename.endswith(&quot;.jpg&quot;) or filename.endswith(&quot;.jpeg&quot;): 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The code worked great, but also revealed some problems with the model. Images that contained a lot of white or light grey were labeled as having a high probability score for ‘smoke’, and despite the &lt;em&gt;fire&lt;/em&gt; dataset containing the most images (almost 2000), fire was not likely to be labeled correctly. Perhaps this was because the majority of fire images from ImageNet were close up of fires in hearths so images containing fire like this one…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/burningcar.jpeg?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;…got a 60% probability that it contained ‘smoke’ and only a 35% probability that it contained ‘fire’. In practice perhaps this isn’t a huge problem because if smoke or fire is detected that is enough of a safety measure.&lt;/p&gt;
+
+&lt;p&gt;I suppose this means some updating to the dataset may be in order! More to come…&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 01 Feb 2017 00:00:00 +0000</pubDate>
+        <link>/articles/2017-02/tensorflow</link>
+        <guid isPermaLink="true">/articles/2017-02/tensorflow</guid>
+        
+        
+        <category>Data</category>
+        
+      </item>
     
       <item>
         <title>where do we go from here?</title>
@@ -621,105 +778,6 @@ for val in GuardianArticles[&#39;article&#39;]:
         <pubDate>Tue, 31 May 2016 00:00:00 +0000</pubDate>
         <link>/articles/2016-05/WordsandPower</link>
         <guid isPermaLink="true">/articles/2016-05/WordsandPower</guid>
-        
-        
-        <category>Metis Projects</category>
-        
-      </item>
-    
-      <item>
-        <title>classification</title>
-        <description>&lt;h3 id=&quot;before-i-start&quot;&gt;before I start…&lt;/h3&gt;
-&lt;p&gt;I want to highlight the two biggest personal lessons I learnt at Metis were learnt during this project.&lt;/p&gt;
-
-&lt;h3 id=&quot;procrastination-will-kill-you&quot;&gt;procrastination will kill you.&lt;/h3&gt;
-
-&lt;p&gt;I did not know what to do. And I did not stick to any idea that I had. Initially we started in groups with vague aims of classifying a genre into a subgenre. We went to the spotify music hackathon, bright-eyed and bushy-tailed and ready for adventure. Though the hackathon itself was fab and the speakers were inspiring - we didn’t figure out our subgenre problem. The million song dataset wouldn’t fit on my AWS, &lt;em&gt;and&lt;/em&gt; the spotify API didn’t return the things that we were interested in. The fields of interest were empty. Additionally, the awesome python libraries that we could use to analyse audio files was not cooperating with my &lt;code&gt;python3&lt;/code&gt;. All of these barriers would have been circumventable if only I had believed in the cause. I said yes to this because I was excited to work with music but classifying genres into subgenres was not something I felt I could put my heart into. And so all of these hiccups felt all the more monumental.&lt;/p&gt;
-
-&lt;p&gt;With retrospect I could have done some pretty neat classification problems surrounding music.
-and I will probably explore these now I have some ‘free’ time (ahum. job-hunting.) but at the time these did not come to me.&lt;/p&gt;
-
-&lt;p&gt;I looked up datasets and debated playing with calcium signalling data (&lt;a href=&quot;http://neurofinder.codeneuro.org/&quot;&gt;is a neuron of interest or not?&lt;/a&gt;), or are mushrooms edible or not, or even does this person have Parkinson’s or not? Some SUPER interesting things kicking about there but procrastination killed them all. And 36 hours before presentation time, I decided to classify leaf images to corresponding tree species. This was fine, but given the time strain I had very little opportunity to dig deeper and do some interesting analysis or to seriously consider the problem or uses of this classifier.&lt;/p&gt;
-
-&lt;p&gt;Moral of the story: Find a project and &lt;em&gt;stick to it&lt;/em&gt;. You can make something interesting out of everything.&lt;/p&gt;
-
-&lt;h3 id=&quot;dont-try-and-change-the-world-with-every-project&quot;&gt;don’t try and change the world with every project.&lt;/h3&gt;
-
-&lt;p&gt;You will &lt;strong&gt;always&lt;/strong&gt; be disappointed. &lt;strong&gt;Always&lt;/strong&gt;. One of my main issues is having to make everything I do ‘important’ to justify putting time into it. But ultimately this course is about learning the ropes. Taking on seemingly less serious topics will allow faster blooming of my technical capabilities.
-I have always appreciated the little things and I get excited by small logic problems and even things like data cleaning but if I have to present a project I have had a tendency to overthink and search for the much much bigger picture. This has made it difficult to get excited about things that just have a simple bigger picture. Or projects that are only focused on ‘increasing revenue’. But I have realised how detrimental this is. For the leaf project I went to lengths to make up a story about the APOCALYPSE! Are you ready?&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;…it is 50 years in the future, and infrastructure has collapsed. It is more and more difficult to find reliable, safe and affordable medicine and so the people are turning back to nature for their remedies. For this reason they need a classifier to tell them, based on an image of the leaf, what the tree species is and whether that plant is medicinally useful to you…&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Yes. Our fantastic teacher Vinny pointed out that actually we don’t need an apocalyptic future to justify a leaf classifier and it can be useful for education, park rangers and many other entirely relevant things.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-project&quot;&gt;the project&lt;/h2&gt;
-
-&lt;p&gt;I got this dataset from &lt;a href=&quot;http://archive.ics.uci.edu/ml/datasets/Leaf&quot;&gt;UCI&lt;/a&gt; along with a paper by Pedro explaining his logic and process. I used openCV to extract some of the features he mentioned in his thesis (all of which were present in the dataset itself) to get a feel for the openCV package and learn a bit about image processing.&lt;/p&gt;
-
-&lt;h4 id=&quot;cleaning-up-the-data&quot;&gt;cleaning up the data&lt;/h4&gt;
-
-&lt;p&gt;This data was pretty clean already so it was just a case of organising and understanding it. I replaced string nans with &lt;code&gt;float(nan)&lt;/code&gt; so that &lt;code&gt;pandas&lt;/code&gt; would recognise them as non-values.&lt;/p&gt;
-
-&lt;p&gt;I grouped my data by species to have a look at the summary of differed variables per species. To see whether something was largely &lt;code&gt;nans&lt;/code&gt; and just to understand the metrics a little better because they consisted of things like ‘Eccentricity’, ‘Solidity’ and ‘Isoperimetric Factor’… (see end for explanation of these terms).&lt;/p&gt;
-
-&lt;p&gt;I created a reduced dataset that didn’t have things in it I wasn’t planning on using in my analysis and I &lt;code&gt;pickled&lt;/code&gt; that so that I could just load it up again if I quit the programme.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;The test-train split&lt;/strong&gt;. I had 30 species and only 8-15 specimens per species so it was important to do a stratified split so that all the species were present in both the training and the test set.&lt;/p&gt;
-
-&lt;p&gt;I used &lt;code&gt;seaborn&lt;/code&gt; and &lt;code&gt;matplotlib&lt;/code&gt; to plot some of the features(variables) in the training set.&lt;/p&gt;
-
-&lt;p&gt;I used feature importance analysis to pull out the most important features as lots of variables means lots of dimensions which makes it harder to glean relevant insights.&lt;/p&gt;
-
-&lt;p&gt;It couldn’t hurt to prune some out.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_features.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I tried running my classifier models with the top 9 (and then 10, and then 11) features but my accuracy score for each model dropped a lot, some by 20 points. So I stuck with all 16.&lt;/p&gt;
-
-&lt;p&gt;A little sidenote - I plotted a scatter matrix for my features which is just a matrix of scatter plots that shows you how each pair of variables are related. Down the diagonal (where the one variable would be compared with itself) is a KDE plot for that particular variable. That just shows the distribution within the variable. This is a great and reasonable quick way to visually understand your data and the relaitonships within it - that is, if you don’t have more than 10 or 15 variables..&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/ClassScatter_matrix.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;a-little-summary-of-the-classifiers&quot;&gt;A little summary of the classifiers&lt;/h3&gt;
-
-&lt;h5 id=&quot;logistic-regression&quot;&gt;LOGISTIC REGRESSION&lt;/h5&gt;
-
-&lt;p&gt;Logistic regression is regression where the dependent variable (the thing you are predicting) is categorical (splits into categories). This is most effectively used, or designed for, binary models. Usually in cases of multiple unordered categories, the regression model to use is &lt;em&gt;Multinomial Linear Regression&lt;/em&gt; which doesn’t have a handy function in scikit learn. When applied to a problem with multiple categories, like the leaf dataset, a logistic regression analysis will assess the probability that something is in one category compared to all other categories.&lt;/p&gt;
-
-&lt;p&gt;Logistic regression assumes a clear cut off. The green line in the example below is the probability of a data point being ‘a case’ given 1 feature. The blue dots are cases and the red ones are not. A classic example the probability of a student passing a test given the number of hours they spend studying for that test. Blue is pass, red is fail, and the numbers on the x axis are the number of hours spent studying. It seems logical that the probability of passing increases with study hours.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/140.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;svm&quot;&gt;SVM&lt;/h5&gt;
-
-&lt;p&gt;SVM stands for &lt;strong&gt;Support Vector Machine&lt;/strong&gt;. It’s basic idea is that you define a decision boundary using the ‘widest street’ approach. This means that you want to draw a line that has on either side of it, the biggest margin possible between the two categories. Wihout a &lt;strong&gt;kernel&lt;/strong&gt;, SVMs are only really useful for data that is linearly divided. It looks a little like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://3.bp.blogspot.com/_UqlrkHvPijw/TJupAi2ztMI/AAAAAAAAAFI/6EVz1pmA1vs/s1600/svm.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Using a kernel means drawing the line in a higher dimensional space and then reducing the dimensionality so that the line no longer looks straight. 
-&lt;img src=&quot;http://www.sbaban.org/wp-content/uploads/2013/11/svm.jpg&quot; alt=&quot;&quot; /&gt;
-Simple, right? When you use kernels correctly SVMs can be super useful for all kinds of classification problems. But as always you need to be careful of overfitting.&lt;/p&gt;
-
-&lt;p&gt;I find that this &lt;a href=&quot;https://www.youtube.com/watch?v=_PwhiWxHK8o&quot;&gt;MIT lecture&lt;/a&gt; is really helpful. Chalkboards are the best.&lt;/p&gt;
-
-&lt;h5 id=&quot;decision-trees-and-random-forests&quot;&gt;DECISION TREES and RANDOM FORESTS&lt;/h5&gt;
-
-&lt;p&gt;Decision trees and random forests are probably my favourite type of classification algorithm because they are really intuitive  but also really effective in lots of situations. You run the risk of overfitting, but random forests help there.&lt;/p&gt;
-
-&lt;p&gt;Decision trees use if-then statements to define patterns in the data. A decision tree consists of a starting point, where you have ALL your training data, and then you split that data by asking a simple yes/no question and splitting the data accordingly. For example, is your leaf longer than 10cm? Yes: contains all leaves longer than 10cm, and No: contains all leaves shorter than 10cm. You set how many questions you want to ask, or in the correct lingo, how many levels you want the tree to contain and &lt;em&gt;Voilá&lt;/em&gt;! You end up with categories into which new leaves will be classified. With labeled data, the accuracy score is the probability that a leaf is correctly classified.&lt;/p&gt;
-
-&lt;p&gt;Random Forests just do the same process multiple times (lots of decision trees) and then take the mode or mean prediction of the sum of the trees. The good thing about Random Forests is that they can reduce the risk of overfitting that can happen with Decision Trees.&lt;/p&gt;
-
-&lt;p&gt;LOW AND BEHOLD, for my leaf dataset the Random Forest classifier was the most accurate. Which was just perfect. Because leaves. And trees. And forests. Geddit?&lt;/p&gt;
-
-&lt;p&gt;Here’s the breakdown, where the y axis shows the accuracy score:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/class_accuracy.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Fri, 13 May 2016 00:00:00 +0000</pubDate>
-        <link>/articles/2016-05/classifiers</link>
-        <guid isPermaLink="true">/articles/2016-05/classifiers</guid>
         
         
         <category>Metis Projects</category>
