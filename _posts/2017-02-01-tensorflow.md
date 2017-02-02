@@ -123,6 +123,7 @@ Every time an image is passed through, the model returns a probability score for
 these were the returned scores:
 
 ```bash
+
 fire (score = 0.86540)
 smoke (score = 0.12902)
 misc (score = 0.00558)
@@ -135,9 +136,9 @@ whereas a burning cigarette:
 resulted in this:
 
 ```
-smoke (score = 0.79379)
-fire (score = 0.15999)
-misc (score = 0.04622)
+ smoke (score = 0.79379)
+ fire (score = 0.15999)
+ misc (score = 0.04622)
 
 ```
 
@@ -148,9 +149,9 @@ and a happy raccoon:
 was not much of any of them (although that is some smokey fur...):
 
 ```
-smoke (score = 0.48583)
-misc (score = 0.28314)
-fire (score = 0.23103)
+ smoke (score = 0.48583)
+ misc (score = 0.28314)
+ fire (score = 0.23103)
 ```
 
 I wanted to label a whole bunch of images to test the effectiveness of the model in multiple different areas, so I tweaked the code to run for all the images in the `test_images` folder by adding this line inside the tf.Session():
