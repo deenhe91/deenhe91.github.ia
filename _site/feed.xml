@@ -5,12 +5,12 @@
     <description>adventures in pythonland</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 02 Feb 2017 15:41:31 +0000</pubDate>
-    <lastBuildDate>Thu, 02 Feb 2017 15:41:31 +0000</lastBuildDate>
+    <pubDate>Mon, 06 Feb 2017 15:57:50 +0000</pubDate>
+    <lastBuildDate>Mon, 06 Feb 2017 15:57:50 +0000</lastBuildDate>
     <generator>Jekyll v3.1.3</generator>
     
       <item>
-        <title>your own image classification network</title>
+        <title>your own image classification network: part I</title>
         <description>&lt;h2 id=&quot;inceptions&quot;&gt;inceptions&lt;/h2&gt;
 &lt;p&gt;The Inception v3 network is a tensorflow &lt;a href=&quot;http://colah.github.io/posts/2014-07-Conv-Nets-Modular/&quot;&gt;convolutional neural network&lt;/a&gt; trained to distinguish between 1000 different categories from ImageNet. It was trained for the ImageNet Large Visual Recognition Challenge using the data from 2012. Happily for us, it is possible to retrain this model to create our own image classifier for specific image tasks.&lt;/p&gt;
 
@@ -94,6 +94,8 @@ with tf.Session() as sess:
         print(&#39;%s (score = %.5f)&#39; % (human_string, score))
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;This is where you get the script:&lt;/p&gt;
+
 &lt;pre&gt;&lt;code&gt;# type &#39;exit&#39; to exit Docker and then:
 curl -L https://goo.gl/tx3dqg &amp;gt; $HOME/tf_files/label_image.py
 &lt;/code&gt;&lt;/pre&gt;
@@ -114,7 +116,8 @@ $ python /tf_files/label_image.py /tf_files/test_images/Campfire.jpg
 
 &lt;p&gt;these were the returned scores:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;fire (score = 0.86540)
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;
+fire (score = 0.86540)
 smoke (score = 0.12902)
 misc (score = 0.00558)
 &lt;/code&gt;&lt;/pre&gt;
@@ -125,9 +128,9 @@ misc (score = 0.00558)
 
 &lt;p&gt;resulted in this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;smoke (score = 0.79379)
-fire (score = 0.15999)
-misc (score = 0.04622)
+&lt;pre&gt;&lt;code&gt; smoke (score = 0.79379)
+ fire (score = 0.15999)
+ misc (score = 0.04622)
 
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -137,9 +140,9 @@ misc (score = 0.04622)
 
 &lt;p&gt;was not much of any of them (although that is some smokey fur…):&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;smoke (score = 0.48583)
-misc (score = 0.28314)
-fire (score = 0.23103)
+&lt;pre&gt;&lt;code&gt; smoke (score = 0.48583)
+ misc (score = 0.28314)
+ fire (score = 0.23103)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;I wanted to label a whole bunch of images to test the effectiveness of the model in multiple different areas, so I tweaked the code to run for all the images in the &lt;code&gt;test_images&lt;/code&gt; folder by adding this line inside the tf.Session():&lt;/p&gt;
@@ -157,7 +160,7 @@ fire (score = 0.23103)
 &lt;p&gt;I suppose this means some updating to the dataset may be in order! More to come…&lt;/p&gt;
 
 </description>
-        <pubDate>Wed, 01 Feb 2017 00:00:00 +0000</pubDate>
+        <pubDate>Thu, 02 Feb 2017 00:00:00 +0000</pubDate>
         <link>/articles/2017-02/tensorflow</link>
         <guid isPermaLink="true">/articles/2017-02/tensorflow</guid>
         

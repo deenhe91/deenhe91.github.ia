@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>your own image classification network</title>
+  <title>your own image classification network: part I</title>
   <meta name="description" content="retraining the tensorflow Inception Network in python">
 
   <!-- CSS files -->
@@ -96,7 +96,7 @@
   
   "https://jalammar.github.io/images/google-tensorflow-android.jpg"
   
-  alt="your own image classification network feature image">
+  alt="your own image classification network: part I feature image">
 
   
 </div><!-- /.image-wrap -->
@@ -105,10 +105,10 @@
 
 <div id="post">
   <header class="post-header">
-    <h1 title="your own image classification network">your own image classification network</h1>
+    <h1 title="your own image classification network: part I">your own image classification network: part I</h1>
     <span class="post-meta">
       <span class="post-date">
-        1 FEB 2017
+        2 FEB 2017
       </span>
       •
       <span class="read-time" title="Estimated read time">
@@ -206,6 +206,8 @@ with tf.Session() as sess:
         print('%s (score = %.5f)' % (human_string, score))
 </code></pre>
 
+<p>This is where you get the script:</p>
+
 <pre><code># type 'exit' to exit Docker and then:
 curl -L https://goo.gl/tx3dqg &gt; $HOME/tf_files/label_image.py
 </code></pre>
@@ -226,7 +228,8 @@ $ python /tf_files/label_image.py /tf_files/test_images/Campfire.jpg
 
 <p>these were the returned scores:</p>
 
-<pre><code class="language-bash">fire (score = 0.86540)
+<pre><code class="language-bash">
+fire (score = 0.86540)
 smoke (score = 0.12902)
 misc (score = 0.00558)
 </code></pre>
@@ -237,9 +240,9 @@ misc (score = 0.00558)
 
 <p>resulted in this:</p>
 
-<pre><code>smoke (score = 0.79379)
-fire (score = 0.15999)
-misc (score = 0.04622)
+<pre><code> smoke (score = 0.79379)
+ fire (score = 0.15999)
+ misc (score = 0.04622)
 
 </code></pre>
 
@@ -249,9 +252,9 @@ misc (score = 0.04622)
 
 <p>was not much of any of them (although that is some smokey fur…):</p>
 
-<pre><code>smoke (score = 0.48583)
-misc (score = 0.28314)
-fire (score = 0.23103)
+<pre><code> smoke (score = 0.48583)
+ misc (score = 0.28314)
+ fire (score = 0.23103)
 </code></pre>
 
 <p>I wanted to label a whole bunch of images to test the effectiveness of the model in multiple different areas, so I tweaked the code to run for all the images in the <code>test_images</code> folder by adding this line inside the tf.Session():</p>
