@@ -158,29 +158,30 @@ an incredible poem with an enormous amount of information regardless of how many
 
 <p>It kept tripping up and throwing an error so I introduced a neat little trick to keep it running.</p>
 
-<pre><code class="language-python">
-for val in GuardianArticles['article']:
+<p>```python</p>
+
+<p>for val in GuardianArticles[‘article’]:
         try:
                 a = Article(val[1])
                 a.download()
                 a.parse()
-                a.nlp()
+                a.nlp()</p>
 
-                article={ "url": val[1],
-                        "text":a.text,
-                        "keywords":a.keywords,
-                        "authors" : a.authors,
-                        "date" : val[0] }
+<pre><code>            article={ "url": val[1],
+                    "text":a.text,
+                    "keywords":a.keywords,
+                    "authors" : a.authors,
+                    "date" : val[0] }
 
-                article_id = guardian_articles.insert_one(article)
-                print(article_id)
+            article_id = guardian_articles.insert_one(article)
+            print(article_id)
 
-        except:
-                print('pass')
-                pass
-
-
+    except:
+            print('pass')
+            pass
 </code></pre>
+
+<p>```</p>
 
 <p>Using <code>try:, except: Pass</code>, when the scraper encountered an article that didn’t fit the bill, it would just skip over it. I included <code>print('pass')</code> and a counter so I could see how many didn’t work. Luckily it was a tiny percentage of the total number of articles. Some 40 links out of 18,000.</p>
 

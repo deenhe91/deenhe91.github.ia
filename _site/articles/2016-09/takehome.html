@@ -136,31 +136,33 @@
 
 <p>I chose flickr, specifically the <code>groups.pools.getPhotos</code> <a href="flickr.com/services/api/explore/flickr.groups.pools.getPhotos">API</a> (even though I had to create a yahoo account in order to use it…) The quality of the images available is much higher than say, <em>imgur</em>, and the developer toolkit, or <em>‘App Garden’</em>, is pretty well documented and easy to implement.</p>
 
-<pre><code class="language-python">
-import requests
+<p>```python</p>
 
-flickr_key = '&lt;YOUR ACCOUNT KEY&gt;'
-flickr_secret = '&lt;YOUR ACCOUNT SECRET&gt;'
+<p>import requests</p>
 
-flickr_file = []
+<p>flickr_key = ‘<your account="" key="">'
+flickr_secret = '<your account="" secret="">'</your></your></p>
 
-for i in range(10):
-	r = requests.get('https://api.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&amp;api_key=&lt;API KEY&gt;
-	&amp;group_id=&lt;GROUP ID&gt;&amp;per_page=500&amp;page='+str(i)+'&amp;format=json&amp;nojsoncallback=1')
+<p>flickr_file = []</p>
 
-	flickr_json = r.json()
-	flickr_file.append(flickr_json)
+<p>for i in range(10):
+	r = requests.get(‘https://api.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&amp;api_key=<api key="">
+	&amp;group_id=<group>&amp;per_page=500&amp;page='+str(i)+'&amp;format=json&amp;nojsoncallback=1')</group></api></p>
+
+<pre><code>flickr_json = r.json()
+flickr_file.append(flickr_json) ```
 </code></pre>
 
 <p>Using this API returned lots of information regarding each image within a specified ‘group’, which is basically a collection of images with a common theme that you can add to. I then parsed the information that was relevant to me and saved it, so I wouldn’t have to overstay my flickr-api-welcome if it went wrong.</p>
 
-<pre><code class="language-python">
-img_info = flickr_list['photos']['photo']
+<p>```python</p>
 
-with open('flickr.json', 'w') as outfile:
-	json.dump(flickr_file, outfile)
+<p>img_info = flickr_list[‘photos’][‘photo’]</p>
 
-</code></pre>
+<p>with open(‘flickr.json’, ‘w’) as outfile:
+	json.dump(flickr_file, outfile)</p>
+
+<p>```</p>
 
 <p>I then had to compile URLs that pointed to each image so that they could be downloaded, but the format that flickr provided didn’t work. However, looking at the page source…</p>
 
@@ -174,26 +176,28 @@ with open('flickr.json', 'w') as outfile:
 
 <p>The Google Vision API requires you to <em>either</em> use images that are stored in Google Storage, <em>or</em> send in the base64 encoded image as a string. So I downloaded the image at each URL using <code>shutil</code>, base64 encoded it using <code>b64</code> and then sent that string to Google.</p>
 
-<pre><code class="language-python">
-import shutil
-import b64
+<p>```python</p>
 
-b64_strings = [] # create list of b64_strings
+<p>import shutil
+import b64</p>
 
-for url in urls:
+<p>b64_strings = [] # create list of b64_strings</p>
 
-	response = requests.get(url, stream=True)
-	
-	with open('img.png', 'wb') as f:
-		shutil.copyfileobj(response.raw, f)
+<p>for url in urls:</p>
 
-	with open('img.png', 'rb') as f:
-		encoded_string = base64.b64encode(f.read())
+<pre><code>response = requests.get(url, stream=True)
 
-		b64_strings.append(encoded_string)
+with open('img.png', 'wb') as f:
+	shutil.copyfileobj(response.raw, f)
 
-del response
+with open('img.png', 'rb') as f:
+	encoded_string = base64.b64encode(f.read())
+
+	b64_strings.append(encoded_string)
 </code></pre>
+
+<p>del response
+```</p>
 
 <p>Actually, I started off going through the process step by step, and saving along the way with the intention of turning it into a smooth running pipeline at the end. First I wanted to test whether each step worked without having to repeat any working processes. Because the name of the stored image, <code>img.png</code> remained the same, it was replaced at each iteration and I didn’t hold onto anything in memory that I didn’t need to.</p>
 
@@ -201,21 +205,22 @@ del response
 
 <p>In order to use the API from my remote server, I had to create an environmental variable called ‘GOOGLE_APPLICATION_CREDENTIALS’ pointing to the file where my credentials were stored. You can see below, you just use <code>os</code> to do this. When you create your credentials with Google, a JSON file is automatically downloaded to your computer so just make sure that’s in the right directory.</p>
 
-<pre><code class="language-python">
-import os 
+<p>```python</p>
+
+<p>import os 
 from googleapiclient import discovery 
-from oauth2client.client import GoogleCredentials 
+from oauth2client.client import GoogleCredentials</p>
 
-DISCOVERY_URL = 'https://vision.googleapis.com/$discovery/rest?version=v1'
-# because I was using the google vision API
+<p>DISCOVERY_URL = ‘https://vision.googleapis.com/$discovery/rest?version=v1’
+# because I was using the google vision API</p>
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '&lt;json file where your credentials are stored&gt;'
+<p>os.environ[‘GOOGLE_APPLICATION_CREDENTIALS’] = ‘<json file="" where="" your="" credentials="" are="" stored="">'</json></p>
 
-credentials = GoogleCredentials.get_application_default()	
+<p>credentials = GoogleCredentials.get_application_default()</p>
 
-service = discovery.build('vision', 'v1', credentials=credentials, discoveryServiceUrl=DISCOVERY_URL)
+<p>service = discovery.build(‘vision’, ‘v1’, credentials=credentials, discoveryServiceUrl=DISCOVERY_URL)</p>
 
-</code></pre>
+<p>```</p>
 
 <p>You can play around with the parameters a bit and specify what kind of detection you want (e.g. face, landmark, text). But I was just interested in animals so I set it to standard <code>'LABEL_DETECTION'</code>. I then set the parameters to max 5 labels per image, and saved the results in a python dictionary along with the score of that label and the url in a tuple, so that when it came to front end, I could return results by score and show the corresponding image.</p>
 
@@ -223,23 +228,25 @@ service = discovery.build('vision', 'v1', credentials=credentials, discoveryServ
 
 <p>Every now and again a differently formatted or failed result would be returned so I introduced a conditional <code>if</code> statement where it would also tell me if an image had been skipped. That way I would know that there was something wrong with my code or the request if too many were being skipped.</p>
 
-<pre><code class="language-python">
-googlers = []
+<p>```python</p>
 
-for string in b64_strings:
+<p>googlers = []</p>
 
-	service_request = service.images().annotate(body={'requests': [{'image': {'content': string.decode('UTF-8')},'features': [{'type': 'LABEL_DETECTION','maxResults': 5}]}]})
+<p>for string in b64_strings:</p>
 
-	response = service_request.execute()
+<pre><code>service_request = service.images().annotate(body={'requests': [{'image': {'content': string.decode('UTF-8')},'features': [{'type': 'LABEL_DETECTION','maxResults': 5}]}]})
 
-	if 'labelAnnotations' in response['responses'][0]:
-		labels = response['responses'][0]['labelAnnotations']
-		print('string :'+ str(i))
-	else:
-		print('SKIPPED string : ' +str(i))
-	googlers.append(labels)
+response = service_request.execute()
 
+if 'labelAnnotations' in response['responses'][0]:
+	labels = response['responses'][0]['labelAnnotations']
+	print('string :'+ str(i))
+else:
+	print('SKIPPED string : ' +str(i))
+googlers.append(labels)
 </code></pre>
+
+<p>```</p>
 
 <p>Loads of the labels were not relevant to my own search criteria. As this needed to be an animal classifier, I was only really interested in animal images and animal labels. Originally I wanted to find a way to filter out irrelevant labels. Until I realised how much fun Google’s misidentification could be.</p>
 
@@ -263,13 +270,14 @@ for string in b64_strings:
 
 <p>Setting up a firebase project was easy, and I had a google project associated with the challenge and the Google Vision API already so I just linked the two togethere (there’s a button for that) and navigated to the Database tab. As I had saved the dictionary as a JSON file, I could just import it into the firebase database manually and the result looked like this:</p>
 
-<pre><code class="language-python">
-import json
+<p>```python</p>
 
-with open('firebase.json', 'w') as file:
-	json.dump(dict_for_firebase, file)
+<p>import json</p>
 
-</code></pre>
+<p>with open(‘firebase.json’, ‘w’) as file:
+	json.dump(dict_for_firebase, file)</p>
+
+<p>```</p>
 
 <p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/Screenshot_fb.png?raw=true" alt="" /></p>
 
@@ -283,65 +291,68 @@ with open('firebase.json', 'w') as file:
 
 <p>In the HTML file you need to authorise your firebase access like so:</p>
 
-<pre><code class="language-html">
-    &lt;script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"&gt;&lt;/script&gt;
-      &lt;script&gt;
+<p>```html</p>
 
-    // Initialize Firebase
+<pre><code>&lt;script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
 
-    var config = {
-      apiKey: "&lt;API KEY&gt;",
-      authDomain: "&lt;PROJECT NAME&gt;.firebaseapp.com",
-      databaseURL: "https://&lt;PROJECT NAME&gt;.firebaseio.com",
-      storageBucket: "&lt;PROJECT NAME&gt;.appspot.com",
-    };
-    
-    firebase.initializeApp(config);
+// Initialize Firebase
 
-  &lt;/script&gt;
+var config = {
+  apiKey: "&lt;API KEY&gt;",
+  authDomain: "&lt;PROJECT NAME&gt;.firebaseapp.com",
+  databaseURL: "https://&lt;PROJECT NAME&gt;.firebaseio.com",
+  storageBucket: "&lt;PROJECT NAME&gt;.appspot.com",
+};
+
+firebase.initializeApp(config);
 </code></pre>
+
+<p>&lt;/script&gt;
+```</p>
 
 <p>Then the connection to the firebase database is established in the javascript file. I did this using <code>firebase.database.ref()</code>, specifying where in your database I want to get to. I had <code>searchID</code> so that I could change the input depending on the label that the user would type into the search bar.</p>
 
-<pre><code class="language-javascript">
-function getSearchImages(searchID){
-	var animalRef = firebase.database().ref('data/'+searchID+'/');
-	animalRef.on('value', function(snapshot) {
-  
+<p>```javascript</p>
+
+<p>function getSearchImages(searchID){
+	var animalRef = firebase.database().ref(‘data/’+searchID+’/’);
+	animalRef.on(‘value’, function(snapshot) {</p>
+
   		var response = snapshot.val();
   		for (var index in response) {
-    		addImage(response[index][1]);
+<pre><code>		addImage(response[index][1]);
   		}
-	});
-};
-
+}); };
 </code></pre>
+
+<p>```</p>
 
 <p>Because some of the labels returned by Google Vision were pretty specific or obscure (ahum… <em>‘hofmannophila pseudospretella’</em>, <em>‘nova scotia duck tolling retriever’</em>, <em>‘small to medium sized cats’</em>) I wanted to have an autocomplete function in the search bar. This was made possible with some magical jQuery with a <a href="https://jqueryui.com/autocomplete/">UI widget</a>. Upon pressing enter or choosing from the drop-down suggestions, the relevant images could be loaded.</p>
 
-<pre><code class="language-javascript">
+<p>```javascript</p>
 
-$(function() {
-	var nameRef = firebase.database().ref('labels/')
-	nameRef.on('value', function(snapshot) {
-		var names = snapshot.val()
+<p>$(function() {
+	var nameRef = firebase.database().ref(‘labels/’)
+	nameRef.on(‘value’, function(snapshot) {
+		var names = snapshot.val()</p>
 
-	    $("#tags").autocomplete({
-	    	source: names,
-	    	focus: function( event, ui ) {
-		    	$( "#tags" ).val( ui.item.label );
-		      	return false;
-		    },
-	    	select: function(event, ui){
-	    		var searchID = ui.item.value
-	    		clearImages();
-	    		getSearchImages(searchID);
-			}
-		})
+<pre><code>    $("#tags").autocomplete({
+    	source: names,
+    	focus: function( event, ui ) {
+	    	$( "#tags" ).val( ui.item.label );
+	      	return false;
+	    },
+    	select: function(event, ui){
+    		var searchID = ui.item.value
+    		clearImages();
+    		getSearchImages(searchID);
+		}
 	})
-});
-
+}) });
 </code></pre>
+
+<p>```</p>
 
 <h3 id="future-and-improvements">future and improvements</h3>
 

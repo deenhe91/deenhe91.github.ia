@@ -5,9 +5,140 @@
     <description>adventures in pythonland</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 Feb 2017 15:57:50 +0000</pubDate>
-    <lastBuildDate>Mon, 06 Feb 2017 15:57:50 +0000</lastBuildDate>
-    <generator>Jekyll v3.1.3</generator>
+    <pubDate>Sat, 11 Mar 2017 11:06:04 +0000</pubDate>
+    <lastBuildDate>Sat, 11 Mar 2017 11:06:04 +0000</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>gender equality in the cinema: part 1</title>
+        <description>&lt;p&gt;Inspired by Matt Daniels and Hannah Anderson’s &lt;a href=&quot;http://polygraph.cool/movies&quot;&gt;polygraph.cool&lt;/a&gt; Film Dialogue breakdown, I ventured into the world of gender distribution in movies. I used, in part, the painstakingly collected polygraphcool data, which includes the number of lines spoken by male characters in a collection of 2000 movies.&lt;/p&gt;
+
+&lt;p&gt;Matt Daniels and Hannah Anderson had already worked hella hard and split the movie scripts by character and by comparing to IMDB, assigned a sex and age to each character’s actor/actress. The resulting metadata as well as some of the data is publicly available on &lt;a href=&quot;https://github.com/matthewfdaniels/scripts/&quot;&gt;Matt Daniels’ github&lt;/a&gt; page for scrutiny and further data fun.&lt;/p&gt;
+
+&lt;p&gt;I wanted to use all this lovely data to see whether it was possible to predict the year a movie came out in based on it’s character and line ratio.&lt;/p&gt;
+
+&lt;p&gt;I wanted to include genre in my analysis because there is a big difference in the standard distribution of female and male characters in movies of different genres. For example, war movies tend to contain way more male characters and romantic movies are generally more balanced. Because the proportion of movies of each genre that come out every year isn’t standard, it is better to analyse temporal changes in gender on the screen per genre. For this I needed to scrape.&lt;/p&gt;
+
+&lt;h4 id=&quot;web-scraping-with-beautiful-soup&quot;&gt;Web scraping with Beautiful Soup&lt;/h4&gt;
+
+&lt;p&gt;I collected data on genre by scraping Box Office Mojo using &lt;a href=&quot;https://www.crummy.com/software/BeautifulSoup/&quot;&gt;Beautiful Soup&lt;/a&gt;
+(I will have another post outlining the scraping process). I scraped data on all the movies they have on the site including info on budget and domestic gross in case I decided to use that later on. The data I needed was in a table. I looped through the &lt;code&gt;tr&lt;/code&gt;s and filled in a pandas dataframe as I went, then saved as a csv.&lt;/p&gt;
+
+&lt;h4 id=&quot;data-wrangling&quot;&gt;Data wrangling&lt;/h4&gt;
+&lt;p&gt;I read both my csv files in as pandas dataframes so I could clean and preprocess anything I needed to using pandas.&lt;/p&gt;
+
+&lt;p&gt;```python
+import pandas as pd&lt;/p&gt;
+
+&lt;p&gt;mojo_df = pd.read_csv(‘&lt;path_to_mojo_csv&gt;&#39;, encoding=&quot;ISO-8859-1&quot;)
+polygraph_df = pd.read_csv(&#39;&lt;path_to_polygraph_csv&gt;&#39;, encoding=&quot;ISO-8859-1&quot;)
+```
+I wanted to create parameters that represented the number of female to male characters and lines, so I calculated ratios.&lt;/path_to_polygraph_csv&gt;&lt;/path_to_mojo_csv&gt;&lt;/p&gt;
+
+&lt;p&gt;```python
+f_ratio = []&lt;/p&gt;
+
+&lt;p&gt;for lines in df_new[‘lines_data’]:
+    male = sum(int(i) for i in lines.strip())/len(lines)
+    female = 7.01 - male
+    f_ratio.append(female/male)&lt;/p&gt;
+
+&lt;p&gt;merged_df[‘ratio’]= pd.DataFrame(f_ratio)&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;The dataset from polygraph cool contains data on the number of lines spoken by male characters in the film. It looks kind of like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+777777743444644573433242343644335344577426232474643156414755254322274446
+435735475636346433676546667757777777777444445553753342242525544252544775263
+14275553245514656245322356255535653566626437343576645667766774
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Nice, huh?
+It assumes that a minute of dialogue is approximately 14 lines (using average speaking pace of 140 words/min, and average 10 words/line). Each number in the string there represents the number of lines spoken by a male every half minute. So, what I calculate there as &lt;code&gt;f ratio&lt;/code&gt;, is the &lt;em&gt;maximum&lt;/em&gt; number of lines a woman could possibly speak in a film, if she spoke during every available second. A generous estimate, comprendez? By the way, the above lines correspond to &lt;em&gt;Avatar&lt;/em&gt;, 2009, for which the ratio is &lt;code&gt;0.52&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ok, moving on. I had to create dummy variables of the genres. This means generating a column for each genre and assigning a 1 if the movie is of that genre and a 0 if it’s not. But I had 67 genres so this enlarged my feature space by quite a bit and I didn’t want to make life too difficult for myself.&lt;/p&gt;
+
+&lt;p&gt;To reduce the feature space, I condensed some of the more obscure genres into broader ones. Obscure meaning ‘Comedy’ was originally split into ‘Comedy’, ‘Comedy/Drama’, ‘Comedy/Thriller’, ‘Comedy/Crime’, etc. It was a little tricky sometimes, for example, does ‘War Romance’ go into ‘War’ or ‘Romance’? In the end I manually condensed the genres, reducing the 67 genres to 10.&lt;/p&gt;
+
+&lt;p&gt;```python
+genre_collapser = {
+	‘Action’:’Action’,
+   ‘Action / Adventure’:’Action’,
+   ‘Action / Crime’:’Action’,
+   ‘Action Comedy’:’Action’,
+   ‘Action Drama’:’Action’
+   }&lt;/p&gt;
+
+&lt;p&gt;for i in range(len(mojo_df[‘genre’])):
+    mojo_df.ix[i,’genre’] = genre_collapser[mojo_df.ix[i,’genre’]]
+```&lt;/p&gt;
+
+&lt;p&gt;Now I could create my dummy variables without feature space concerns:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;python
+df_dummied = pd.get_dummies(df_reduced_merged[&#39;genre&#39;], prefix=&#39;genre&#39;)
+df_dummied = df_dummies.drop(&#39;genre_None&#39;, axis=1)
+&lt;/code&gt;
+The &lt;code&gt;prefix&lt;/code&gt; parameter there prefixes each genre name with the word ‘genre’, to keep our column names clear.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;python
+polygraph_df[&quot;movie&quot;] = polygraph_df[&quot;year&quot;].map(str) + &quot; &quot; + polygraph_df[&quot;title&quot;]
+mojo_df[&quot;movie&quot;] = mojo_df[&quot;year&quot;].map(str) + &quot; &quot; + mojo_df[&quot;title&quot;]
+&lt;/code&gt;
+&lt;!-- ![Alt text](http://potherca.github.io/StackOverflow/question.13808020.include-an-svg-hosted-on-github-in-markdown/controllers_brief.svg) --&gt;&lt;/p&gt;
+
+&lt;p&gt;Now I had all this cleaned data from Box Office Mojo and I only needed the genres for the movies from the polygraph movies.&lt;/p&gt;
+
+&lt;p&gt;I created a column containing the year of release and movie title, and merged the two dataframes on that column. This was to avoid mixing up movies with the same title that came out in different years. This approach worked well except for one movie, &lt;em&gt;Crash&lt;/em&gt;, which according to IMDB came out in 2004 but in the dataset it came out in 2005. Whoops. Other than that the movies seem to be solidly matched. I now had 1198 movies left in my dataset.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;python
+merged_df = pd.merge(mojo_df, polygraph_df, on=[&#39;movie&#39;])
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;As there is so much to consider when predicting the specific year that a movie comes out, I helped myself a little by predicting the era instead. By taking this approach, the problem becomes one of classification as I now have to show which discrete category a movie belongs to. First to sort the movies:&lt;/p&gt;
+
+&lt;p&gt;```python
+eras = [str(year)[2] for year in merged_df[‘year’]]
+merged_df[‘era’] = eras&lt;/p&gt;
+
+&lt;p&gt;print(merged_df.groupby(‘era’)[‘intercept’].sum())&lt;/p&gt;
+
+&lt;p&gt;era
+  0    411
+  1    273
+  3      1
+  4      3
+  5      1
+  6      4
+  7     24
+  8     76
+  9    264
+```&lt;/p&gt;
+
+&lt;p&gt;By performing the sum() function on the intercept column (which is a list on ones), I found that the 30s, 40s, 50s and 60s each contained fewer than 5 movies - that sample size is too small so I binned them. Now I was focusing on the 70s, 80s, 90s, 00s and 10s. I plotted the mean female-male ratio of all the movies in each era, which gave me this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/era_ratio.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That seems like a pretty convincing trend, doesn’t it? Not conclusive by any means, but we can see that the mean ratio increases steadily at every era. So there’s hope!&lt;/p&gt;
+
+&lt;!-- stratified test/train split --&gt;
+&lt;!-- what can you do about varied category sizes? --&gt;
+
+&lt;iframe src=&quot;https://raw.githubusercontent.com/deenhe91/deenhe91.github.io/master/images/eras.html&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Stay tuned for &lt;strong&gt;model building&lt;/strong&gt; in part 2!&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
+        <link>/articles/2017-02/gender</link>
+        <guid isPermaLink="true">/articles/2017-02/gender</guid>
+        
+        
+        <category>Metis Projects</category>
+        
+      </item>
     
       <item>
         <title>your own image classification network: part I</title>
@@ -40,75 +171,81 @@ I used ImageNet to get my dataset. The image set for fire that I downloaded unsu
 &lt;h4 id=&quot;four-get-inception-code&quot;&gt;four: get inception code&lt;/h4&gt;
 &lt;p&gt;The we have to retrieve the code for the Inception v3 framework…&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd /tensorflow
+&lt;p&gt;&lt;code&gt;bash
+cd /tensorflow
 git pull
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;five-retrain-the-model&quot;&gt;five: retrain the model&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# In Docker
+&lt;p&gt;&lt;code&gt;bash
+# In Docker
 python tensorflow/examples/image_retraining/retrain.py \
 --bottleneck_dir=/tf_files/bottlenecks \
 --model_dir=/tf_files/inception \
 --output_graph=/tf_files/retrained_graph.pb \
 --output_labels=/tf_files/retrained_labels.txt \
 --image_dir /tf_files/&amp;lt;imageset folder&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This will set off the process. &lt;strong&gt;It’s that simple!&lt;/strong&gt;. This process takes a little while, maybe half an hour. It generates ‘bottlenecks’. This is the term used for the layer just before the final output layer that we retrain to do the classification. The values are stored in &lt;code&gt;/tmp/bottleneck&lt;/code&gt; so if you ever need to retrain again those values don’t have to be calculated.&lt;/p&gt;
+&lt;/code&gt;
+This will set off the process. &lt;strong&gt;It’s that simple!&lt;/strong&gt;. This process takes a little while, maybe half an hour. It generates ‘bottlenecks’. This is the term used for the layer just before the final output layer that we retrain to do the classification. The values are stored in &lt;code&gt;/tmp/bottleneck&lt;/code&gt; so if you ever need to retrain again those values don’t have to be calculated.&lt;/p&gt;
 
 &lt;p&gt;By default, the script runs 4000 training steps, but this can be adjusted. At each iteration, 10 images are picked at random from the training set and fed into the final prediction layer. The predictions are checked for accuracy by comparing them to the actual labels and then the final layer’s weights are updated accordingly through back-propogation. It’s quite fun to watch the accuracy score change as they are printed during training. There are two types of accuracy, the &lt;strong&gt;training accuracy&lt;/strong&gt; and the &lt;strong&gt;validation accuracy&lt;/strong&gt;. The validation accuracy is the important one. That’s the one that looks at test images, i.e. labeled images that the model hasn’t been trained on. The training accuracy is also important but a high score for that could mean the model is overfitting. Both the training and validation accuracies should be high before it is a reliable model.&lt;/p&gt;
 
 &lt;p&gt;The model ran for 4000 iterations, completing with a &lt;code&gt;final test accuracy&lt;/code&gt; of &lt;code&gt;94.4%&lt;/code&gt;. I wanted to test it myself so downloaded a selection of images to run through the model and see what results it would give. Google codelabs provides you will a little python script that you can just curl neatly into a file called &lt;code&gt;label_image.py&lt;/code&gt; and store in the &lt;code&gt;tf_files&lt;/code&gt; folder.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import tensorflow as tf, sys
+&lt;p&gt;```python
+import tensorflow as tf, sys&lt;/p&gt;
 
-# change this as you see fit
-image_path = sys.argv[1]
+&lt;h1 id=&quot;change-this-as-you-see-fit&quot;&gt;change this as you see fit&lt;/h1&gt;
+&lt;p&gt;image_path = sys.argv[1]&lt;/p&gt;
 
-# Read in the image_data
-image_data = tf.gfile.FastGFile(image_path, &#39;rb&#39;).read()
+&lt;h1 id=&quot;read-in-the-imagedata&quot;&gt;Read in the image_data&lt;/h1&gt;
+&lt;p&gt;image_data = tf.gfile.FastGFile(image_path, ‘rb’).read()&lt;/p&gt;
 
-# Loads label file, strips off carriage return
-label_lines = [line.rstrip() for line 
-                   in tf.gfile.GFile(&quot;tf_files/retrained_labels.txt&quot;)]
+&lt;h1 id=&quot;loads-label-file-strips-off-carriage-return&quot;&gt;Loads label file, strips off carriage return&lt;/h1&gt;
+&lt;p&gt;label_lines = [line.rstrip() for line 
+                   in tf.gfile.GFile(“tf_files/retrained_labels.txt”)]&lt;/p&gt;
 
-# Unpersists graph from file
-with tf.gfile.FastGFile(&quot;tf_files/retrained_graph.pb&quot;, &#39;rb&#39;) as f:
+&lt;h1 id=&quot;unpersists-graph-from-file&quot;&gt;Unpersists graph from file&lt;/h1&gt;
+&lt;p&gt;with tf.gfile.FastGFile(“tf_files/retrained_graph.pb”, ‘rb’) as f:
     graph_def = tf.GraphDef()
     graph_def.ParseFromString(f.read())
-    _ = tf.import_graph_def(graph_def, name=&#39;&#39;)
+    _ = tf.import_graph_def(graph_def, name=’’)&lt;/p&gt;
 
-with tf.Session() as sess:
+&lt;p&gt;with tf.Session() as sess:
     # Feed the image_data as input to the graph and get first prediction
-    softmax_tensor = sess.graph.get_tensor_by_name(&#39;final_result:0&#39;)
-    
-    predictions = sess.run(softmax_tensor, \
-             {&#39;DecodeJpeg/contents:0&#39;: image_data})
-    
-    # Sort to show labels of first prediction in order of confidence
-    top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
-    
-    for node_id in top_k:
-        human_string = label_lines[node_id]
-        score = predictions[0][node_id]
-        print(&#39;%s (score = %.5f)&#39; % (human_string, score))
+    softmax_tensor = sess.graph.get_tensor_by_name(‘final_result:0’)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;predictions = sess.run(softmax_tensor, \
+         {&#39;DecodeJpeg/contents:0&#39;: image_data})
+
+# Sort to show labels of first prediction in order of confidence
+top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
+
+for node_id in top_k:
+    human_string = label_lines[node_id]
+    score = predictions[0][node_id]
+    print(&#39;%s (score = %.5f)&#39; % (human_string, score)) ```
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This is where you get the script:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# type &#39;exit&#39; to exit Docker and then:
+&lt;p&gt;&lt;code&gt;
+# type &#39;exit&#39; to exit Docker and then:
 curl -L https://goo.gl/tx3dqg &amp;gt; $HOME/tf_files/label_image.py
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I created a folder in &lt;code&gt;tf_files&lt;/code&gt; called &lt;code&gt;test_images&lt;/code&gt;, where I could store an image that I wanted to run through the model. Then I could restart docker linked to &lt;code&gt;tf_files&lt;/code&gt;,&lt;/p&gt;
+&lt;/code&gt;
+I created a folder in &lt;code&gt;tf_files&lt;/code&gt; called &lt;code&gt;test_images&lt;/code&gt;, where I could store an image that I wanted to run through the model. Then I could restart docker linked to &lt;code&gt;tf_files&lt;/code&gt;,&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ docker run -it -v $HOME/tf_files:/tf_files  gcr.io/tensorflow/tensorflow:latest-devel
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;
+$ docker run -it -v $HOME/tf_files:/tf_files  gcr.io/tensorflow/tensorflow:latest-devel
+&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;and run the following command:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# In Docker
+&lt;p&gt;&lt;code&gt;
+# In Docker
 $ python /tf_files/label_image.py /tf_files/test_images/Campfire.jpg
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Every time an image is passed through, the model returns a probability score for each category. So when I gave it this calming beach campfire image:&lt;/p&gt;
 
@@ -116,11 +253,12 @@ $ python /tf_files/label_image.py /tf_files/test_images/Campfire.jpg
 
 &lt;p&gt;these were the returned scores:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;
-fire (score = 0.86540)
+&lt;p&gt;```bash&lt;/p&gt;
+
+&lt;p&gt;fire (score = 0.86540)
 smoke (score = 0.12902)
 misc (score = 0.00558)
-&lt;/code&gt;&lt;/pre&gt;
+```&lt;/p&gt;
 
 &lt;p&gt;whereas a burning cigarette:&lt;/p&gt;
 
@@ -128,11 +266,12 @@ misc (score = 0.00558)
 
 &lt;p&gt;resulted in this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt; smoke (score = 0.79379)
+&lt;p&gt;```
+ smoke (score = 0.79379)
  fire (score = 0.15999)
- misc (score = 0.04622)
+ misc (score = 0.04622)&lt;/p&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;```&lt;/p&gt;
 
 &lt;p&gt;and a happy raccoon:&lt;/p&gt;
 
@@ -140,16 +279,18 @@ misc (score = 0.00558)
 
 &lt;p&gt;was not much of any of them (although that is some smokey fur…):&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt; smoke (score = 0.48583)
+&lt;p&gt;&lt;code&gt;
+ smoke (score = 0.48583)
  misc (score = 0.28314)
  fire (score = 0.23103)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;I wanted to label a whole bunch of images to test the effectiveness of the model in multiple different areas, so I tweaked the code to run for all the images in the &lt;code&gt;test_images&lt;/code&gt; folder by adding this line inside the tf.Session():&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;for filename in os.listdir(sys.argv[1]):
+&lt;p&gt;&lt;code&gt;python
+for filename in os.listdir(sys.argv[1]):
     if filename.endswith(&quot;.jpg&quot;) or filename.endswith(&quot;.jpeg&quot;): 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;The code worked great, but also revealed some problems with the model. Images that contained a lot of white or light grey were labeled as having a high probability score for ‘smoke’, and despite the &lt;em&gt;fire&lt;/em&gt; dataset containing the most images (almost 2000), fire was not likely to be labeled correctly. Perhaps this was because the majority of fire images from ImageNet were close up of fires in hearths so images containing fire like this one…&lt;/p&gt;
 
@@ -201,6 +342,8 @@ misc (score = 0.00558)
         
         
         <category>Detritus</category>
+        
+        <category>life</category>
         
       </item>
     
@@ -327,31 +470,33 @@ Here starts a new journey. Although I will most definitely be incorporating my m
 
 &lt;p&gt;I chose flickr, specifically the &lt;code&gt;groups.pools.getPhotos&lt;/code&gt; &lt;a href=&quot;flickr.com/services/api/explore/flickr.groups.pools.getPhotos&quot;&gt;API&lt;/a&gt; (even though I had to create a yahoo account in order to use it…) The quality of the images available is much higher than say, &lt;em&gt;imgur&lt;/em&gt;, and the developer toolkit, or &lt;em&gt;‘App Garden’&lt;/em&gt;, is pretty well documented and easy to implement.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
-import requests
+&lt;p&gt;```python&lt;/p&gt;
 
-flickr_key = &#39;&amp;lt;YOUR ACCOUNT KEY&amp;gt;&#39;
-flickr_secret = &#39;&amp;lt;YOUR ACCOUNT SECRET&amp;gt;&#39;
+&lt;p&gt;import requests&lt;/p&gt;
 
-flickr_file = []
+&lt;p&gt;flickr_key = ‘&lt;your account=&quot;&quot; key=&quot;&quot;&gt;&#39;
+flickr_secret = &#39;&lt;your account=&quot;&quot; secret=&quot;&quot;&gt;&#39;&lt;/your&gt;&lt;/your&gt;&lt;/p&gt;
 
-for i in range(10):
-	r = requests.get(&#39;https://api.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&amp;amp;api_key=&amp;lt;API KEY&amp;gt;
-	&amp;amp;group_id=&amp;lt;GROUP ID&amp;gt;&amp;amp;per_page=500&amp;amp;page=&#39;+str(i)+&#39;&amp;amp;format=json&amp;amp;nojsoncallback=1&#39;)
+&lt;p&gt;flickr_file = []&lt;/p&gt;
 
-	flickr_json = r.json()
-	flickr_file.append(flickr_json)
+&lt;p&gt;for i in range(10):
+	r = requests.get(‘https://api.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&amp;amp;api_key=&lt;api key=&quot;&quot;&gt;
+	&amp;amp;group_id=&lt;group&gt;&amp;amp;per_page=500&amp;amp;page=&#39;+str(i)+&#39;&amp;amp;format=json&amp;amp;nojsoncallback=1&#39;)&lt;/group&gt;&lt;/api&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;flickr_json = r.json()
+flickr_file.append(flickr_json) ```
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Using this API returned lots of information regarding each image within a specified ‘group’, which is basically a collection of images with a common theme that you can add to. I then parsed the information that was relevant to me and saved it, so I wouldn’t have to overstay my flickr-api-welcome if it went wrong.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
-img_info = flickr_list[&#39;photos&#39;][&#39;photo&#39;]
+&lt;p&gt;```python&lt;/p&gt;
 
-with open(&#39;flickr.json&#39;, &#39;w&#39;) as outfile:
-	json.dump(flickr_file, outfile)
+&lt;p&gt;img_info = flickr_list[‘photos’][‘photo’]&lt;/p&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;with open(‘flickr.json’, ‘w’) as outfile:
+	json.dump(flickr_file, outfile)&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
 
 &lt;p&gt;I then had to compile URLs that pointed to each image so that they could be downloaded, but the format that flickr provided didn’t work. However, looking at the page source…&lt;/p&gt;
 
@@ -365,26 +510,28 @@ with open(&#39;flickr.json&#39;, &#39;w&#39;) as outfile:
 
 &lt;p&gt;The Google Vision API requires you to &lt;em&gt;either&lt;/em&gt; use images that are stored in Google Storage, &lt;em&gt;or&lt;/em&gt; send in the base64 encoded image as a string. So I downloaded the image at each URL using &lt;code&gt;shutil&lt;/code&gt;, base64 encoded it using &lt;code&gt;b64&lt;/code&gt; and then sent that string to Google.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
-import shutil
-import b64
+&lt;p&gt;```python&lt;/p&gt;
 
-b64_strings = [] # create list of b64_strings
+&lt;p&gt;import shutil
+import b64&lt;/p&gt;
 
-for url in urls:
+&lt;p&gt;b64_strings = [] # create list of b64_strings&lt;/p&gt;
 
-	response = requests.get(url, stream=True)
-	
-	with open(&#39;img.png&#39;, &#39;wb&#39;) as f:
-		shutil.copyfileobj(response.raw, f)
+&lt;p&gt;for url in urls:&lt;/p&gt;
 
-	with open(&#39;img.png&#39;, &#39;rb&#39;) as f:
-		encoded_string = base64.b64encode(f.read())
+&lt;pre&gt;&lt;code&gt;response = requests.get(url, stream=True)
 
-		b64_strings.append(encoded_string)
+with open(&#39;img.png&#39;, &#39;wb&#39;) as f:
+	shutil.copyfileobj(response.raw, f)
 
-del response
+with open(&#39;img.png&#39;, &#39;rb&#39;) as f:
+	encoded_string = base64.b64encode(f.read())
+
+	b64_strings.append(encoded_string)
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;del response
+```&lt;/p&gt;
 
 &lt;p&gt;Actually, I started off going through the process step by step, and saving along the way with the intention of turning it into a smooth running pipeline at the end. First I wanted to test whether each step worked without having to repeat any working processes. Because the name of the stored image, &lt;code&gt;img.png&lt;/code&gt; remained the same, it was replaced at each iteration and I didn’t hold onto anything in memory that I didn’t need to.&lt;/p&gt;
 
@@ -392,21 +539,22 @@ del response
 
 &lt;p&gt;In order to use the API from my remote server, I had to create an environmental variable called ‘GOOGLE_APPLICATION_CREDENTIALS’ pointing to the file where my credentials were stored. You can see below, you just use &lt;code&gt;os&lt;/code&gt; to do this. When you create your credentials with Google, a JSON file is automatically downloaded to your computer so just make sure that’s in the right directory.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
-import os 
+&lt;p&gt;```python&lt;/p&gt;
+
+&lt;p&gt;import os 
 from googleapiclient import discovery 
-from oauth2client.client import GoogleCredentials 
+from oauth2client.client import GoogleCredentials&lt;/p&gt;
 
-DISCOVERY_URL = &#39;https://vision.googleapis.com/$discovery/rest?version=v1&#39;
-# because I was using the google vision API
+&lt;p&gt;DISCOVERY_URL = ‘https://vision.googleapis.com/$discovery/rest?version=v1’
+# because I was using the google vision API&lt;/p&gt;
 
-os.environ[&#39;GOOGLE_APPLICATION_CREDENTIALS&#39;] = &#39;&amp;lt;json file where your credentials are stored&amp;gt;&#39;
+&lt;p&gt;os.environ[‘GOOGLE_APPLICATION_CREDENTIALS’] = ‘&lt;json file=&quot;&quot; where=&quot;&quot; your=&quot;&quot; credentials=&quot;&quot; are=&quot;&quot; stored=&quot;&quot;&gt;&#39;&lt;/json&gt;&lt;/p&gt;
 
-credentials = GoogleCredentials.get_application_default()	
+&lt;p&gt;credentials = GoogleCredentials.get_application_default()&lt;/p&gt;
 
-service = discovery.build(&#39;vision&#39;, &#39;v1&#39;, credentials=credentials, discoveryServiceUrl=DISCOVERY_URL)
+&lt;p&gt;service = discovery.build(‘vision’, ‘v1’, credentials=credentials, discoveryServiceUrl=DISCOVERY_URL)&lt;/p&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;```&lt;/p&gt;
 
 &lt;p&gt;You can play around with the parameters a bit and specify what kind of detection you want (e.g. face, landmark, text). But I was just interested in animals so I set it to standard &lt;code&gt;&#39;LABEL_DETECTION&#39;&lt;/code&gt;. I then set the parameters to max 5 labels per image, and saved the results in a python dictionary along with the score of that label and the url in a tuple, so that when it came to front end, I could return results by score and show the corresponding image.&lt;/p&gt;
 
@@ -414,23 +562,25 @@ service = discovery.build(&#39;vision&#39;, &#39;v1&#39;, credentials=credential
 
 &lt;p&gt;Every now and again a differently formatted or failed result would be returned so I introduced a conditional &lt;code&gt;if&lt;/code&gt; statement where it would also tell me if an image had been skipped. That way I would know that there was something wrong with my code or the request if too many were being skipped.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
-googlers = []
+&lt;p&gt;```python&lt;/p&gt;
 
-for string in b64_strings:
+&lt;p&gt;googlers = []&lt;/p&gt;
 
-	service_request = service.images().annotate(body={&#39;requests&#39;: [{&#39;image&#39;: {&#39;content&#39;: string.decode(&#39;UTF-8&#39;)},&#39;features&#39;: [{&#39;type&#39;: &#39;LABEL_DETECTION&#39;,&#39;maxResults&#39;: 5}]}]})
+&lt;p&gt;for string in b64_strings:&lt;/p&gt;
 
-	response = service_request.execute()
+&lt;pre&gt;&lt;code&gt;service_request = service.images().annotate(body={&#39;requests&#39;: [{&#39;image&#39;: {&#39;content&#39;: string.decode(&#39;UTF-8&#39;)},&#39;features&#39;: [{&#39;type&#39;: &#39;LABEL_DETECTION&#39;,&#39;maxResults&#39;: 5}]}]})
 
-	if &#39;labelAnnotations&#39; in response[&#39;responses&#39;][0]:
-		labels = response[&#39;responses&#39;][0][&#39;labelAnnotations&#39;]
-		print(&#39;string :&#39;+ str(i))
-	else:
-		print(&#39;SKIPPED string : &#39; +str(i))
-	googlers.append(labels)
+response = service_request.execute()
 
+if &#39;labelAnnotations&#39; in response[&#39;responses&#39;][0]:
+	labels = response[&#39;responses&#39;][0][&#39;labelAnnotations&#39;]
+	print(&#39;string :&#39;+ str(i))
+else:
+	print(&#39;SKIPPED string : &#39; +str(i))
+googlers.append(labels)
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;```&lt;/p&gt;
 
 &lt;p&gt;Loads of the labels were not relevant to my own search criteria. As this needed to be an animal classifier, I was only really interested in animal images and animal labels. Originally I wanted to find a way to filter out irrelevant labels. Until I realised how much fun Google’s misidentification could be.&lt;/p&gt;
 
@@ -454,13 +604,14 @@ for string in b64_strings:
 
 &lt;p&gt;Setting up a firebase project was easy, and I had a google project associated with the challenge and the Google Vision API already so I just linked the two togethere (there’s a button for that) and navigated to the Database tab. As I had saved the dictionary as a JSON file, I could just import it into the firebase database manually and the result looked like this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
-import json
+&lt;p&gt;```python&lt;/p&gt;
 
-with open(&#39;firebase.json&#39;, &#39;w&#39;) as file:
-	json.dump(dict_for_firebase, file)
+&lt;p&gt;import json&lt;/p&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;with open(‘firebase.json’, ‘w’) as file:
+	json.dump(dict_for_firebase, file)&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/Screenshot_fb.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -474,65 +625,68 @@ with open(&#39;firebase.json&#39;, &#39;w&#39;) as file:
 
 &lt;p&gt;In the HTML file you need to authorise your firebase access like so:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;
-    &amp;lt;script src=&quot;https://www.gstatic.com/firebasejs/3.3.0/firebase.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
-      &amp;lt;script&amp;gt;
+&lt;p&gt;```html&lt;/p&gt;
 
-    // Initialize Firebase
+&lt;pre&gt;&lt;code&gt;&amp;lt;script src=&quot;https://www.gstatic.com/firebasejs/3.3.0/firebase.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script&amp;gt;
 
-    var config = {
-      apiKey: &quot;&amp;lt;API KEY&amp;gt;&quot;,
-      authDomain: &quot;&amp;lt;PROJECT NAME&amp;gt;.firebaseapp.com&quot;,
-      databaseURL: &quot;https://&amp;lt;PROJECT NAME&amp;gt;.firebaseio.com&quot;,
-      storageBucket: &quot;&amp;lt;PROJECT NAME&amp;gt;.appspot.com&quot;,
-    };
-    
-    firebase.initializeApp(config);
+// Initialize Firebase
 
-  &amp;lt;/script&amp;gt;
+var config = {
+  apiKey: &quot;&amp;lt;API KEY&amp;gt;&quot;,
+  authDomain: &quot;&amp;lt;PROJECT NAME&amp;gt;.firebaseapp.com&quot;,
+  databaseURL: &quot;https://&amp;lt;PROJECT NAME&amp;gt;.firebaseio.com&quot;,
+  storageBucket: &quot;&amp;lt;PROJECT NAME&amp;gt;.appspot.com&quot;,
+};
+
+firebase.initializeApp(config);
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;lt;/script&amp;gt;
+```&lt;/p&gt;
 
 &lt;p&gt;Then the connection to the firebase database is established in the javascript file. I did this using &lt;code&gt;firebase.database.ref()&lt;/code&gt;, specifying where in your database I want to get to. I had &lt;code&gt;searchID&lt;/code&gt; so that I could change the input depending on the label that the user would type into the search bar.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;
-function getSearchImages(searchID){
-	var animalRef = firebase.database().ref(&#39;data/&#39;+searchID+&#39;/&#39;);
-	animalRef.on(&#39;value&#39;, function(snapshot) {
-  
+&lt;p&gt;```javascript&lt;/p&gt;
+
+&lt;p&gt;function getSearchImages(searchID){
+	var animalRef = firebase.database().ref(‘data/’+searchID+’/’);
+	animalRef.on(‘value’, function(snapshot) {&lt;/p&gt;
+
   		var response = snapshot.val();
   		for (var index in response) {
-    		addImage(response[index][1]);
+&lt;pre&gt;&lt;code&gt;		addImage(response[index][1]);
   		}
-	});
-};
-
+}); };
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;```&lt;/p&gt;
 
 &lt;p&gt;Because some of the labels returned by Google Vision were pretty specific or obscure (ahum… &lt;em&gt;‘hofmannophila pseudospretella’&lt;/em&gt;, &lt;em&gt;‘nova scotia duck tolling retriever’&lt;/em&gt;, &lt;em&gt;‘small to medium sized cats’&lt;/em&gt;) I wanted to have an autocomplete function in the search bar. This was made possible with some magical jQuery with a &lt;a href=&quot;https://jqueryui.com/autocomplete/&quot;&gt;UI widget&lt;/a&gt;. Upon pressing enter or choosing from the drop-down suggestions, the relevant images could be loaded.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+&lt;p&gt;```javascript&lt;/p&gt;
 
-$(function() {
-	var nameRef = firebase.database().ref(&#39;labels/&#39;)
-	nameRef.on(&#39;value&#39;, function(snapshot) {
-		var names = snapshot.val()
+&lt;p&gt;$(function() {
+	var nameRef = firebase.database().ref(‘labels/’)
+	nameRef.on(‘value’, function(snapshot) {
+		var names = snapshot.val()&lt;/p&gt;
 
-	    $(&quot;#tags&quot;).autocomplete({
-	    	source: names,
-	    	focus: function( event, ui ) {
-		    	$( &quot;#tags&quot; ).val( ui.item.label );
-		      	return false;
-		    },
-	    	select: function(event, ui){
-	    		var searchID = ui.item.value
-	    		clearImages();
-	    		getSearchImages(searchID);
-			}
-		})
+&lt;pre&gt;&lt;code&gt;    $(&quot;#tags&quot;).autocomplete({
+    	source: names,
+    	focus: function( event, ui ) {
+	    	$( &quot;#tags&quot; ).val( ui.item.label );
+	      	return false;
+	    },
+    	select: function(event, ui){
+    		var searchID = ui.item.value
+    		clearImages();
+    		getSearchImages(searchID);
+		}
 	})
-});
-
+}) });
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;```&lt;/p&gt;
 
 &lt;h3 id=&quot;future-and-improvements&quot;&gt;future and improvements&lt;/h3&gt;
 
@@ -704,83 +858,6 @@ $(function() {
         <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
         <link>/articles/2016-06/Overfishing</link>
         <guid isPermaLink="true">/articles/2016-06/Overfishing</guid>
-        
-        
-        <category>Metis Projects</category>
-        
-      </item>
-    
-      <item>
-        <title>words and power</title>
-        <description>&lt;h4 id=&quot;background&quot;&gt;Background&lt;/h4&gt;
-
-&lt;p&gt;Natural Language Processing is one of the reasons I love data science. Perhaps because every level of it has some semantic value. There is information that is intricately tied to your upbringing, experience, perception of the world, in every word, every sentence. The data doesn’t necessarily have to be large to be more meaningful to you. For example, 
-an incredible poem with an enormous amount of information regardless of how many words are there.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;“For sale: baby shoes, never worn.” - Ernest Hemmingway&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;And as the number of varying words we have available to us increases, the complexity increases, we can pick up currents of new information. Glean insights into crowd behaviours and perceptions. A window into the workings of an individual on one level, and into the workings of an entire organisation, country or culture on another level.&lt;/p&gt;
-
-&lt;p&gt;Now I have waxed myself lyrical, I’ll move on to the NLP project I undertook.&lt;/p&gt;
-
-&lt;p&gt;I grew up in Scotland. And in recent years there’s been some interesting controversy up there. Scotland became swallowed up by Britain in the 18th Century and hasn’t fully recovered (emotionally) since. And though Scotland benefits financially from the union with England, politically and socially it is a very bad pairing. Scotland is a far more socialist country than England. It is also a country well-loved by left-leaning hippy types which makes it a beautiful, creative and low-key country. England has a population 10 times that of Scotland, and though I love England too, I find my love largely directed at London where diversity and creativity is at a peak. But the majority of England is politically right-minded.&lt;/p&gt;
-
-&lt;p&gt;So in 2014 Scotland held a long-awaited independence referendum. The sentiment was clear, the leave campaign was far louder but there were many of us who felt we were better together and devolution was a better choice. The Scottish National Party instigated the referendum and this party was led by Alex Salmond, a target for the media and a seemingly spiteful and resentable man. Leave lost, 49 to 51%. After this heavy disappointed for half of the country, Salmond resigned and Nicola Sturgeon took his place as leader of the SNP party. In the 8 months that followed, Sturgeon gained massive support from leavers and remainers alike and in the 2015 General Election the SNP won 97% of the seats in Scotland. This map clearly highlights the extent of her total domination of the country:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://static.independent.co.uk/s3fs-public/thumbnails/image/2014/11/15/16/v2-sturgeon-pa.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;the-question&quot;&gt;The Question&lt;/h4&gt;
-
-&lt;p&gt;My question is, how did she pull it off? And is it possible to see changes in the way that people talked about the SNP before and after the referendum and leading up to the election that meant that &lt;em&gt;even though&lt;/em&gt; the majority of the country had voiced their opinion as contradicting the &lt;strong&gt;main&lt;/strong&gt; incentive of the SNP, they still voted them in. Everywhere.&lt;/p&gt;
-
-&lt;p&gt;My approach here was two-fold. I wanted to look at what Sturgeon and Salmond had said, and also at what the papers had said.&lt;/p&gt;
-
-&lt;h4 id=&quot;limitations&quot;&gt;Limitations&lt;/h4&gt;
-
-&lt;p&gt;Now there were many constraints here that meant that these were limited. Time being the main one. Also, the transcripts of public speeches of Sturgeon and Salmond weren’t as readily available as I’d hoped and the best thing I could find was the General Election debate which included Sturgeon and 5 other party leaders. The other was limited in that the Guardian is the only UK newspaper with an API. So my newspaper representation of the case was limited to that one newspaper.&lt;/p&gt;
-
-&lt;h4 id=&quot;the-approach&quot;&gt;The approach&lt;/h4&gt;
-
-&lt;p&gt;I wanted some practice using Amazon Web Services so I decided to do all the newspaper stuff on an AWS instance using vim from my terminal. This involved setting up an instance and _ssh_ing into it whenever I wanted to work on that part of the project. I then used &lt;a href=&quot;http://stackoverflow.com/questions/11304895/how-to-scp-a-folder-from-remote-to-local&quot;&gt;&lt;code&gt;scp -i&lt;/code&gt;&lt;/a&gt; to copy things from the instance to my local computer when I wanted to visualise or present.&lt;/p&gt;
-
-&lt;p&gt;I used the Guardian API to request all links to pages containing content on &lt;strong&gt;Scottish Independence&lt;/strong&gt;, &lt;strong&gt;Scottish referendum&lt;/strong&gt;, &lt;strong&gt;Nicola Sturgeon&lt;/strong&gt; and &lt;strong&gt;Alex Salmond&lt;/strong&gt;. This returned about 35,000 links which were categorised into articles, web blogs, video, images and interactive. I just wanted to use the articles, so I took the article links and fed them into a &lt;a href=&quot;http://newspaper.readthedocs.io/en/latest/&quot;&gt;Newspaper&lt;/a&gt; scraper that I built to collect the article text.&lt;/p&gt;
-
-&lt;p&gt;It kept tripping up and throwing an error so I introduced a neat little trick to keep it running.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;
-for val in GuardianArticles[&#39;article&#39;]:
-        try:
-                a = Article(val[1])
-                a.download()
-                a.parse()
-                a.nlp()
-
-                article={ &quot;url&quot;: val[1],
-                        &quot;text&quot;:a.text,
-                        &quot;keywords&quot;:a.keywords,
-                        &quot;authors&quot; : a.authors,
-                        &quot;date&quot; : val[0] }
-
-                article_id = guardian_articles.insert_one(article)
-                print(article_id)
-
-        except:
-                print(&#39;pass&#39;)
-                pass
-
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Using &lt;code&gt;try:, except: Pass&lt;/code&gt;, when the scraper encountered an article that didn’t fit the bill, it would just skip over it. I included &lt;code&gt;print(&#39;pass&#39;)&lt;/code&gt; and a counter so I could see how many didn’t work. Luckily it was a tiny percentage of the total number of articles. Some 40 links out of 18,000.&lt;/p&gt;
-
-&lt;p&gt;When plotted across a timeline we can see a that in general, the number of available articles on the topic is skewed towards more recent years. In addition, we can see a spike in the number of articles on the day of the referendum in 2014 and the general election in 2015. Just what would be expected.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://github.com/deenhe91/deenhe91.github.io/blob/master/images/articledistribution.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 31 May 2016 00:00:00 +0000</pubDate>
-        <link>/articles/2016-05/WordsandPower</link>
-        <guid isPermaLink="true">/articles/2016-05/WordsandPower</guid>
         
         
         <category>Metis Projects</category>

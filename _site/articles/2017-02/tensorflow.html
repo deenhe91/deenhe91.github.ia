@@ -152,75 +152,81 @@ I used ImageNet to get my dataset. The image set for fire that I downloaded unsu
 <h4 id="four-get-inception-code">four: get inception code</h4>
 <p>The we have to retrieve the code for the Inception v3 framework…</p>
 
-<pre><code class="language-bash">cd /tensorflow
+<p><code>bash
+cd /tensorflow
 git pull
-</code></pre>
+</code></p>
 
 <h4 id="five-retrain-the-model">five: retrain the model</h4>
 
-<pre><code class="language-bash"># In Docker
+<p><code>bash
+# In Docker
 python tensorflow/examples/image_retraining/retrain.py \
 --bottleneck_dir=/tf_files/bottlenecks \
 --model_dir=/tf_files/inception \
 --output_graph=/tf_files/retrained_graph.pb \
 --output_labels=/tf_files/retrained_labels.txt \
 --image_dir /tf_files/&lt;imageset folder&gt;
-</code></pre>
-<p>This will set off the process. <strong>It’s that simple!</strong>. This process takes a little while, maybe half an hour. It generates ‘bottlenecks’. This is the term used for the layer just before the final output layer that we retrain to do the classification. The values are stored in <code>/tmp/bottleneck</code> so if you ever need to retrain again those values don’t have to be calculated.</p>
+</code>
+This will set off the process. <strong>It’s that simple!</strong>. This process takes a little while, maybe half an hour. It generates ‘bottlenecks’. This is the term used for the layer just before the final output layer that we retrain to do the classification. The values are stored in <code>/tmp/bottleneck</code> so if you ever need to retrain again those values don’t have to be calculated.</p>
 
 <p>By default, the script runs 4000 training steps, but this can be adjusted. At each iteration, 10 images are picked at random from the training set and fed into the final prediction layer. The predictions are checked for accuracy by comparing them to the actual labels and then the final layer’s weights are updated accordingly through back-propogation. It’s quite fun to watch the accuracy score change as they are printed during training. There are two types of accuracy, the <strong>training accuracy</strong> and the <strong>validation accuracy</strong>. The validation accuracy is the important one. That’s the one that looks at test images, i.e. labeled images that the model hasn’t been trained on. The training accuracy is also important but a high score for that could mean the model is overfitting. Both the training and validation accuracies should be high before it is a reliable model.</p>
 
 <p>The model ran for 4000 iterations, completing with a <code>final test accuracy</code> of <code>94.4%</code>. I wanted to test it myself so downloaded a selection of images to run through the model and see what results it would give. Google codelabs provides you will a little python script that you can just curl neatly into a file called <code>label_image.py</code> and store in the <code>tf_files</code> folder.</p>
 
-<pre><code class="language-python">import tensorflow as tf, sys
+<p>```python
+import tensorflow as tf, sys</p>
 
-# change this as you see fit
-image_path = sys.argv[1]
+<h1 id="change-this-as-you-see-fit">change this as you see fit</h1>
+<p>image_path = sys.argv[1]</p>
 
-# Read in the image_data
-image_data = tf.gfile.FastGFile(image_path, 'rb').read()
+<h1 id="read-in-the-imagedata">Read in the image_data</h1>
+<p>image_data = tf.gfile.FastGFile(image_path, ‘rb’).read()</p>
 
-# Loads label file, strips off carriage return
-label_lines = [line.rstrip() for line 
-                   in tf.gfile.GFile("tf_files/retrained_labels.txt")]
+<h1 id="loads-label-file-strips-off-carriage-return">Loads label file, strips off carriage return</h1>
+<p>label_lines = [line.rstrip() for line 
+                   in tf.gfile.GFile(“tf_files/retrained_labels.txt”)]</p>
 
-# Unpersists graph from file
-with tf.gfile.FastGFile("tf_files/retrained_graph.pb", 'rb') as f:
+<h1 id="unpersists-graph-from-file">Unpersists graph from file</h1>
+<p>with tf.gfile.FastGFile(“tf_files/retrained_graph.pb”, ‘rb’) as f:
     graph_def = tf.GraphDef()
     graph_def.ParseFromString(f.read())
-    _ = tf.import_graph_def(graph_def, name='')
+    _ = tf.import_graph_def(graph_def, name=’’)</p>
 
-with tf.Session() as sess:
+<p>with tf.Session() as sess:
     # Feed the image_data as input to the graph and get first prediction
-    softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
-    
-    predictions = sess.run(softmax_tensor, \
-             {'DecodeJpeg/contents:0': image_data})
-    
-    # Sort to show labels of first prediction in order of confidence
-    top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
-    
-    for node_id in top_k:
-        human_string = label_lines[node_id]
-        score = predictions[0][node_id]
-        print('%s (score = %.5f)' % (human_string, score))
+    softmax_tensor = sess.graph.get_tensor_by_name(‘final_result:0’)</p>
+
+<pre><code>predictions = sess.run(softmax_tensor, \
+         {'DecodeJpeg/contents:0': image_data})
+
+# Sort to show labels of first prediction in order of confidence
+top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
+
+for node_id in top_k:
+    human_string = label_lines[node_id]
+    score = predictions[0][node_id]
+    print('%s (score = %.5f)' % (human_string, score)) ```
 </code></pre>
 
 <p>This is where you get the script:</p>
 
-<pre><code># type 'exit' to exit Docker and then:
+<p><code>
+# type 'exit' to exit Docker and then:
 curl -L https://goo.gl/tx3dqg &gt; $HOME/tf_files/label_image.py
-</code></pre>
-<p>I created a folder in <code>tf_files</code> called <code>test_images</code>, where I could store an image that I wanted to run through the model. Then I could restart docker linked to <code>tf_files</code>,</p>
+</code>
+I created a folder in <code>tf_files</code> called <code>test_images</code>, where I could store an image that I wanted to run through the model. Then I could restart docker linked to <code>tf_files</code>,</p>
 
-<pre><code>$ docker run -it -v $HOME/tf_files:/tf_files  gcr.io/tensorflow/tensorflow:latest-devel
-</code></pre>
+<p><code>
+$ docker run -it -v $HOME/tf_files:/tf_files  gcr.io/tensorflow/tensorflow:latest-devel
+</code></p>
 
 <p>and run the following command:</p>
 
-<pre><code># In Docker
+<p><code>
+# In Docker
 $ python /tf_files/label_image.py /tf_files/test_images/Campfire.jpg
-</code></pre>
+</code></p>
 
 <p>Every time an image is passed through, the model returns a probability score for each category. So when I gave it this calming beach campfire image:</p>
 
@@ -228,11 +234,12 @@ $ python /tf_files/label_image.py /tf_files/test_images/Campfire.jpg
 
 <p>these were the returned scores:</p>
 
-<pre><code class="language-bash">
-fire (score = 0.86540)
+<p>```bash</p>
+
+<p>fire (score = 0.86540)
 smoke (score = 0.12902)
 misc (score = 0.00558)
-</code></pre>
+```</p>
 
 <p>whereas a burning cigarette:</p>
 
@@ -240,11 +247,12 @@ misc (score = 0.00558)
 
 <p>resulted in this:</p>
 
-<pre><code> smoke (score = 0.79379)
+<p>```
+ smoke (score = 0.79379)
  fire (score = 0.15999)
- misc (score = 0.04622)
+ misc (score = 0.04622)</p>
 
-</code></pre>
+<p>```</p>
 
 <p>and a happy raccoon:</p>
 
@@ -252,16 +260,18 @@ misc (score = 0.00558)
 
 <p>was not much of any of them (although that is some smokey fur…):</p>
 
-<pre><code> smoke (score = 0.48583)
+<p><code>
+ smoke (score = 0.48583)
  misc (score = 0.28314)
  fire (score = 0.23103)
-</code></pre>
+</code></p>
 
 <p>I wanted to label a whole bunch of images to test the effectiveness of the model in multiple different areas, so I tweaked the code to run for all the images in the <code>test_images</code> folder by adding this line inside the tf.Session():</p>
 
-<pre><code class="language-python">for filename in os.listdir(sys.argv[1]):
+<p><code>python
+for filename in os.listdir(sys.argv[1]):
     if filename.endswith(".jpg") or filename.endswith(".jpeg"): 
-</code></pre>
+</code></p>
 
 <p>The code worked great, but also revealed some problems with the model. Images that contained a lot of white or light grey were labeled as having a high probability score for ‘smoke’, and despite the <em>fire</em> dataset containing the most images (almost 2000), fire was not likely to be labeled correctly. Perhaps this was because the majority of fire images from ImageNet were close up of fires in hearths so images containing fire like this one…</p>
 
