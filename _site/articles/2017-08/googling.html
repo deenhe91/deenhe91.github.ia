@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>playing nice with the google bigquery python client library</title>
+  <meta name="description" content="Google Cloud Platform can be great, but there are so many hoops you have to jump through before it is great, and many of those hoops are not well documented ...">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="canonical" href="/articles/2017-08/googling">
+  <link rel="alternate" type="application/rss+xml" title="Hannah" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/madfun2.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">Hannah Deen</a>
+  <span class="author_job">data scientist: Amsterdam, London, NYC</span>
+  <span class="author_bio mbm"></span>
+  <nav class="nav">
+    <ul class="nav-list">
+       
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:hannah.deen91@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/deenhe" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/deenhe91" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <div class="back-home">
+  <a href="/">< back Home.</a>
+</div>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "http://motiongraphics.nu/wp-content/uploads/2016/06/google-bigquery-analytics-data-w.jpg"
+  
+  alt="playing nice with the google bigquery python client library feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="playing nice with the google bigquery python client library">playing nice with the google bigquery python client library</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        10 AUG 2017
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    4 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h1 id="todays-topic-bigquery">Today’s topic: BigQuery!</h1>
+
+<p>For those of you who don’t know, <em>“BigQuery is Google’s fully managed, petabyte scale, low cost enterprise data warehouse for analytics”</em>. It’s a serverless SQL database that supports nested data structures and user-defined functions, which means you can write extra little functions in javascript and incorporate them into your query. It is pretty neat. It’s super fast, which, having entered the IT industry about a year ago, I didn’t realise just how relieving that speed is for so many companies. And you can just log in online and query away, no drivers or connectors.</p>
+
+<p>So, how do you fill a BigQuery table using python?</p>
+
+<h2 id="before-we-start">Before we start</h2>
+<p>### enable the API</p>
+
+<p>If you are using the client library for BigQuery, you also need a project in your Google Cloud Platform account (which you set up with you gmail account, no way around that..). Make sure that you have checked in the API Manager to see whether the cloud BigQuery API is enabled. If it’s not, you’ll get all sorts of funky errors when you try and use it.</p>
+
+<h3 id="credentials">credentials!</h3>
+
+<p>Another thing that helps is having credentials downloaded. You can go to the credentials tab in the API Manager and create credentials. Click on <em>‘help me choose’</em> and answer the questions and some API creds will be created for you. Download the json, and in your code, create an environmental variable that points to the json file.</p>
+
+<p>```python
+import os</p>
+
+<p>os.environ[‘GOOGLE_APPLICATION_CREDENTIALS’] = ‘&lt;path/to/json/file&gt;’
+```
+Another thing you should do is make sure you have the <a href="https://cloud.google.com/sdk/downloads">SDK</a> installed and have authenticated with that &gt; <code>gcloud auth login</code>. Then set the current project to your project &gt; <code>gcloud config set project &lt;your_project_id&gt;</code></p>
+
+<h2 id="setting-up">Setting up</h2>
+<p>### schemas</p>
+
+<p>When creating and filling our table, we need to describe the schema of the table. We do this by importing the class <code>SchemaField</code> and generating a list
+of SchemaField classes with the name, type and mode (if needed), defined. The name, is the column - or field - name, the type is ‘STRING’, ‘FLOAT’, ‘DATE’, etc., and the mode is whether the row is ‘REPEATED’, ‘NULLABLE’ or ‘REQUIRED’.</p>
+
+<p>```python
+from google.cloud.bigquery.schema import SchemaField</p>
+
+<p>SCHEMA = [SchemaField(“size”, “FLOAT”), #column name ‘size’ as a float
+		SchemaField(“colour”, “STRING”), # column name ‘colour’ as a string
+		SchemaField(“curvature”, “INTEGER”), # column name ‘curvature’ as an integer
+		SchemaField(“best_before”, “DATE”)] # column name ‘best_before’ as a date
+```</p>
+
+<h3 id="instantiate">instantiate</h3>
+
+<p>Now we set up our client and connection. We have a dataset called “fruit”, and are looking to fill one table within that dataset called “banana”
+with our juicy data.</p>
+
+<p>```python
+import google-cloud-bigquery</p>
+
+<p>client = bigquery.Client()</p>
+
+<p>dataset = client.dataset(“fruit”)
+if not dataset.exists():
+	dataset.create()</p>
+
+<p>table = dataset.table(“banana”, SCHEMA) # see below
+if not table.exists():
+	table.create()</p>
+
+<p>```
+Check that your dataset and table have been created in BigQuery and with the correct schema. You can also make empty tables in the UI if you prefer.</p>
+
+<h4 id="nested-and-repeated-data">nested and repeated data</h4>
+
+<p>If we want to wap in a list as one of the columns, we do that by assiging the mode as ‘REPEATED’.</p>
+
+<p><code>python
+SchemaField("bruises", "STRING", "REPEATED") # column name 'bruises' as a list of strings
+</code>
+For nested data, you say the type is a record and nest SchemaFields to represent the structure.</p>
+
+<p><code>python
+SchemaField("bruises", "RECORD", "REPEATED", fields=[
+													SchemaField("shape", "STRING"),
+													SchemaField("colour", "STRING"),
+													SchemaField("size", "FLOAT")
+													])
+</code>
+### tuples and dictionaries
+Now for the data itself. You can structure the data as a tuple, with the data points in the order that matches the <code>SCHEMA</code>, or, you
+can have it in json format, with the keys in the dictionary matches the field names in the <code>SCHEMA</code>.
+```python
+# THIS:</p>
+
+<p>ROW = (0.6, “YELLOW”, “3”, 2017-09-10, [dict(shape=”BLOB”, colour=”BROWN”, size=0.2)])</p>
+
+<h1 id="or-that">OR THAT:</h1>
+
+<p>ROW = {
+	“size”: 0.6,
+	“colour”: “YELLOW”,
+	“curvature”: 3,
+	“best_before”: 2017-09-10,
+	“bruises” : {
+			“shape”:”BLOB”,
+			“colour”: “BROWN”,
+			“size” : 0.2</p>
+
+<pre><code>} }
+</code></pre>
+
+<p>```
+NOte that floats and integers can be a bit of a bitch to insert. Make sure that the floats/integers are scalar values, not numpy values and
+that you have no <code>nan</code>s, only <code>None</code>s.</p>
+
+<h3 id="inserting-the-data">inserting the data</h3>
+<p>Store your data tuples or dictionaries in a list <code>MY_ROWS</code> and go ahead and insert them using <code>table.insert_data([MY_ROWS])</code>.
+If it works you should be able to see rows in the streaming buffer in the BigQuery UI by clicking on your table and on <em>‘Details’</em>.</p>
+
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2017-08/googling" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2017-08/googling" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2017-08/googling" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2017-08/googling" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2017-08/googling" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2017 Hannah Deen. Powered by <a href="http://jekyllrb.com/">Jekyll</a>, <a href="http://github.com/renyuanz/leonids/">leonids theme</a> made with <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+</body>
+</html>

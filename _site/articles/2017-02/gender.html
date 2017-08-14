@@ -168,7 +168,7 @@ f_ratio = []</p>
 </code></p>
 
 <p>Nice, huh?
-It assumes that a minute of dialogue is approximately 14 lines (using average speaking pace of 140 words/min, and average 10 words/line). Each number in the string there represents the number of lines spoken by a male every half minute. So, what I calculate there as <code>f ratio</code>, is the <em>maximum</em> number of lines a woman could possibly speak in a film, if she spoke during every available second. A generous estimate, comprendez? By the way, the above lines correspond to <em>Avatar</em>, 2009, for which the ratio is <code>0.52</code>.</p>
+It assumes that a minute of dialogue is approximately 14 lines (using average speaking pace of 140 words/min, and average 10 words/line). Each number in the string there represents the number of lines spoken by a male every half minute. So, what I calculate there as <code>f ratio</code>, is the <em>maximum</em> number of lines a woman could possibly speak in a film, if she spoke during every available second. A generous estimate. By the way, the above lines correspond to <em>Avatar</em>, 2009, for which the ratio is <code>0.52</code>.</p>
 
 <p>Ok, moving on. I had to create dummy variables of the genres. This means generating a column for each genre and assigning a 1 if the movie is of that genre and a 0 if it’s not. But I had 67 genres so this enlarged my feature space by quite a bit and I didn’t want to make life too difficult for myself.</p>
 
@@ -209,7 +209,7 @@ mojo_df["movie"] = mojo_df["year"].map(str) + " " + mojo_df["title"]
 merged_df = pd.merge(mojo_df, polygraph_df, on=['movie'])
 </code></p>
 
-<p>As there is so much to consider when predicting the specific year that a movie comes out, I helped myself a little by predicting the era instead. By taking this approach, the problem becomes one of classification as I now have to show which discrete category a movie belongs to. First to sort the movies:</p>
+<p>As there is so much to consider when predicting the specific year that a movie comes out, I thought it would be just as informative but also easier to predict the era of a movie instead. By taking this approach, the problem becomes one of classification as I now have to show which discrete category a movie belongs to. First to sort the movies:</p>
 
 <p>```python
 eras = [str(year)[2] for year in merged_df[‘year’]]
@@ -229,16 +229,13 @@ merged_df[‘era’] = eras</p>
   9    264
 ```</p>
 
-<p>By performing the sum() function on the intercept column (which is a list on ones), I found that the 30s, 40s, 50s and 60s each contained fewer than 5 movies - that sample size is too small so I binned them. Now I was focusing on the 70s, 80s, 90s, 00s and 10s. I plotted the mean female-male ratio of all the movies in each era, which gave me this:</p>
+<p>By performing the sum() function on the intercept column (which is a list of ones), I found that the 30s, 40s, 50s and 60s each contained fewer than 5 movies - that sample size is too small so I binned them. Now I was focusing on the 70s, 80s, 90s, 00s and 10s. I plotted the mean female-male ratio of all the movies in each era, which gave me this:</p>
 
 <p><img src="https://github.com/deenhe91/deenhe91.github.io/blob/master/images/era_ratio.png?raw=true" alt="" /></p>
 
 <p>That seems like a pretty convincing trend, doesn’t it? Not conclusive by any means, but we can see that the mean ratio increases steadily at every era. So there’s hope!</p>
 
-<!-- stratified test/train split -->
-<!-- what can you do about varied category sizes? -->
-
-<iframe src="https://raw.githubusercontent.com/deenhe91/deenhe91.github.io/master/images/eras.html"></iframe>
+<!-- <iframe src="https://raw.githubusercontent.com/deenhe91/deenhe91.github.io/master/images/eras.html"></iframe> -->
 
 <p>Stay tuned for <strong>model building</strong> in part 2!</p>
 
