@@ -1,0 +1,121 @@
+---
+
+layout: post
+title: 'playing nice with the google bigquery python client library'
+excerpt: 
+categories: [Data]
+comments: true
+image:
+  feature: 
+  credit: 
+  creditlink:
+---
+
+Google Cloud Platform can be great, but there are so many hoops you have to jump through before it is great, and many of those hoops are not well documented so I'm going to start off with a little tutorial/ study notes on how to use the python client library for google cloud platform correctly. 
+
+# Today's topic: BigQuery!
+
+For those of you who don't know, _"BigQuery is Google's fully managed, petabyte scale, low cost enterprise data warehouse for analytics"_. It's a serverless SQL database that supports nested data structures and user-defined functions, which means you can write extra little functions in javascript and incorporate them into your query. It is pretty neat. It's super fast, which, having entered the IT industry about a year ago, I didn't realise just how relieving that speed is for so many companies. And you can just log in online and query away, no drivers or connectors. 
+
+So, how do you fill a BigQuery table using python?
+
+## Before we start
+### enable the API
+
+If you are using the client library for BigQuery, you also need a project in your Google Cloud Platform account (which you set up with you gmail account, no way around that..). Make sure that you have checked in the API Manager to see whether the cloud BigQuery API is enabled. If it's not, you'll get all sorts of funky errors when you try and use it. 
+
+
+### credentials!
+
+Another thing that helps is having credentials downloaded. You can go to the credentials tab in the API Manager and create credentials. Click on _'help me choose'_ and answer the questions and some API creds will be created for you. Download the json, and in your code, create an environmental variable that points to the json file.
+
+```python
+import os
+
+os.environ['GOOGLE\_APPLICATION\_CREDENTIALS'] = '<path/to/json/file>'
+```
+Another thing you should do is make sure you have the [SDK](https://cloud.google.com/sdk/downloads) installed and have authenticated with that > `gcloud auth login`. Then set the current project to your project > `gcloud config set project <your_project_id>`
+
+## Setting up
+### schemas
+
+When creating and filling our table, we need to describe the schema of the table. We do this by importing the class `SchemaField` and generating a list
+of SchemaField classes with the name, type and mode (if needed), defined. The name, is the column - or field - name, the type is 'STRING', 'FLOAT', 'DATE', etc., and the mode is whether the row is 'REPEATED', 'NULLABLE' or 'REQUIRED'. 
+
+```python
+from google.cloud.bigquery.schema import SchemaField 
+
+SCHEMA = [SchemaField("size", "FLOAT"), #column name 'size' as a float
+		SchemaField("colour", "STRING"), # column name 'colour' as a string
+		SchemaField("curvature", "INTEGER"), # column name 'curvature' as an integer
+		SchemaField("best_before", "DATE")] # column name 'best\_before' as a date
+```
+
+### instantiate
+
+Now we set up our client and connection. We have a dataset called "fruit", and are looking to fill one table within that dataset called "banana"
+with our juicy data.
+
+```python
+import google-cloud-bigquery
+
+client = bigquery.Client()
+
+dataset = client.dataset("fruit")
+if not dataset.exists():
+	dataset.create()
+
+table = dataset.table("banana", SCHEMA) # see below
+if not table.exists():
+	table.create()
+
+```
+Check that your dataset and table have been created in BigQuery and with the correct schema. You can also make empty tables in the UI if you prefer.
+
+#### nested and repeated data
+
+If we want to wap in a list as one of the columns, we do that by assiging the mode as 'REPEATED'.
+
+```python
+SchemaField("bruises", "STRING", "REPEATED") # column name 'bruises' as a list of strings
+```
+For nested data, you say the type is a record and nest SchemaFields to represent the structure. 
+
+```python
+SchemaField("bruises", "RECORD", "REPEATED", fields=[
+													SchemaField("shape", "STRING"),
+													SchemaField("colour", "STRING"),
+													SchemaField("size", "FLOAT")
+													])
+```
+### tuples and dictionaries
+Now for the data itself. You can structure the data as a tuple, with the data points in the order that matches the `SCHEMA`, or, you
+can have it in json format, with the keys in the dictionary matches the field names in the `SCHEMA`.
+```python
+# THIS:
+
+ROW = (0.6, "YELLOW", "3", 2017-09-10, [dict(shape="BLOB", colour="BROWN", size=0.2)])
+
+# OR THAT:
+
+ROW = {
+	"size": 0.6,
+	"colour": "YELLOW",
+	"curvature": 3,
+	"best_before": 2017-09-10,
+	"bruises" : {
+			"shape":"BLOB",
+			"colour": "BROWN",
+			"size" : 0.2
+
+	}
+}
+
+```
+NOte that floats and integers can be a bit of a bitch to insert. Make sure that the floats/integers are scalar values, not numpy values and
+that you have no `nan`s, only `None`s.
+
+### inserting the data
+Store your data tuples or dictionaries in a list `MY_ROWS` and go ahead and insert them using `table.insert_data([MY_ROWS])`.
+If it works you should be able to see rows in the streaming buffer in the BigQuery UI by clicking on your table and on _'Details'_.
+
